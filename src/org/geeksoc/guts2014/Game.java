@@ -13,7 +13,7 @@ public class Game extends StateBasedGame {
 
 	@Override
 	public void initStatesList(GameContainer container) throws SlickException {
-		this.addState(new Menu(1));
+		this.addState(new Menu(0));
 	}
 
 }
