@@ -13,7 +13,6 @@ public class JobFactory {
 	
 	
 	public static void main(String[] args) {
-<<<<<<< HEAD
 		jobs = new ArrayList<Job>();
 		createJobs();
 	}
@@ -35,9 +34,6 @@ public class JobFactory {
 				beeperHandle.cancel(true); 
 			}
 		}, 60 * 60, TimeUnit.SECONDS);
-=======
-		Timer timer = new Timer();
->>>>>>> 4d28642ed3627071f73a63037f9b8db01525b644
 	}
 		
 		
