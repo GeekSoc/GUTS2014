@@ -18,6 +18,9 @@ public class WorkerSpace {
 		workers.removeAll(w);
 	}
 	
-	
+	public void transferWorkers(WorkerSpace ws, ArrayList<Employee> w){
+		ws.addWorkers(w);
+		this.removeWorkers(w);
+	}
 
 }
