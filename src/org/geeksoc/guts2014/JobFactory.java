@@ -8,12 +8,7 @@ public class JobFactory {
 	
 
 	public static void main(String[] args) {
-		Timer timer = new Timer(500, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// 
-			}
-		})
+		Timer timer = new Timer();
 	}
 	
  // updateTime
