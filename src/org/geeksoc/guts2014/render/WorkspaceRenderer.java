@@ -2,7 +2,6 @@ package org.geeksoc.guts2014.render;
 
 import java.awt.Font;
 
-import org.geeksoc.guts2014.RoomRenderer;
 import org.geeksoc.guts2014.Workspace;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -20,7 +19,7 @@ public class WorkspaceRenderer {
 	public WorkspaceRenderer(Workspace w) {
 		this.w = w;
 		Font awtFont = new Font("Times New Roman", Font.BOLD, 24);
-		font = new TrueTypeFont(awtFont, false);
+		font = new TrueTypeFont(awtFont, true);
 		rr= new RoomRenderer();
 	}
 
@@ -44,7 +43,7 @@ public class WorkspaceRenderer {
 		// renderControls
 
 		// renderRooms
-		rr.render(g, container, 13, null);
+		rr.render(g, container, w.getRoomCount(), w.getWorkerCountPerRoom());
 	}
 
 }

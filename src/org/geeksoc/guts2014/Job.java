@@ -14,6 +14,8 @@ public class Job {
 	private static String jobTypeName;
 	private static int jobDifficulty;
 
+	private int jobProgress;
+
 	public Job() {
 		List<JobType> jobTypes = Collections.unmodifiableList(Arrays
 				.asList(JobType.values()));
@@ -43,5 +45,10 @@ public class Job {
 
 	public static int randomNumber(int min, int max) {
 		return random.nextInt(max) + min;
+	}
+
+	public boolean workDone(int workDone) {
+		jobProgress += workDone;
+		return jobProgress >= jobDifficulty;
 	}
 }

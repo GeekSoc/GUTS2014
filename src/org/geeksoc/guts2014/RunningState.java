@@ -14,7 +14,7 @@ public class RunningState extends BasicGameState {
 	public static RunningState instance;
 	private Workspace w;
 	private ArrayList<GMouseListener> mouseListeners;
-	
+
 	private Options options;
 
 	public RunningState(Options o) {
@@ -32,7 +32,9 @@ public class RunningState extends BasicGameState {
 
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
+	
 		w.update(game,delta);
+		
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g)

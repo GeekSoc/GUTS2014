@@ -10,6 +10,7 @@ public class Workload {
 	public Queue<Job> phones = new LinkedList<Job>();
 	public Queue<Job> texts = new LinkedList<Job>();
 	public Queue<Job> socials = new LinkedList<Job>();
+	private WorkPacket global = new WorkPacket();
 
 	public Workload(JobFactory jf) {
 		this.jf = jf;
@@ -33,6 +34,23 @@ public class Workload {
 				break;
 			}
 		}
+		if(!emails.isEmpty()&&emails.peek().workDone(global.getWorkDone(JobType.Email))){
+			emails.poll();
+		}
+		if(!phones.isEmpty()&&phones.peek().workDone(global.getWorkDone(JobType.Phone))){
+			phones.poll();
+		}
+		if(!texts.isEmpty()&&texts.peek().workDone(global.getWorkDone(JobType.Text))){
+			texts.poll();
+		}
+		if(!socials.isEmpty()&&socials.peek().workDone(global.getWorkDone(JobType.SocialMedia))){
+			socials.poll();
+		}
+		
+	}
+	
+	public void submit(WorkPacket wp){
+		global.combine(wp);
 	}
 
 }

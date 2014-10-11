@@ -13,11 +13,11 @@ public class Workspace extends WorkerSpace {
 
 	Workload wl;
 	WorkspaceRenderer wr;
-	ArrayList<Section> sections;
 	GameTime gt;
 	JobFactory jf;
 	private TimeControls timeControls;
-
+	ArrayList<Section> rooms = new ArrayList<Section>();
+	
 	public Workspace() {
 		wr = new WorkspaceRenderer(this);
 
@@ -27,18 +27,21 @@ public class Workspace extends WorkerSpace {
 		jf.addInitialJobs(10);
 		//jf.startJobCreation();
 		timeControls = new TimeControls(gt);
+		for(int x=0;x<4; x++){
+			rooms.add(new Section(this));
+		}
 	}
 
 	public void update(StateBasedGame game, int delta) {
-		// for(Section s : sections){
-		// s.update();
-		// }
+		for(Section s : rooms){
+		s.update();
+		 }
 		gt.incrementTime(delta);
 		wl.update();
 	}
 
 	public void submitWork(WorkPacket wp) {
-		// wl.submit(wp)
+		 wl.submit(wp);
 
 	}
 
@@ -51,13 +54,27 @@ public class Workspace extends WorkerSpace {
 	}
 
 	public String getTime() {
-		// TODO Auto-generated method stub
 		return gt.toString();
 	}
 
 	public Workload getWorkload() {
-		// TODO Auto-generated method stub
-		return null;
+		return wl;
 	}
+
+	public int getRoomCount() {
+		return rooms.size();
+	}
+
+	public int[] getWorkerCountPerRoom() {
+		int[] res = new int[getRoomCount()];
+		int x=0;
+		for(Section room:rooms){
+			
+			res[x] = room.getWorkerCount();
+			x+=1;
+		}
+		return res;
+	}
+
 
 }

@@ -16,9 +16,8 @@ public class JobFactory {
 
 	private Queue<Job> jobQueue = new LinkedList<Job>();
 
-	public static void main(String[] args) {
-		JobFactory jobFactory = new JobFactory();
-		jobFactory.startJobCreation();
+	public void update(){
+		
 	}
 
 	public Queue<Job> getJobQueue() {
