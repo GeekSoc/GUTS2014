@@ -18,6 +18,9 @@ public class Menu extends BasicGameState {
 	private static int buttonHeight = 50;
 	private RoundedRectangle startButton;
 	private RoundedRectangle musicButton;
+	private RoundedRectangle FSButton;
+	private Color buttonColor;
+	private Color textColor;
 	private boolean clicked = false;
 	private int mouseX = 0;
 	private int mouseY = 0;
@@ -35,8 +38,11 @@ public class Menu extends BasicGameState {
 		int x1 = (container.getWidth() / 2) - (buttonWidth / 2);
 		startButton = new RoundedRectangle(x1, 100, buttonWidth, buttonHeight, 20);
 		musicButton = new RoundedRectangle(x1, 200, buttonWidth, buttonHeight, 20);
+		FSButton = new RoundedRectangle(x1, 300, buttonWidth, buttonHeight, 20);
 		Sound_1= new Music("res/sound/background.ogg");
 		Sound_1.loop(1.0f, 1.0f);
+		buttonColor = new Color(150, 134, 192);
+		textColor = new Color(102, 84, 149);
 		//Fuck off wit hte annoying music for now :(
 		//Image phone1 = new Image("res/img/phone.gif");
 		//Image phone2 = new Image("res/img/phone2.gif");
@@ -70,6 +76,13 @@ public class Menu extends BasicGameState {
 				}
 				
 			}
+			if (mouseX < FSButton.getMaxX()
+					&& mouseX > FSButton.getMinX()
+					&& mouseY < FSButton.getMaxY()
+					&& mouseY > FSButton.getMinY()) {
+				container.setFullscreen(true);
+				
+			}
 			clicked = false;
 		}
 
@@ -93,16 +106,20 @@ public class Menu extends BasicGameState {
 		g.setAntiAlias(true);
 		
 		g.scale(1, 1);
-		g.setColor(new Color(150, 134, 192));
+		g.setColor(buttonColor);
 		g.fill(startButton);
-		g.setColor(new Color(102, 84, 149));
+		g.setColor(textColor);
 		g.drawString("Start", startButton.getCenterX()-20, startButton.getCenterY()-5);
 		
-		g.setColor(new Color(150, 134, 192));
+		g.setColor(buttonColor);
 		g.fill(musicButton);
-		g.setColor(new Color(102, 84, 149));
+		g.setColor(textColor);
 		g.drawString("Toggle Music", musicButton.getCenterX()-50, musicButton.getCenterY()-5);
 		
+		g.setColor(buttonColor);
+		g.fill(FSButton);
+		g.setColor(textColor);
+		g.drawString("Full Screen", FSButton.getCenterX()-50, FSButton.getCenterY()-5);
 		
 	}
 
