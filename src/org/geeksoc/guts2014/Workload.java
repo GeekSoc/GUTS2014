@@ -95,7 +95,7 @@ public class Workload {
 		
 		}
 		//System.out.println(global.getWorkDone().toString());
-		global.setWorkDone(empty);
+		global = new WorkPacket();;
 		
 		loop++;
 	}
