@@ -5,7 +5,7 @@ import java.math.*;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.RoundedRectangle;
 
 public class RoomRenderer {
 	
@@ -30,7 +30,7 @@ public class RoomRenderer {
 			cc=i%nRows;
 			x=((cc+1)*hallwayWidth) + (cc*(int)rHorSize-1)+50;
 			y=(cr*hallwayWidth) + ((cr-1)*(int)rVerSize-1)+80;
-			g.fill(new Rectangle(x,y,rHorSize,rVerSize));
+			g.fill(new RoundedRectangle(x,y,rHorSize,rVerSize, rHorSize/20));
 		}
 	}
 }
