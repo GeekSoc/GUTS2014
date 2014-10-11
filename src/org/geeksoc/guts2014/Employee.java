@@ -1,6 +1,7 @@
 package org.geeksoc.guts2014;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -55,6 +56,7 @@ public class Employee extends Circle {
 			skills.put(jobType, rand.nextInt(20));
 			experience.put(jobType, 0);
 		}
+		System.out.println(skills.toString());
 	}
 
 	/**
@@ -143,7 +145,16 @@ public class Employee extends Circle {
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.magenta);
+		int max = 0;
+		JobType best = null;
+		for(JobType jt: JobType.values()){
+			if(skills.get(jt) >= max){
+				best = jt;
+				max= skills.get(jt);
+			}
+		}
+		
+		g.setColor(best.color);
 		g.fill(this);
 		
 	}
