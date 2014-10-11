@@ -50,7 +50,7 @@ public class GameTime {
 			if(!JobFactory.isRunning){
 			jf.startJobCreation();
 			}
-			jf.setLambda(i);
+			jf.setLambda(i/100.0);
 		}
 
 	}

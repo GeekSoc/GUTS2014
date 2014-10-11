@@ -8,7 +8,7 @@ import java.util.TimerTask;
 
 public class JobFactory {
 
-	private static double lambda = 2; // rate in the poisson process
+	private static double lambda = 1.0/100.0; // rate in the poisson process
 
 	private static Random random = new Random();
 	public static boolean isRunning;
@@ -36,7 +36,7 @@ public class JobFactory {
 	class Task extends TimerTask {
 		@Override
 		public void run() {
-			double randomWait = -Math.log(random.nextDouble()) / lambda * 1000;
+			double randomWait = -Math.log(1.0 - random.nextDouble()) / lambda;
 			long randomWait_ms = (long) randomWait;
 			timer.schedule(new Task(), randomWait_ms);
 			Job job = new Job();
