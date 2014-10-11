@@ -83,6 +83,8 @@ public class Workspace extends WorkerSpace {
 				Main.cash -= 100;
 			}
 			if (rmRoomButton2.contains(mouseX, mouseY) && rooms.size() > 1) {
+				Section roomO = rooms.get(1);
+				roomO.transferWorkers(this, roomO.getWorkers());	
 				rooms.remove(1) ;
 			}
 			if(hireWorker2.contains(mouseX, mouseY)){
