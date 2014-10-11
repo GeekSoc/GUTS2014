@@ -16,7 +16,7 @@ public class RoomRenderer {
 	
 	private final int peepRadius = 10;                   //size of people before any modifications
 	private final int hallwayWidth = 10;
-	private final int roomTopMargin = 80;
+	private final int roomTopMargin = 65;
 	private final int roomSideMargin = 5;
 	private final int peepGap = 5;
 
