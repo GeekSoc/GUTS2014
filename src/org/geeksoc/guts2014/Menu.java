@@ -1,5 +1,8 @@
 package org.geeksoc.guts2014;
 
+import java.awt.FontFormatException;
+import java.io.IOException;
+
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.AppGameContainer;
@@ -43,6 +46,16 @@ public class Menu extends BasicGameState {
 
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
+		
+		try {
+			Main.loadResources();
+		} catch (FontFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 			c=container;
 			reiniti(c);
@@ -131,6 +144,7 @@ public class Menu extends BasicGameState {
 		g.setAntiAlias(true);
 		
 		g.scale(1, 1);
+		g.setFont(Main.font);
 		g.setColor(buttonColor);
 		g.fill(startButton);
 		g.fill(musicButton);
