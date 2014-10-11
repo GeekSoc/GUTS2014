@@ -61,19 +61,19 @@ public class Menu extends BasicGameState {
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		/*g.scale(2, 2);
+		
 		g.drawAnimation(phone, 10, 10);
-		for(int x = 0; x<5; x++){
-			for(int y = 0; y<5; y++){
+		for(int x = 0; x<20; x++){
+			for(int y = 0; y<15; y++){
 				g.drawAnimation(phone, (x*60)+10, (y*40)+10);
 			}
-		}*/
+		}
 		
-		g.scale(1, 1);
 		g.setColor(Color.white);
 		g.fill(startButton);
 		g.setColor(Color.black);
 		g.drawString("Start", startButton.getCenterX()-20, startButton.getCenterY());
+		
 		
 	}
 
