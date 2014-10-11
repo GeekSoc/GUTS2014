@@ -1,7 +1,7 @@
 package org.geeksoc.guts2014;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 
 /**
