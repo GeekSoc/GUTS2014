@@ -16,9 +16,10 @@ public class Menu extends BasicGameState {
 	private boolean clicked = false;
 	private int mouseX = 0;
 	private int mouseY = 0;
+	private Options options;
 
-	public Menu() {
-
+	public Menu(Options o) {
+		options = o;
 	}
 
 	public void init(GameContainer container, StateBasedGame game)

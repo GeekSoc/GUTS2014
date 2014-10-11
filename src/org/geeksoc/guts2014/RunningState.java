@@ -14,10 +14,13 @@ public class RunningState extends BasicGameState {
 	public static RunningState instance;
 	private Workspace w;
 	private ArrayList<GMouseListener> mouseListeners;
+	
+	private Options options;
 
-	public RunningState() {
+	public RunningState(Options o) {
 		instance = this;
 		mouseListeners = new ArrayList<GMouseListener>();
+		options = o;
 
 		w = new Workspace();
 	}
