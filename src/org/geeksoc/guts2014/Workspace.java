@@ -30,6 +30,13 @@ public class Workspace extends WorkerSpace {
 		for(int x=0;x<4; x++){
 			rooms.add(new Section(this));
 		}
+		
+		// Add 5 workers to workspace
+		ArrayList<Employee> newEmployees = new ArrayList<Employee>();
+		for (int i = 0; i < 5; i++) {
+			newEmployees.add(new Employee());
+		}
+		addWorkers(newEmployees);
 	}
 
 	public void update(GameContainer cont,StateBasedGame game, int delta) {
