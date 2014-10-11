@@ -18,6 +18,8 @@ public class WorkspaceRenderer {
 
 	private Workspace w;
 	private RoomRenderer rr;
+	private int flashtimer;
+	private String flash;
 	
 
 	public WorkspaceRenderer(Workspace w) {
@@ -46,6 +48,15 @@ public class WorkspaceRenderer {
 		
 		g.drawString(Main.rep+ " Rep", container.getWidth()/4-metrics.stringWidth( Main.rep+ " Rep")/2, 20);
 		
+		
+		if(Main.flash != null){
+			flash = Main.flash;
+			flashtimer = 100;
+		}
+		if(flashtimer > 0){
+		g.drawString(flash, container.getWidth()/4-metrics.stringWidth( flash)/2, container.getHeight()-20);
+		flashtimer--;
+		}
 		// Render Workload
 
 		// Render Unused Workers

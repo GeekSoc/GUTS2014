@@ -26,6 +26,14 @@ public class Job {
 		return;
 	}
 
+	public Job(JobType jobType) {
+		
+		jobDifficulty = randomNumber(0, 100);
+		this.jobType = jobType;
+		jobTypeName = jobType.name();
+		return;
+	}
+
 	public JobType getJobType() {
 		return jobType;
 	}

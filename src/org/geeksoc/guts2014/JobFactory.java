@@ -6,6 +6,8 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.geeksoc.guts2014.randomevents.RandomEventGenerator;
+
 public class JobFactory {
 
 	private static double lambda = 1.0/100.0; // rate in the poisson process
@@ -41,7 +43,7 @@ public class JobFactory {
 			timer.schedule(new Task(), randomWait_ms);
 			Job job = new Job();
 			jobQueue.add(job);
-
+			if(random.nextInt(100)==0)RandomEventGenerator.generateEvent(jobQueue);
 			System.out.println(String.format("Job added (%dms) - %s",
 					randomWait_ms, job.toString()));
 		}
