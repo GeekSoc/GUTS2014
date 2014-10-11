@@ -13,18 +13,20 @@ public class Sheet {
 	private BufferedImage image;
 	/** The list of sprite descriptors */
 	private ArrayList sprites;
-	
+
 	/**
 	 * Create a new sheet
 	 * 
-	 * @param image The image built for the sheet
-	 * @param sprites The sprite descriptors
+	 * @param image
+	 *            The image built for the sheet
+	 * @param sprites
+	 *            The sprite descriptors
 	 */
 	public Sheet(BufferedImage image, ArrayList sprites) {
 		this.image = image;
 		this.sprites = sprites;
 	}
-	
+
 	/**
 	 * Get the image built for this sheet
 	 * 
@@ -33,7 +35,7 @@ public class Sheet {
 	public BufferedImage getImage() {
 		return image;
 	}
-	
+
 	/**
 	 * Get the list of sprites for this sheet
 	 * 

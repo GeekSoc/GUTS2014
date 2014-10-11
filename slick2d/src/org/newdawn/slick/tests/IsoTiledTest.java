@@ -15,7 +15,7 @@ import org.newdawn.slick.util.Bootstrap;
 public class IsoTiledTest extends BasicGame {
 	/** The tilemap we're going to render */
 	private TiledMap tilemap;
-	
+
 	/**
 	 * Create a new test
 	 */
@@ -25,6 +25,7 @@ public class IsoTiledTest extends BasicGame {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
@@ -33,7 +34,9 @@ public class IsoTiledTest extends BasicGame {
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer, int)
+	 * 
+	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
+	 * int)
 	 */
 	public void update(GameContainer container, int delta)
 			throws SlickException {
@@ -41,19 +44,22 @@ public class IsoTiledTest extends BasicGame {
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * 
+	 * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer,
+	 * org.newdawn.slick.Graphics)
 	 */
 	public void render(GameContainer container, Graphics g)
 			throws SlickException {
-		tilemap.render(350,150);
+		tilemap.render(350, 150);
 	}
 
 	/**
 	 * Entry point to our test
 	 * 
-	 * @param argv The arguments passed in from the command line
+	 * @param argv
+	 *            The arguments passed in from the command line
 	 */
 	public static void main(String[] argv) {
-		Bootstrap.runAsApplication(new IsoTiledTest(), 800,600,false);
+		Bootstrap.runAsApplication(new IsoTiledTest(), 800, 600, false);
 	}
 }

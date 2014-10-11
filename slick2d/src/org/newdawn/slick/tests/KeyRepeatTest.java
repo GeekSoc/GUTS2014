@@ -17,33 +17,36 @@ public class KeyRepeatTest extends BasicGame {
 	private int count;
 	/** The input sub system */
 	private Input input;
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public KeyRepeatTest() {
 		super("KeyRepeatTest");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
 		input = container.getInput();
-		input.enableKeyRepeat(300,100);
+		input.enableKeyRepeat(300, 100);
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.Graphics)
 	 */
 	public void render(GameContainer container, Graphics g) {
-		g.drawString("Key Press Count: "+count, 100,100);
-		g.drawString("Press Space to Toggle Key Repeat", 100,150);
-		g.drawString("Key Repeat Enabled: "+input.isKeyRepeatEnabled(), 100,200);
+		g.drawString("Key Press Count: " + count, 100, 100);
+		g.drawString("Press Space to Toggle Key Repeat", 100, 150);
+		g.drawString("Key Repeat Enabled: " + input.isKeyRepeatEnabled(), 100,
+				200);
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer, int)
+	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
+	 *      int)
 	 */
 	public void update(GameContainer container, int delta) {
 	}
@@ -51,12 +54,14 @@ public class KeyRepeatTest extends BasicGame {
 	/**
 	 * Entry point to our test
 	 * 
-	 * @param argv The arguments to pass into the test
+	 * @param argv
+	 *            The arguments to pass into the test
 	 */
 	public static void main(String[] argv) {
 		try {
-			AppGameContainer container = new AppGameContainer(new KeyRepeatTest());
-			container.setDisplayMode(800,600,false);
+			AppGameContainer container = new AppGameContainer(
+					new KeyRepeatTest());
+			container.setDisplayMode(800, 600, false);
 			container.start();
 		} catch (SlickException e) {
 			e.printStackTrace();
@@ -72,7 +77,7 @@ public class KeyRepeatTest extends BasicGame {
 			if (input.isKeyRepeatEnabled()) {
 				input.disableKeyRepeat();
 			} else {
-				input.enableKeyRepeat(300,100);
+				input.enableKeyRepeat(300, 100);
 			}
 		}
 	}

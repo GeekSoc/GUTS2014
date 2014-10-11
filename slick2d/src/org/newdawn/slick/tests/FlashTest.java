@@ -21,37 +21,40 @@ public class FlashTest extends BasicGame {
 	private boolean flash;
 	/** The container for the test */
 	private GameContainer container;
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public FlashTest() {
 		super("Flash Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
 		this.container = container;
-		
+
 		image = new Image("testdata/logo.tga");
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.Graphics)
 	 */
 	public void render(GameContainer container, Graphics g) {
-		g.drawString("Press space to toggle",10,50);
+		g.drawString("Press space to toggle", 10, 50);
 		if (flash) {
-			image.draw(100,100);
+			image.draw(100, 100);
 		} else {
-			image.drawFlash(100,100,image.getWidth(), image.getHeight(), new Color(1,0,1f,1f));
+			image.drawFlash(100, 100, image.getWidth(), image.getHeight(),
+					new Color(1, 0, 1f, 1f));
 		}
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer, int)
+	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
+	 *      int)
 	 */
 	public void update(GameContainer container, int delta) {
 	}
@@ -59,12 +62,13 @@ public class FlashTest extends BasicGame {
 	/**
 	 * Entry point to our test
 	 * 
-	 * @param argv The arguments to pass into the test
+	 * @param argv
+	 *            The arguments to pass into the test
 	 */
 	public static void main(String[] argv) {
 		try {
 			AppGameContainer container = new AppGameContainer(new FlashTest());
-			container.setDisplayMode(800,600,false);
+			container.setDisplayMode(800, 600, false);
 			container.start();
 		} catch (SlickException e) {
 			e.printStackTrace();

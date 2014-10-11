@@ -27,23 +27,24 @@ public class TestBox extends BasicGame {
 	private int index;
 	/** The game container */
 	private AppGameContainer container;
-	
+
 	/**
 	 * Create a new box containing all the tests
 	 */
 	public TestBox() {
 		super("Test Box");
 	}
-	
+
 	/**
 	 * Add a game to the box
 	 * 
-	 * @param game The game to add to the test box
+	 * @param game
+	 *            The game to add to the test box
 	 */
 	public void addGame(Class game) {
 		games.add(game);
 	}
-	
+
 	/**
 	 * Move to the next game
 	 */
@@ -51,15 +52,15 @@ public class TestBox extends BasicGame {
 		if (index == -1) {
 			return;
 		}
-		
+
 		index++;
 		if (index >= games.size()) {
-			index=0;
+			index = 0;
 		}
-	
+
 		startGame();
 	}
-	
+
 	/**
 	 * Start a particular game
 	 */
@@ -72,10 +73,10 @@ public class TestBox extends BasicGame {
 		} catch (Exception e) {
 			Log.error(e);
 		}
-		
+
 		container.setTitle(currentGame.getTitle());
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -85,10 +86,12 @@ public class TestBox extends BasicGame {
 				public void init(GameContainer container) throws SlickException {
 				}
 
-				public void update(GameContainer container, int delta) throws SlickException {
+				public void update(GameContainer container, int delta)
+						throws SlickException {
 				}
 
-				public void render(GameContainer container, Graphics g) throws SlickException {
+				public void render(GameContainer container, Graphics g)
+						throws SlickException {
 				}
 			};
 			currentGame.init(c);
@@ -101,16 +104,20 @@ public class TestBox extends BasicGame {
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer, int)
+	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
+	 *      int)
 	 */
-	public void update(GameContainer container, int delta) throws SlickException {
+	public void update(GameContainer container, int delta)
+			throws SlickException {
 		currentGame.update(container, delta);
 	}
 
 	/**
-	 * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.Graphics)
 	 */
-	public void render(GameContainer container, Graphics g) throws SlickException {
+	public void render(GameContainer container, Graphics g)
+			throws SlickException {
 		SlickCallable.enterSafeBlock();
 		currentGame.render(container, g);
 		SlickCallable.leaveSafeBlock();
@@ -171,7 +178,7 @@ public class TestBox extends BasicGame {
 	public void controllerRightReleased(int controller) {
 		currentGame.controllerRightReleased(controller);
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#controllerUpPressed(int)
 	 */
@@ -191,7 +198,7 @@ public class TestBox extends BasicGame {
 	 */
 	public void keyPressed(int key, char c) {
 		currentGame.keyPressed(key, c);
-		
+
 		if (key == Input.KEY_ENTER) {
 			nextGame();
 		}
@@ -235,7 +242,8 @@ public class TestBox extends BasicGame {
 	/**
 	 * Entry point to our test
 	 * 
-	 * @param argv The arguments to pass into the test
+	 * @param argv
+	 *            The arguments to pass into the test
 	 */
 	public static void main(String[] argv) {
 		try {
@@ -263,9 +271,9 @@ public class TestBox extends BasicGame {
 			box.addGame(SoundTest.class);
 			box.addGame(SpriteSheetFontTest.class);
 			box.addGame(TransparentColorTest.class);
-			
+
 			AppGameContainer container = new AppGameContainer(box);
-			container.setDisplayMode(800,600,false);
+			container.setDisplayMode(800, 600, false);
 			container.start();
 		} catch (SlickException e) {
 			e.printStackTrace();

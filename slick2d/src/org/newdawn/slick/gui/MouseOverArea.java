@@ -61,7 +61,7 @@ public class MouseOverArea extends AbstractComponent {
 
 	/** True if the mouse button is pressed */
 	private boolean mouseDown;
-	
+
 	/** The state of the area */
 	private int state = NORMAL;
 
@@ -82,11 +82,12 @@ public class MouseOverArea extends AbstractComponent {
 	 * @param listener
 	 *            A listener to add to the area
 	 */
-	public MouseOverArea(GUIContext container, Image image, int x, int y, ComponentListener listener) {
+	public MouseOverArea(GUIContext container, Image image, int x, int y,
+			ComponentListener listener) {
 		this(container, image, x, y, image.getWidth(), image.getHeight());
 		addListener(listener);
 	}
-	
+
 	/**
 	 * Create a new mouse over area
 	 * 
@@ -122,8 +123,8 @@ public class MouseOverArea extends AbstractComponent {
 	 *            A listener to add to the area
 	 */
 	public MouseOverArea(GUIContext container, Image image, int x, int y,
-			             int width, int height, ComponentListener listener) {
-		this(container,image,x,y,width,height);
+			int width, int height, ComponentListener listener) {
+		this(container, image, x, y, width, height);
 		addListener(listener);
 	}
 
@@ -145,9 +146,9 @@ public class MouseOverArea extends AbstractComponent {
 	 */
 	public MouseOverArea(GUIContext container, Image image, int x, int y,
 			int width, int height) {
-		this(container,image,new Rectangle(x,y,width,height));
+		this(container, image, new Rectangle(x, y, width, height));
 	}
-	
+
 	/**
 	 * Create a new mouse over area
 	 * 
@@ -179,8 +180,10 @@ public class MouseOverArea extends AbstractComponent {
 	/**
 	 * Moves the component.
 	 * 
-	 * @param x X coordinate
-	 * @param y Y coordinate
+	 * @param x
+	 *            X coordinate
+	 * @param y
+	 *            Y coordinate
 	 */
 	public void setLocation(float x, float y) {
 		if (area != null) {
@@ -192,21 +195,23 @@ public class MouseOverArea extends AbstractComponent {
 	/**
 	 * Set the x coordinate of this area
 	 * 
-	 * @param x The new x coordinate of this area
+	 * @param x
+	 *            The new x coordinate of this area
 	 */
 	public void setX(float x) {
 		area.setX(x);
 	}
-	
+
 	/**
 	 * Set the y coordinate of this area
 	 * 
-	 * @param y The new y coordinate of this area
+	 * @param y
+	 *            The new y coordinate of this area
 	 */
 	public void setY(float y) {
 		area.setY(y);
 	}
-	
+
 	/**
 	 * Returns the position in the X coordinate
 	 * 
@@ -224,7 +229,7 @@ public class MouseOverArea extends AbstractComponent {
 	public int getY() {
 		return (int) area.getY();
 	}
-	
+
 	/**
 	 * Set the normal color used on the image in the default state
 	 * 
@@ -291,9 +296,11 @@ public class MouseOverArea extends AbstractComponent {
 	 */
 	public void render(GUIContext container, Graphics g) {
 		if (currentImage != null) {
-			
-			int xp = (int) (area.getX() + ((getWidth() - currentImage.getWidth()) / 2));
-			int yp = (int) (area.getY() + ((getHeight() - currentImage.getHeight()) / 2));
+
+			int xp = (int) (area.getX() + ((getWidth() - currentImage
+					.getWidth()) / 2));
+			int yp = (int) (area.getY() + ((getHeight() - currentImage
+					.getHeight()) / 2));
 
 			currentImage.draw(xp, yp, currentColor);
 		} else {
@@ -321,11 +328,11 @@ public class MouseOverArea extends AbstractComponent {
 					currentImage = mouseDownImage;
 					currentColor = mouseDownColor;
 					state = MOUSE_DOWN;
-					
+
 					notifyListeners();
 					mouseUp = false;
 				}
-				
+
 				return;
 			} else {
 				mouseUp = true;
@@ -370,7 +377,7 @@ public class MouseOverArea extends AbstractComponent {
 	public void mouseMoved(int oldx, int oldy, int newx, int newy) {
 		over = area.contains(newx, newy);
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.util.InputAdapter#mouseDragged(int, int, int, int)
 	 */
@@ -384,17 +391,17 @@ public class MouseOverArea extends AbstractComponent {
 	public void mousePressed(int button, int mx, int my) {
 		over = area.contains(mx, my);
 		if (button == 0) {
-			mouseDown = true; 
+			mouseDown = true;
 		}
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.util.InputAdapter#mouseReleased(int, int, int)
 	 */
 	public void mouseReleased(int button, int mx, int my) {
 		over = area.contains(mx, my);
 		if (button == 0) {
-			mouseDown = false; 
+			mouseDown = false;
 		}
 	}
 
@@ -411,7 +418,7 @@ public class MouseOverArea extends AbstractComponent {
 	public int getWidth() {
 		return (int) (area.getMaxX() - area.getX());
 	}
-	
+
 	/**
 	 * Check if the mouse is over this area
 	 * 
@@ -424,10 +431,12 @@ public class MouseOverArea extends AbstractComponent {
 	/**
 	 * Set the location of this area
 	 * 
-	 * @param x The x coordinate of this area
-	 * @param y The y coordiante of this area
+	 * @param x
+	 *            The x coordinate of this area
+	 * @param y
+	 *            The y coordiante of this area
 	 */
 	public void setLocation(int x, int y) {
-		setLocation((float) x,(float) y);
+		setLocation((float) x, (float) y);
 	}
 }

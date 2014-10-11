@@ -6,13 +6,15 @@ package org.newdawn.slick.util;
  * @author JeffK
  */
 public class FastTrig {
-   /**
-	 * Fast Trig functions for x86.  
-	 * This forces the trig functiosn to stay within the safe area on the x86 processor (-45 degrees to +45 degrees)
-	 * The results may be very slightly off from what the Math and StrictMath trig functions give due to
-	 * rounding in the angle reduction but it will be very very close.
+	/**
+	 * Fast Trig functions for x86. This forces the trig functiosn to stay
+	 * within the safe area on the x86 processor (-45 degrees to +45 degrees)
+	 * The results may be very slightly off from what the Math and StrictMath
+	 * trig functions give due to rounding in the angle reduction but it will be
+	 * very very close.
 	 * 
-	 * @param radians The original angle
+	 * @param radians
+	 *            The original angle
 	 * @return The reduced Sin angle
 	 */
 	private static double reduceSinAngle(double radians) {
@@ -31,11 +33,13 @@ public class FastTrig {
 	/**
 	 * Get the sine of an angle
 	 * 
-	 * @param radians The angle
+	 * @param radians
+	 *            The angle
 	 * @return The sine of the angle
 	 */
 	public static double sin(double radians) {
-		radians = reduceSinAngle(radians); // limits angle to between -PI/2 and +PI/2
+		radians = reduceSinAngle(radians); // limits angle to between -PI/2 and
+											// +PI/2
 		if (Math.abs(radians) <= Math.PI / 4) {
 			return Math.sin(radians);
 		} else {
@@ -46,7 +50,8 @@ public class FastTrig {
 	/**
 	 * Get the cosine of an angle
 	 * 
-	 * @param radians The angle
+	 * @param radians
+	 *            The angle
 	 * @return The cosine of the angle
 	 */
 	public static double cos(double radians) {

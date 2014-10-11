@@ -8,11 +8,14 @@ package org.newdawn.slick.tools.hiero;
 public interface ProgressListener {
 
 	/**
-	 * Report the progress 
+	 * Report the progress
 	 * 
-	 * @param type The type of the progress
-	 * @param current The current progress
-	 * @param total The total goal
+	 * @param type
+	 *            The type of the progress
+	 * @param current
+	 *            The current progress
+	 * @param total
+	 *            The total goal
 	 */
 	public void reportProgress(String type, int current, int total);
 }

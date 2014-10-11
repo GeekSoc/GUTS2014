@@ -22,13 +22,16 @@ public class LocatedImage {
 	private float width;
 	/** The height to render the image */
 	private float height;
-	
+
 	/**
 	 * Create a new located image
 	 * 
-	 * @param image The image to be drawn
-	 * @param x The x location at which the image should be drawn
-	 * @param y The y location at which the image should be drawn
+	 * @param image
+	 *            The image to be drawn
+	 * @param x
+	 *            The x location at which the image should be drawn
+	 * @param y
+	 *            The y location at which the image should be drawn
 	 */
 	public LocatedImage(Image image, int x, int y) {
 		this.image = image;
@@ -37,7 +40,7 @@ public class LocatedImage {
 		this.width = image.getWidth();
 		this.height = image.getHeight();
 	}
-	
+
 	/**
 	 * Get the height the image will be drawn at
 	 * 
@@ -55,11 +58,12 @@ public class LocatedImage {
 	public float getWidth() {
 		return width;
 	}
-	
+
 	/**
 	 * Set the height the image should be drawn at
 	 * 
-	 * @param height The height the image should be drawn at
+	 * @param height
+	 *            The height the image should be drawn at
 	 */
 	public void setHeight(float height) {
 		this.height = height;
@@ -68,21 +72,23 @@ public class LocatedImage {
 	/**
 	 * Set the width the image should be drawn at
 	 * 
-	 * @param width The width the image should be drawn at
+	 * @param width
+	 *            The width the image should be drawn at
 	 */
 	public void setWidth(float width) {
 		this.width = width;
 	}
-	
+
 	/**
 	 * Set the colour filter to apply to the image
 	 * 
-	 * @param c The color filter to apply to the image
-	 */ 
+	 * @param c
+	 *            The color filter to apply to the image
+	 */
 	public void setColor(Color c) {
 		this.filter = c;
 	}
-	
+
 	/**
 	 * Get the colour filter being applied
 	 * 
@@ -91,11 +97,12 @@ public class LocatedImage {
 	public Color getColor() {
 		return filter;
 	}
-	
+
 	/**
 	 * Set the x position at which the image should be drawn
 	 * 
-	 * @param x The x coordinate of the position
+	 * @param x
+	 *            The x coordinate of the position
 	 */
 	public void setX(int x) {
 		this.x = x;
@@ -104,12 +111,13 @@ public class LocatedImage {
 	/**
 	 * Set the y position at which the image should be drawn
 	 * 
-	 * @param y The y coordinate of the position
+	 * @param y
+	 *            The y coordinate of the position
 	 */
 	public void setY(int y) {
 		this.y = y;
 	}
-	
+
 	/**
 	 * Get the x position at which the image will be drawn
 	 * 
@@ -127,11 +135,11 @@ public class LocatedImage {
 	public int getY() {
 		return y;
 	}
-	
+
 	/**
 	 * Draw the image based on the current configured state
 	 */
 	public void draw() {
-		image.draw(x,y,width,height,filter);
+		image.draw(x, y, width, height, filter);
 	}
 }

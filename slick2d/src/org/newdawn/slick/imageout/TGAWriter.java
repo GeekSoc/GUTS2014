@@ -12,12 +12,13 @@ import org.newdawn.slick.Image;
  * A utility to save TGA's given a Slick image.
  *
  * @author Jon
- */ 
+ */
 public class TGAWriter implements ImageWriter {
 	/**
 	 * Flip the endian-ness of the short
 	 * 
-	 * @param signedShort The short to flip
+	 * @param signedShort
+	 *            The short to flip
 	 * @return The flipped short
 	 */
 	private static short flipEndian(short signedShort) {
@@ -26,10 +27,13 @@ public class TGAWriter implements ImageWriter {
 	}
 
 	/**
-	 * @see org.newdawn.slick.imageout.ImageWriter#saveImage(org.newdawn.slick.Image, java.lang.String, java.io.OutputStream, boolean)
+	 * @see org.newdawn.slick.imageout.ImageWriter#saveImage(org.newdawn.slick.Image,
+	 *      java.lang.String, java.io.OutputStream, boolean)
 	 */
-	public void saveImage(Image image, String format, OutputStream output, boolean writeAlpha) throws IOException {
-		DataOutputStream out = new DataOutputStream(new BufferedOutputStream(output));
+	public void saveImage(Image image, String format, OutputStream output,
+			boolean writeAlpha) throws IOException {
+		DataOutputStream out = new DataOutputStream(new BufferedOutputStream(
+				output));
 
 		// ID Length
 		out.writeByte((byte) 0);
@@ -63,12 +67,11 @@ public class TGAWriter implements ImageWriter {
 			// needs to not have 0x20 set to indicate it's not a flipped image
 			out.writeByte((byte) 0);
 		}
-		
 
 		// Write out the image data
 		Color c;
 
-		for (int y = image.getHeight()-1; y <= 0; y--) {
+		for (int y = image.getHeight() - 1; y <= 0; y--) {
 			for (int x = 0; x < image.getWidth(); x++) {
 				c = image.getColor(x, y);
 

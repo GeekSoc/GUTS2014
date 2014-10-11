@@ -30,10 +30,14 @@ public class FontUtils {
 	/**
 	 * Draw text left justified
 	 * 
-	 * @param font The font to draw with
-	 * @param s The string to draw
-	 * @param x The x location to draw at
-	 * @param y The y location to draw at
+	 * @param font
+	 *            The font to draw with
+	 * @param s
+	 *            The string to draw
+	 * @param x
+	 *            The x location to draw at
+	 * @param y
+	 *            The y location to draw at
 	 */
 	public static void drawLeft(Font font, String s, int x, int y) {
 		drawString(font, s, Alignment.LEFT, x, y, 0, Color.white);
@@ -42,11 +46,16 @@ public class FontUtils {
 	/**
 	 * Draw text center justified
 	 * 
-	 * @param font The font to draw with
-	 * @param s The string to draw
-	 * @param x The x location to draw at
-	 * @param y The y location to draw at
-	 * @param width The width to fill with the text
+	 * @param font
+	 *            The font to draw with
+	 * @param s
+	 *            The string to draw
+	 * @param x
+	 *            The x location to draw at
+	 * @param y
+	 *            The y location to draw at
+	 * @param width
+	 *            The width to fill with the text
 	 */
 	public static void drawCenter(Font font, String s, int x, int y, int width) {
 		drawString(font, s, Alignment.CENTER, x, y, width, Color.white);
@@ -55,12 +64,18 @@ public class FontUtils {
 	/**
 	 * Draw text center justified
 	 * 
-	 * @param font The font to draw with
-	 * @param s The string to draw
-	 * @param x The x location to draw at
-	 * @param y The y location to draw at
-	 * @param width The width to fill with the text
-	 * @param color The color to draw in
+	 * @param font
+	 *            The font to draw with
+	 * @param s
+	 *            The string to draw
+	 * @param x
+	 *            The x location to draw at
+	 * @param y
+	 *            The y location to draw at
+	 * @param width
+	 *            The width to fill with the text
+	 * @param color
+	 *            The color to draw in
 	 */
 	public static void drawCenter(Font font, String s, int x, int y, int width,
 			Color color) {
@@ -70,11 +85,16 @@ public class FontUtils {
 	/**
 	 * Draw text right justified
 	 * 
-	 * @param font The font to draw with
-	 * @param s The string to draw
-	 * @param x The x location to draw at
-	 * @param y The y location to draw at
-	 * @param width The width to fill with the text
+	 * @param font
+	 *            The font to draw with
+	 * @param s
+	 *            The string to draw
+	 * @param x
+	 *            The x location to draw at
+	 * @param y
+	 *            The y location to draw at
+	 * @param width
+	 *            The width to fill with the text
 	 */
 	public static void drawRight(Font font, String s, int x, int y, int width) {
 		drawString(font, s, Alignment.RIGHT, x, y, width, Color.white);
@@ -83,12 +103,18 @@ public class FontUtils {
 	/**
 	 * Draw text right justified
 	 * 
-	 * @param font The font to draw with
-	 * @param s The string to draw
-	 * @param x The x location to draw at
-	 * @param y The y location to draw at
-	 * @param width The width to fill with the text
-	 * @param color The color to draw in
+	 * @param font
+	 *            The font to draw with
+	 * @param s
+	 *            The string to draw
+	 * @param x
+	 *            The x location to draw at
+	 * @param y
+	 *            The y location to draw at
+	 * @param width
+	 *            The width to fill with the text
+	 * @param color
+	 *            The color to draw in
 	 */
 	public static void drawRight(Font font, String s, int x, int y, int width,
 			Color color) {
@@ -98,13 +124,20 @@ public class FontUtils {
 	/**
 	 * Draw a string
 	 * 
-	 * @param font The font to draw with
-	 * @param s The text to draw
-	 * @param alignment The alignment to apply
-	 * @param x The x location to draw at
-	 * @param y The y location to draw at
-	 * @param width The width to fill with the string 
-	 * @param color The color to draw in 
+	 * @param font
+	 *            The font to draw with
+	 * @param s
+	 *            The text to draw
+	 * @param alignment
+	 *            The alignment to apply
+	 * @param x
+	 *            The x location to draw at
+	 * @param y
+	 *            The y location to draw at
+	 * @param width
+	 *            The width to fill with the string
+	 * @param color
+	 *            The color to draw in
 	 * @return The final x coordinate of the text
 	 */
 	public static final int drawString(Font font, final String s,
@@ -138,7 +171,8 @@ public class FontUtils {
 	 * Calculates and returns the width of a single justified space for the
 	 * given {@link String}, in pixels.
 	 * 
-	 * @param font The font to draw with
+	 * @param font
+	 *            The font to draw with
 	 * @param s
 	 *            The given non-null {@link String} to use to calculate the
 	 *            width of a space for.

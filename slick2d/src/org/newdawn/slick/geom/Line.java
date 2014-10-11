@@ -218,8 +218,8 @@ public class Line extends Shape {
 		end.set(ex, ey);
 		float dx = (ex - sx);
 		float dy = (ey - sy);
-		vec.set(dx,dy);
-		
+		vec.set(dx, dy);
+
 		lenSquared = (dx * dx) + (dy * dy);
 	}
 
@@ -467,16 +467,14 @@ public class Line extends Shape {
 	public boolean closed() {
 		return false;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.geom.Shape#intersects(org.newdawn.slick.geom.Shape)
 	 */
-	public boolean intersects(Shape shape) 
-    { 
-        if (shape instanceof Circle) 
-        { 
-            return shape.intersects(this); 
-        } 
-        return super.intersects(shape); 
-    }
+	public boolean intersects(Shape shape) {
+		if (shape instanceof Circle) {
+			return shape.intersects(this);
+		}
+		return super.intersects(shape);
+	}
 }

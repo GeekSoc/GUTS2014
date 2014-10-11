@@ -23,12 +23,13 @@ public class TestState3 extends BasicGameState {
 	/** The font to write the message with */
 	private Font font;
 	/** The menu options */
-	private String[] options = new String[] {"Start Game","Credits","Highscores","Instructions","Exit"};
+	private String[] options = new String[] { "Start Game", "Credits",
+			"Highscores", "Instructions", "Exit" };
 	/** The index of the selected option */
 	private int selected;
 	/** The game holding this state */
 	private StateBasedGame game;
-	
+
 	/**
 	 * @see org.newdawn.slick.state.BasicGameState#getID()
 	 */
@@ -37,32 +38,37 @@ public class TestState3 extends BasicGameState {
 	}
 
 	/**
-	 * @see org.newdawn.slick.state.BasicGameState#init(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame)
+	 * @see org.newdawn.slick.state.BasicGameState#init(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.state.StateBasedGame)
 	 */
-	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-		font = new AngelCodeFont("testdata/demo2.fnt","testdata/demo2_00.tga");
+	public void init(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		font = new AngelCodeFont("testdata/demo2.fnt", "testdata/demo2_00.tga");
 		this.game = game;
 	}
 
 	/**
-	 * @see org.newdawn.slick.state.BasicGameState#render(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.state.BasicGameState#render(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.Graphics)
 	 */
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
 		g.setFont(font);
 		g.setColor(Color.blue);
 		g.drawString("This is State 3", 200, 50);
 		g.setColor(Color.white);
-		
-		for (int i=0;i<options.length;i++) {
-			g.drawString(options[i], 400 - (font.getWidth(options[i])/2), 200+(i*50));
+
+		for (int i = 0; i < options.length; i++) {
+			g.drawString(options[i], 400 - (font.getWidth(options[i]) / 2),
+					200 + (i * 50));
 			if (selected == i) {
-				g.drawRect(200,190+(i*50),400,50);
+				g.drawRect(200, 190 + (i * 50), 400, 50);
 			}
 		}
 	}
 
 	/**
-	 * @see org.newdawn.slick.state.BasicGameState#update(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, int)
+	 * @see org.newdawn.slick.state.BasicGameState#update(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.state.StateBasedGame, int)
 	 */
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 	}
@@ -84,10 +90,12 @@ public class TestState3 extends BasicGameState {
 			}
 		}
 		if (key == Input.KEY_1) {
-			game.enterState(TestState1.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+			game.enterState(TestState1.ID, new FadeOutTransition(Color.black),
+					new FadeInTransition(Color.black));
 		}
 		if (key == Input.KEY_2) {
-			game.enterState(TestState2.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+			game.enterState(TestState2.ID, new FadeOutTransition(Color.black),
+					new FadeInTransition(Color.black));
 		}
 	}
 

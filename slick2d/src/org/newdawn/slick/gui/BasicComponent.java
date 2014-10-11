@@ -28,7 +28,7 @@ public abstract class BasicComponent extends AbstractComponent {
 	public BasicComponent(GUIContext container) {
 		super(container);
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.gui.AbstractComponent#getHeight()
 	 */
@@ -60,16 +60,19 @@ public abstract class BasicComponent extends AbstractComponent {
 	/**
 	 * Allow the sub-component to render
 	 * 
-	 * @param container The container holding the GUI
-	 * @param g The graphics context into which we should render
+	 * @param container
+	 *            The container holding the GUI
+	 * @param g
+	 *            The graphics context into which we should render
 	 */
 	public abstract void renderImpl(GUIContext container, Graphics g);
-	
+
 	/**
-	 * @see org.newdawn.slick.gui.AbstractComponent#render(org.newdawn.slick.gui.GUIContext, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.gui.AbstractComponent#render(org.newdawn.slick.gui.GUIContext,
+	 *      org.newdawn.slick.Graphics)
 	 */
 	public void render(GUIContext container, Graphics g) throws SlickException {
-		renderImpl(container,g);
+		renderImpl(container, g);
 	}
 
 	/**

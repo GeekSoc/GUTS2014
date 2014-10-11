@@ -58,13 +58,13 @@ public class ParticleEditor extends JFrame {
 	private JMenuItem clone = new JMenuItem("Clone Emitter");
 	/** Save a single particle emitter */
 	private JMenuItem exp = new JMenuItem("Export Emitter");
-	/** Toggle the HUD  */
+	/** Toggle the HUD */
 	private JMenuItem hud = new JMenuItem("Toggle Overlay");
-	/** Toggle the HUD  */
+	/** Toggle the HUD */
 	private JMenuItem loadBackground = new JMenuItem("Load Background Image");
-	/** Toggle the HUD  */
+	/** Toggle the HUD */
 	private JMenuItem clearBackground = new JMenuItem("Clear Background Image");
-	/** Toggle the graphice editor  */
+	/** Toggle the graphice editor */
 	private JMenuItem whiskas = new JMenuItem("Show/Hide Graph Editor");
 	/** Exit the editor */
 	private JMenuItem quit = new JMenuItem("Exit");
@@ -83,7 +83,7 @@ public class ParticleEditor extends JFrame {
 	private LimitPanel limitPanel;
 	/** The whiskas panel */
 	private WhiskasPanel whiskasPanel;
-	
+
 	/** Control for the type of particle system blending */
 	private JCheckBox additive = new JCheckBox("Additive Blending");
 	/** Control for the type of particle point usage */
@@ -97,18 +97,19 @@ public class ParticleEditor extends JFrame {
 	/** Play or Pause the current rendering */
 	private JButton pause = new JButton("Play/Pause");
 	/** The slider defining the movement of the system */
-	private JSlider systemMove = new JSlider(-100,100,0);
-	
+	private JSlider systemMove = new JSlider(-100, 100, 0);
+
 	/** The graph editor frame **/
 	private JFrame graphEditorFrame;
 	/** The filter in use */
 	private FileFilter xmlFileFilter;
-	
+
 	/**
 	 * Create a new editor
 	 * 
-	 * @throws LWJGLException Indicates a failure to create an OpenGL context
-	 * @throws SlickException 
+	 * @throws LWJGLException
+	 *             Indicates a failure to create an OpenGL context
+	 * @throws SlickException
 	 */
 	public ParticleEditor() throws LWJGLException, SlickException {
 		super("Pedigree - Whiskas flavoured");
@@ -118,11 +119,11 @@ public class ParticleEditor extends JFrame {
 				if (f.isDirectory()) {
 					return true;
 				}
-				
+
 				if (f.getName().endsWith(".xml")) {
 					return true;
 				}
-				
+
 				return false;
 			}
 
@@ -131,25 +132,26 @@ public class ParticleEditor extends JFrame {
 			}
 		};
 		chooser.setFileFilter(xmlFileFilter);
-		
-//		try {
-//			InputStream in = ParticleEditor.class.getClassLoader().getResourceAsStream("org/newdawn/slick/tools/peditor/data/icon.gif");
-//			
-//			setIconImage(ImageIO.read(in));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-		
+
+		// try {
+		// InputStream in =
+		// ParticleEditor.class.getClassLoader().getResourceAsStream("org/newdawn/slick/tools/peditor/data/icon.gif");
+		//
+		// setIconImage(ImageIO.read(in));
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// }
+
 		emitters = new EmitterList(this);
 		emissionControls = new EmissionControls();
 		positionControls = new PositionControls();
 		settingsPanel = new SettingsPanel(emitters);
 		colorPanel = new ColorPanel();
 		limitPanel = new LimitPanel(emitters);
-		whiskasPanel= new WhiskasPanel( emitters, colorPanel, emissionControls );
-		
+		whiskasPanel = new WhiskasPanel(emitters, colorPanel, emissionControls);
+
 		JPopupMenu.setDefaultLightWeightPopupEnabled(false);
-		
+
 		JMenu file = new JMenu("File");
 		file.add(newSystem);
 		file.addSeparator();
@@ -178,7 +180,7 @@ public class ParticleEditor extends JFrame {
 				clearBackground();
 			}
 		});
-		
+
 		newSystem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				createNewSystem();
@@ -224,54 +226,54 @@ public class ParticleEditor extends JFrame {
 				graphEditorFrame.setVisible(!graphEditorFrame.isVisible());
 			}
 		});
-		
+
 		JMenuBar bar = new JMenuBar();
 		bar.add(file);
 		setJMenuBar(bar);
-		
+
 		game = new ParticleGame(this);
 		final CanvasGameContainer container = new CanvasGameContainer(game);
 		container.getContainer().setAlwaysRender(true);
-		container.setSize(500,600);
+		container.setSize(500, 600);
 		JPanel controls = new JPanel();
 		controls.setLayout(null);
-		emitters.setBounds(0,0,300,150);
+		emitters.setBounds(0, 0, 300, 150);
 		emitters.setBorder(BorderFactory.createTitledBorder("Emitters"));
 		controls.add(emitters);
 		JTabbedPane tabs = new JTabbedPane();
-		tabs.setBounds(0,150,300,350);
+		tabs.setBounds(0, 150, 300, 350);
 		controls.add(tabs);
-		
+
 		tabs.add("Settings", settingsPanel);
 		tabs.add("Emission", emissionControls);
 		tabs.add("Position", positionControls);
 		tabs.add("Rendering", colorPanel);
 		tabs.add("Limit", limitPanel);
 		tabs.add("Whiskas", whiskasPanel);
-		
+
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		container.setBounds(0,0,500,600);
-		controls.setBounds(500,20,300,575);
-		reset.setBounds(90,500,90,25);
+		container.setBounds(0, 0, 500, 600);
+		controls.setBounds(500, 20, 300, 575);
+		reset.setBounds(90, 500, 90, 25);
 		controls.add(reset);
-		systemMove.setBounds(180,500,120,25);
+		systemMove.setBounds(180, 500, 120, 25);
 		controls.add(systemMove);
-		pause.setBounds(0,500,90,25);
+		pause.setBounds(0, 500, 90, 25);
 		controls.add(pause);
-		additive.setBounds(500,0,150,25);
+		additive.setBounds(500, 0, 150, 25);
 		panel.add(additive);
-		pointsEnabled.setBounds(650,0,150,25);
+		pointsEnabled.setBounds(650, 0, 150, 25);
 		panel.add(pointsEnabled);
 		panel.add(container);
 		panel.add(controls);
 
 		systemMove.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				game.setSystemMove(systemMove.getValue(),false);
+				game.setSystemMove(systemMove.getValue(), false);
 			}
 		});
-		
+
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
@@ -297,51 +299,51 @@ public class ParticleEditor extends JFrame {
 				game.setPaused(!game.isPaused());
 			}
 		});
-		
+
 		ConfigurableEmitter test = new ConfigurableEmitter("Default");
 		emitters.add(test);
 		game.addEmitter(test);
-		
+
 		additive.setSelected(true);
-		
+
 		setContentPane(panel);
-		setSize(800,600);
+		setSize(800, 600);
 		setResizable(false);
 		setVisible(true);
 
 		InputListener listener = new InputAdapter() {
 			public void mousePressed(int x, int y, int button) {
 				if (button != 0) {
-					positionControls.setPosition(0,0);
+					positionControls.setPosition(0, 0);
 				}
 				systemMove.setValue(0);
-				game.setSystemMove(0,true);
+				game.setSystemMove(0, true);
 			}
-			
+
 			public void mouseMoved(int x, int y, int nx, int ny) {
 				if (container.getContainer().getInput().isMouseButtonDown(0)) {
 					int xp = nx - 250;
 					int yp = ny - 300;
-					positionControls.setPosition(xp,yp);
+					positionControls.setPosition(xp, yp);
 					systemMove.setValue(0);
-					game.setSystemMove(0,true);
+					game.setSystemMove(0, true);
 				}
 			}
 		};
 		game.setListener(listener);
-		
+
 		// init graph window
 		initGraphEditorWindow();
 
 		emitters.setSelected(0);
-		
+
 		try {
 			container.start();
 		} catch (SlickException e1) {
 			Log.error(e1);
 		}
 	}
-	
+
 	/**
 	 * Load a background image to display behind the particle system
 	 */
@@ -353,50 +355,53 @@ public class ParticleEditor extends JFrame {
 			game.setBackgroundImage(chooser.getSelectedFile());
 		}
 	}
-	
-	/** 
+
+	/**
 	 * Clear the background image in use
 	 */
 	private void clearBackground() {
 		game.setBackgroundImage(null);
 	}
-	
+
 	/**
 	 * init the graph editor window
 	 */
-	private void initGraphEditorWindow()
-	{
-	    // create the window
-	    GraphEditorWindow editor = new GraphEditorWindow();
+	private void initGraphEditorWindow() {
+		// create the window
+		GraphEditorWindow editor = new GraphEditorWindow();
 
-	    whiskasPanel.setEditor(editor);
+		whiskasPanel.setEditor(editor);
 
-	    graphEditorFrame= new JFrame("Whiskas Gradient Editor");
-	    graphEditorFrame.getContentPane().add(editor);
-	    graphEditorFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-	    graphEditorFrame.pack();
-	    graphEditorFrame.setSize(600, 300);
-	    graphEditorFrame.setLocation(this.getX(), this.getY()+this.getHeight());
-	    graphEditorFrame.setVisible(true);
-	    
-//		try {
-//			InputStream in = ParticleEditor.class.getClassLoader().getResourceAsStream("org/newdawn/slick/tools/peditor/data/icon.gif");
-//			
-//			//graphEditorFrame.setIconImage(ImageIO.read(in));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		graphEditorFrame = new JFrame("Whiskas Gradient Editor");
+		graphEditorFrame.getContentPane().add(editor);
+		graphEditorFrame
+				.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+		graphEditorFrame.pack();
+		graphEditorFrame.setSize(600, 300);
+		graphEditorFrame.setLocation(this.getX(),
+				this.getY() + this.getHeight());
+		graphEditorFrame.setVisible(true);
+
+		// try {
+		// InputStream in =
+		// ParticleEditor.class.getClassLoader().getResourceAsStream("org/newdawn/slick/tools/peditor/data/icon.gif");
+		//
+		// //graphEditorFrame.setIconImage(ImageIO.read(in));
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// }
 	}
-	
+
 	/**
 	 * Set the movement of the system
 	 * 
-	 * @param move The movement of the system
+	 * @param move
+	 *            The movement of the system
 	 */
 	public void setSystemMove(int move) {
 		systemMove.setValue(move);
 	}
-	
+
 	/**
 	 * Import an emitter XML file
 	 */
@@ -406,28 +411,30 @@ public class ParticleEditor extends JFrame {
 		if (resp == JFileChooser.APPROVE_OPTION) {
 			File file = chooser.getSelectedFile();
 			File path = file.getParentFile();
-			
+
 			try {
-				final ConfigurableEmitter emitter = ParticleIO.loadEmitter(file);
-				
-				
+				final ConfigurableEmitter emitter = ParticleIO
+						.loadEmitter(file);
+
 				if (emitter.getImageName() != null) {
 					File possible = new File(path, emitter.getImageName());
-					
+
 					if (possible.exists()) {
 						emitter.setImageName(possible.getAbsolutePath());
 					} else {
-						chooser.setDialogTitle("Locate the image: "+emitter.getImageName());
+						chooser.setDialogTitle("Locate the image: "
+								+ emitter.getImageName());
 						resp = chooser.showOpenDialog(this);
 						FileFilter filter = new FileFilter() {
 							public boolean accept(File f) {
 								if (f.isDirectory()) {
 									return true;
 								}
-								
-								return (f.getName().equals(emitter.getImageName()));
+
+								return (f.getName().equals(emitter
+										.getImageName()));
 							}
-	
+
 							public String getDescription() {
 								return emitter.getImageName();
 							}
@@ -442,7 +449,7 @@ public class ParticleEditor extends JFrame {
 						chooser.addChoosableFileFilter(xmlFileFilter);
 					}
 				}
-				
+
 				addEmitter(emitter);
 				emitters.setSelected(emitter);
 			} catch (IOException e) {
@@ -459,14 +466,15 @@ public class ParticleEditor extends JFrame {
 		if (selected == null) {
 			return;
 		}
-		
+
 		try {
 			ByteArrayOutputStream bout = new ByteArrayOutputStream();
 			ParticleIO.saveEmitter(bout, selected);
-			ByteArrayInputStream bin = new ByteArrayInputStream(bout.toByteArray());
+			ByteArrayInputStream bin = new ByteArrayInputStream(
+					bout.toByteArray());
 			ConfigurableEmitter emitter = ParticleIO.loadEmitter(bin);
 			emitter.name = emitter.name + "_clone";
-			
+
 			addEmitter(emitter);
 			emitters.setSelected(emitter);
 		} catch (IOException e) {
@@ -474,7 +482,7 @@ public class ParticleEditor extends JFrame {
 			JOptionPane.showMessageDialog(this, e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Export an emitter XML file
 	 */
@@ -488,9 +496,9 @@ public class ParticleEditor extends JFrame {
 		if (resp == JFileChooser.APPROVE_OPTION) {
 			File file = chooser.getSelectedFile();
 			if (!file.getName().endsWith(".xml")) {
-				file = new File(file.getAbsolutePath()+".xml");
+				file = new File(file.getAbsolutePath() + ".xml");
 			}
-			
+
 			try {
 				ParticleIO.saveEmitter(file, selected);
 			} catch (IOException e) {
@@ -508,7 +516,7 @@ public class ParticleEditor extends JFrame {
 		pointsEnabled.setSelected(false);
 		emitters.clear();
 	}
-	
+
 	/**
 	 * Load a complete particle system XML description
 	 */
@@ -518,35 +526,38 @@ public class ParticleEditor extends JFrame {
 		if (resp == JFileChooser.APPROVE_OPTION) {
 			File file = chooser.getSelectedFile();
 			File path = file.getParentFile();
-			
+
 			try {
 				ParticleSystem system = ParticleIO.loadConfiguredSystem(file);
 				game.setSystem(system);
 				emitters.clear();
-				
-				for (int i=0;i<system.getEmitterCount();i++) {
-					final ConfigurableEmitter emitter = (ConfigurableEmitter) system.getEmitter(i);
-					
+
+				for (int i = 0; i < system.getEmitterCount(); i++) {
+					final ConfigurableEmitter emitter = (ConfigurableEmitter) system
+							.getEmitter(i);
+
 					if (emitter.getImageName() != null) {
 						File possible = new File(path, emitter.getImageName());
 						if (possible.exists()) {
 							emitter.setImageName(possible.getAbsolutePath());
 						} else {
-							chooser.setDialogTitle("Locate the image: "+emitter.getImageName());
+							chooser.setDialogTitle("Locate the image: "
+									+ emitter.getImageName());
 							FileFilter filter = new FileFilter() {
 								public boolean accept(File f) {
 									if (f.isDirectory()) {
 										return true;
 									}
-									
-									return (f.getName().equals(emitter.getImageName()));
+
+									return (f.getName().equals(emitter
+											.getImageName()));
 								}
-	
+
 								public String getDescription() {
 									return emitter.getImageName();
 								}
 							};
-							
+
 							chooser.addChoosableFileFilter(filter);
 							resp = chooser.showOpenDialog(this);
 							if (resp == JFileChooser.APPROVE_OPTION) {
@@ -559,12 +570,12 @@ public class ParticleEditor extends JFrame {
 							chooser.addChoosableFileFilter(xmlFileFilter);
 						}
 					}
-					
+
 					emitters.add(emitter);
 				}
 				additive.setSelected(system.getBlendingMode() == ParticleSystem.BLEND_ADDITIVE);
 				pointsEnabled.setSelected(system.usePoints());
-				
+
 				emitters.setSelected(0);
 			} catch (IOException e) {
 				Log.error(e);
@@ -581,9 +592,9 @@ public class ParticleEditor extends JFrame {
 		if (resp == JFileChooser.APPROVE_OPTION) {
 			File file = chooser.getSelectedFile();
 			if (!file.getName().endsWith(".xml")) {
-				file = new File(file.getAbsolutePath()+".xml");
+				file = new File(file.getAbsolutePath() + ".xml");
 			}
-			
+
 			try {
 				ParticleIO.saveConfiguredSystem(file, game.getSystem());
 			} catch (IOException e) {
@@ -592,35 +603,38 @@ public class ParticleEditor extends JFrame {
 			}
 		}
 	}
-	
+
 	/**
-	 * Add a new emitter to the editor 
+	 * Add a new emitter to the editor
 	 * 
-	 * @param emitter The emitter to add
+	 * @param emitter
+	 *            The emitter to add
 	 */
 	public void addEmitter(ConfigurableEmitter emitter) {
 		emitters.add(emitter);
 		game.addEmitter(emitter);
 	}
-	
+
 	/**
 	 * Remove a particle emitter from the editor
 	 * 
-	 * @param emitter The emitter to be removed
+	 * @param emitter
+	 *            The emitter to be removed
 	 */
 	public void removeEmitter(ConfigurableEmitter emitter) {
 		emitters.remove(emitter);
 		game.removeEmitter(emitter);
 	}
-	
+
 	/**
 	 * Set the currently selected and edited particle emitter
 	 * 
-	 * @param emitter The emitter that should be selected or null for none
+	 * @param emitter
+	 *            The emitter that should be selected or null for none
 	 */
 	public void setCurrentEmitter(ConfigurableEmitter emitter) {
 		this.selected = emitter;
-		
+
 		if (emitter == null) {
 			emissionControls.setEnabled(false);
 			settingsPanel.setEnabled(false);
@@ -635,7 +649,7 @@ public class ParticleEditor extends JFrame {
 			colorPanel.setEnabled(true);
 			limitPanel.setEnabled(true);
 			whiskasPanel.setEnabled(true);
-			
+
 			emissionControls.setTarget(emitter);
 			settingsPanel.setTarget(emitter);
 			positionControls.setTarget(emitter);
@@ -645,28 +659,28 @@ public class ParticleEditor extends JFrame {
 			whiskasPanel.setTarget(emitter);
 		}
 	}
-	
+
 	/**
-	 * Change the visual indicator for the current particle system 
-	 * blend mode
+	 * Change the visual indicator for the current particle system blend mode
 	 */
 	public void updateBlendMode() {
 		if (additive.isSelected()) {
 			game.getSystem().setBlendingMode(ParticleSystem.BLEND_ADDITIVE);
- 		} else {
+		} else {
 			game.getSystem().setBlendingMode(ParticleSystem.BLEND_COMBINE);
- 		}
+		}
 	}
-	
+
 	/**
 	 * Entry point in the editor
 	 * 
-	 * @param argv The arguments passed on the command line
+	 * @param argv
+	 *            The arguments passed on the command line
 	 */
 	public static void main(String[] argv) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		
+
 			new ParticleEditor();
 		} catch (Exception e) {
 			Log.error(e);

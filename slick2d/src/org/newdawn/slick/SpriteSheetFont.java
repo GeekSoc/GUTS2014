@@ -5,10 +5,10 @@ import java.io.UnsupportedEncodingException;
 import org.newdawn.slick.util.Log;
 
 /**
- * A font implementation that will use the graphics inside a SpriteSheet for its data.
- * This is useful when your font has a fixed width and height for each character as
- * opposed to the more complex AngelCodeFont that allows different sizes and kerning
- * for each character.
+ * A font implementation that will use the graphics inside a SpriteSheet for its
+ * data. This is useful when your font has a fixed width and height for each
+ * character as opposed to the more complex AngelCodeFont that allows different
+ * sizes and kerning for each character.
  *
  * @author Onno Scheffers
  */
@@ -27,16 +27,20 @@ public class SpriteSheetFont implements Font {
 	private int numChars;
 
 	/**
-	 * Create a new font based on a SpriteSheet. The SpriteSheet should hold your
-	 * fixed-width character set in ASCII order. To only get upper-case characters
-	 * working you would usually set up a SpriteSheet with characters for these values:
+	 * Create a new font based on a SpriteSheet. The SpriteSheet should hold
+	 * your fixed-width character set in ASCII order. To only get upper-case
+	 * characters working you would usually set up a SpriteSheet with characters
+	 * for these values:
+	 * 
 	 * <pre>
 	 *   !"#$%&'()*+,-./
 	 *  0123456789:;<=>?
 	 *  &#0064;ABCDEFGHIJKLMNO
-	 *  PQRSTUVWXYZ[\]^_<pre>
+	 * PQRSTUVWXYZ[\]^_
+	 * 
+	 * <pre>
 	 * In this set, ' ' (SPACE) would be the startingCharacter of your characterSet.
-	 *
+	 * 
 	 * @param font              The SpriteSheet holding the font data.
 	 * @param startingCharacter The first character that is defined in the SpriteSheet.
 	 */
@@ -58,16 +62,18 @@ public class SpriteSheetFont implements Font {
 	}
 
 	/**
-	 * @see org.newdawn.slick.Font#drawString(float, float, java.lang.String, org.newdawn.slick.Color)
+	 * @see org.newdawn.slick.Font#drawString(float, float, java.lang.String,
+	 *      org.newdawn.slick.Color)
 	 */
 	public void drawString(float x, float y, String text, Color col) {
-		drawString(x,y,text,col,0,text.length()-1);
+		drawString(x, y, text, col, 0, text.length() - 1);
 	}
-	
+
 	/**
 	 * @see Font#drawString(float, float, String, Color, int, int)
 	 */
-	public void drawString(float x, float y, String text, Color col, int startIndex, int endIndex) {
+	public void drawString(float x, float y, String text, Color col,
+			int startIndex, int endIndex) {
 		try {
 			byte[] data = text.getBytes("US-ASCII");
 			for (int i = 0; i < data.length; i++) {
@@ -75,10 +81,10 @@ public class SpriteSheetFont implements Font {
 				if (index < numChars) {
 					int xPos = (index % horizontalCount);
 					int yPos = (index / horizontalCount);
-					
+
 					if ((i >= startIndex) || (i <= endIndex)) {
-						font.getSprite(xPos, yPos)
-								.draw(x + (i * charWidth), y, col);
+						font.getSprite(xPos, yPos).draw(x + (i * charWidth), y,
+								col);
 					}
 				}
 			}

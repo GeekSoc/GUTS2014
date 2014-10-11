@@ -18,33 +18,35 @@ public class ProgressDialog extends JDialog implements ProgressListener {
 	private int current;
 	/** The total message to display */
 	private int total;
-	
+
 	/**
 	 * Create a new dialog
 	 * 
-	 * @param frame The owner frame that should be blocked
+	 * @param frame
+	 *            The owner frame that should be blocked
 	 */
 	public ProgressDialog(JFrame frame) {
 		super(frame, "Generating Distance Map", true);
-	
-		setSize(300,200);
+
+		setSize(300, 200);
 		setResizable(false);
 		setLocationRelativeTo(frame);
 	}
-	
+
 	/**
 	 * @see java.awt.Container#paint(java.awt.Graphics)
 	 */
 	public void paint(Graphics g) {
 		super.paint(g);
-		
+
 		g.setColor(Color.black);
 		g.drawString("Generating Distance Map", 10, 100);
-		g.drawString(message + "("+current+"/"+total+")", 20, 150);
+		g.drawString(message + "(" + current + "/" + total + ")", 20, 150);
 	}
 
 	/**
-	 * @see org.newdawn.slick.tools.hiero.ProgressListener#reportProgress(java.lang.String, int, int)
+	 * @see org.newdawn.slick.tools.hiero.ProgressListener#reportProgress(java.lang.String,
+	 *      int, int)
 	 */
 	public void reportProgress(String type, int current, int total) {
 		this.message = type;

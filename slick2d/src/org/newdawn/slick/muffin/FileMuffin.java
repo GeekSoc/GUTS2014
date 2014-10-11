@@ -65,7 +65,8 @@ public class FileMuffin implements Muffin {
 				// End of the file reached, do nothing
 			} catch (ClassNotFoundException e) {
 				Log.error(e);
-				throw new IOException("Failed to pull state from store - class not found");
+				throw new IOException(
+						"Failed to pull state from store - class not found");
 			}
 		}
 

@@ -23,7 +23,7 @@ public class MusicListenerTest extends BasicGame implements MusicListener {
 	private Music music;
 	/** The music to be streamed */
 	private Music stream;
-	
+
 	/**
 	 * Create a new test
 	 */
@@ -37,15 +37,17 @@ public class MusicListenerTest extends BasicGame implements MusicListener {
 	public void init(GameContainer container) throws SlickException {
 		music = new Music("testdata/restart.ogg", false);
 		stream = new Music("testdata/restart.ogg", false);
-		
+
 		music.addListener(this);
 		stream.addListener(this);
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer, int)
+	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
+	 *      int)
 	 */
-	public void update(GameContainer container, int delta) throws SlickException {
+	public void update(GameContainer container, int delta)
+			throws SlickException {
 	}
 
 	/**
@@ -56,16 +58,19 @@ public class MusicListenerTest extends BasicGame implements MusicListener {
 	}
 
 	/**
-	 * @see org.newdawn.slick.MusicListener#musicSwapped(org.newdawn.slick.Music, org.newdawn.slick.Music)
+	 * @see org.newdawn.slick.MusicListener#musicSwapped(org.newdawn.slick.Music,
+	 *      org.newdawn.slick.Music)
 	 */
 	public void musicSwapped(Music music, Music newMusic) {
 		musicSwapped = true;
 	}
-	
+
 	/**
-	 * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.Graphics)
 	 */
-	public void render(GameContainer container, Graphics g) throws SlickException {
+	public void render(GameContainer container, Graphics g)
+			throws SlickException {
 		g.drawString("Press M to play music", 100, 100);
 		g.drawString("Press S to stream music", 100, 150);
 		if (musicEnded) {
@@ -91,16 +96,18 @@ public class MusicListenerTest extends BasicGame implements MusicListener {
 			stream.play();
 		}
 	}
-	
+
 	/**
 	 * Entry point to the sound test
 	 * 
-	 * @param argv The arguments provided to the test
+	 * @param argv
+	 *            The arguments provided to the test
 	 */
 	public static void main(String[] argv) {
 		try {
-			AppGameContainer container = new AppGameContainer(new MusicListenerTest());
-			container.setDisplayMode(800,600,false);
+			AppGameContainer container = new AppGameContainer(
+					new MusicListenerTest());
+			container.setDisplayMode(800, 600, false);
 			container.start();
 		} catch (SlickException e) {
 			e.printStackTrace();

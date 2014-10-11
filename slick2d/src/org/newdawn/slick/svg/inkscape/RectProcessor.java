@@ -18,26 +18,29 @@ import org.w3c.dom.Element;
 public class RectProcessor implements ElementProcessor {
 
 	/**
-	 * @see org.newdawn.slick.svg.inkscape.ElementProcessor#process(org.newdawn.slick.svg.Loader, org.w3c.dom.Element, org.newdawn.slick.svg.Diagram, org.newdawn.slick.geom.Transform)
+	 * @see org.newdawn.slick.svg.inkscape.ElementProcessor#process(org.newdawn.slick.svg.Loader,
+	 *      org.w3c.dom.Element, org.newdawn.slick.svg.Diagram,
+	 *      org.newdawn.slick.geom.Transform)
 	 */
-	public void process(Loader loader, Element element, Diagram diagram, Transform t) throws ParsingException {
+	public void process(Loader loader, Element element, Diagram diagram,
+			Transform t) throws ParsingException {
 		Transform transform = Util.getTransform(element);
-	    transform = new Transform(t, transform); 
-		
+		transform = new Transform(t, transform);
+
 		float width = Float.parseFloat(element.getAttribute("width"));
 		float height = Float.parseFloat(element.getAttribute("height"));
 		float x = Float.parseFloat(element.getAttribute("x"));
 		float y = Float.parseFloat(element.getAttribute("y"));
-		
-		Rectangle rect = new Rectangle(x,y,width+1,height+1);
+
+		Rectangle rect = new Rectangle(x, y, width + 1, height + 1);
 		Shape shape = rect.transform(transform);
-		
+
 		NonGeometricData data = Util.getNonGeometricData(element);
-		data.addAttribute("width", ""+width);
-		data.addAttribute("height", ""+height);
-		data.addAttribute("x", ""+x);
-		data.addAttribute("y", ""+y);
-		
+		data.addAttribute("width", "" + width);
+		data.addAttribute("height", "" + height);
+		data.addAttribute("x", "" + x);
+		data.addAttribute("y", "" + y);
+
 		diagram.addFigure(new Figure(Figure.RECTANGLE, shape, data, transform));
 	}
 
@@ -48,7 +51,7 @@ public class RectProcessor implements ElementProcessor {
 		if (element.getNodeName().equals("rect")) {
 			return true;
 		}
-		
+
 		return false;
 	}
 }

@@ -14,7 +14,7 @@ import org.newdawn.slick.opengl.renderer.SGL;
 public class Particle {
 	/** The renderer to use for all GL operations */
 	protected static SGL GL = Renderer.get();
-	
+
 	/** Indicates the particle should inherit it's use of points */
 	public static final int INHERIT_POINTS = 1;
 	/** Indicates the particle should explicitly use points */
@@ -80,12 +80,14 @@ public class Particle {
 	public float getY() {
 		return y;
 	}
-	
+
 	/**
 	 * Move this particle a fixed amount
 	 * 
-	 * @param x The amount to move the particle on the horizontal axis
-	 * @param y The amount to move the particle on the vertical axis
+	 * @param x
+	 *            The amount to move the particle on the horizontal axis
+	 * @param y
+	 *            The amount to move the particle on the vertical axis
 	 */
 	public void move(float x, float y) {
 		this.x += x;
@@ -192,7 +194,7 @@ public class Particle {
 	public void update(int delta) {
 		emitter.updateParticle(this, delta);
 		life -= delta;
-		
+
 		if (life > 0) {
 			x += delta * velx;
 			y += delta * vely;
@@ -317,7 +319,7 @@ public class Particle {
 	 */
 	public void setColor(float r, float g, float b, float a) {
 		if (color == Color.white) {
-			color = new Color(r,g,b,a);
+			color = new Color(r, g, b, a);
 		} else {
 			color.r = r;
 			color.g = g;
@@ -357,26 +359,29 @@ public class Particle {
 	/**
 	 * Set the current speed of this particle
 	 * 
-	 * @param speed The speed of this particle
+	 * @param speed
+	 *            The speed of this particle
 	 */
 	public void setSpeed(float speed) {
-		float currentSpeed = (float) Math.sqrt((velx*velx) + (vely*vely));
+		float currentSpeed = (float) Math.sqrt((velx * velx) + (vely * vely));
 		velx *= speed;
 		vely *= speed;
 		velx /= currentSpeed;
 		vely /= currentSpeed;
 	}
-	
+
 	/**
 	 * Set the velocity of the particle
 	 * 
-	 * @param velx The x component of the new velocity
-	 * @param vely The y component of the new velocity
+	 * @param velx
+	 *            The x component of the new velocity
+	 * @param vely
+	 *            The y component of the new velocity
 	 */
 	public void setVelocity(float velx, float vely) {
-		setVelocity(velx,vely,1);
+		setVelocity(velx, vely, 1);
 	}
-	
+
 	/**
 	 * Adjust (add) the position of this particle
 	 * 
@@ -404,8 +409,8 @@ public class Particle {
 	 */
 	public void adjustColor(float r, float g, float b, float a) {
 		if (color == Color.white) {
-			color = new Color(1,1,1,1f);
-		} 
+			color = new Color(1, 1, 1, 1f);
+		}
 		color.r += r;
 		color.g += g;
 		color.b += b;
@@ -426,9 +431,9 @@ public class Particle {
 	 */
 	public void adjustColor(int r, int g, int b, int a) {
 		if (color == Color.white) {
-			color = new Color(1,1,1,1f);
-		} 
-		
+			color = new Color(1, 1, 1, 1f);
+		}
+
 		color.r += (r / 255.0f);
 		color.g += (g / 255.0f);
 		color.b += (b / 255.0f);
@@ -476,7 +481,8 @@ public class Particle {
 	/**
 	 * Indicate if this particle should be oriented based on it's velocity
 	 * 
-	 * @param oriented True if this particle is being oriented based on it's velocity
+	 * @param oriented
+	 *            True if this particle is being oriented based on it's velocity
 	 */
 	public void setOriented(boolean oriented) {
 		this.oriented = oriented;
@@ -494,7 +500,8 @@ public class Particle {
 	/**
 	 * Set the current scalar applied on the y axis
 	 * 
-	 * @param scaleY The new scalar to apply on the y axis
+	 * @param scaleY
+	 *            The new scalar to apply on the y axis
 	 */
 	public void setScaleY(float scaleY) {
 		this.scaleY = scaleY;

@@ -5,5 +5,6 @@ package org.newdawn.slick;
  *
  * @author kevin
  */
-public interface InputListener extends MouseListener, KeyListener, ControllerListener {
+public interface InputListener extends MouseListener, KeyListener,
+		ControllerListener {
 }

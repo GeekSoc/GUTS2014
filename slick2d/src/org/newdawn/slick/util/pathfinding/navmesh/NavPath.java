@@ -10,17 +10,18 @@ import java.util.ArrayList;
 public class NavPath {
 	/** The list of links that form this path */
 	private ArrayList links = new ArrayList();
-	
+
 	/**
 	 * Create a new path
 	 */
-	public NavPath() {		
+	public NavPath() {
 	}
-	
+
 	/**
 	 * Push a link to the end of the path
 	 * 
-	 * @param link The link to the end of the path
+	 * @param link
+	 *            The link to the end of the path
 	 */
 	public void push(Link link) {
 		links.add(link);
@@ -34,11 +35,12 @@ public class NavPath {
 	public int length() {
 		return links.size();
 	}
-	
+
 	/**
 	 * Get the x coordinate of the given step
 	 * 
-	 * @param step The index of the step to retrieve
+	 * @param step
+	 *            The index of the step to retrieve
 	 * @return The x coordinate at the given step index
 	 */
 	public float getX(int step) {
@@ -48,20 +50,21 @@ public class NavPath {
 	/**
 	 * Get the y coordinate of the given step
 	 * 
-	 * @param step The index of the step to retrieve
+	 * @param step
+	 *            The index of the step to retrieve
 	 * @return The y coordinate at the given step index
 	 */
 	public float getY(int step) {
 		return ((Link) links.get(step)).getY();
 	}
-	
+
 	/**
 	 * Get a string representation of this instance
 	 * 
 	 * @return The string representation of this instance
 	 */
 	public String toString() {
-		return "[Path length="+length()+"]";
+		return "[Path length=" + length() + "]";
 	}
 
 	/**
