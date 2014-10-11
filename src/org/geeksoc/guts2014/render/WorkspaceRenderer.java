@@ -46,11 +46,12 @@ public class WorkspaceRenderer {
 		// Render Unused Workers
 
 		// renderControls
+		int i = 0;
 		for(Employee e:w.getWorkers()){
-			e.setCenterY(container.getWidth()-10);
-			e.setCenterX(container.getHeight()-10);
-			g.setColor(Color.magenta);
-			g.fill(e);
+			e.move(container.getWidth()-10,container.getHeight()-10-(i*20));
+			e.render(g);
+			
+			i++;
 		}
 		// renderRooms
 		rr.render(g, container, w.getRooms(), w.getWorkerCountPerRoom());

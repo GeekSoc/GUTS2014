@@ -6,12 +6,14 @@ import org.geeksoc.guts2014.controls.Slider;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.geom.RoundedRectangle;
 
 public class Section extends WorkerSpace {
 
 	private Workspace ws;
 	public HashMap<JobType, Integer> priority = new HashMap<JobType, Integer>();
 	private Slider eslider, sslider, pslider, tslider;
+	public RoundedRectangle rectangle;
 
 	public Section(Workspace ws) {
 		this.ws = ws;
@@ -22,6 +24,9 @@ public class Section extends WorkerSpace {
 	}
 
 	public void update(GameContainer cont) {
+		for(Employee e: this.workers){
+			e.update(cont);
+		}
 		updatePriorities();
 		WorkPacket wp = calculateWorkDone();
 		ws.submitWork(wp);
@@ -29,6 +34,7 @@ public class Section extends WorkerSpace {
 		sslider.update(cont.getInput());
 		pslider.update(cont.getInput());
 		tslider.update(cont.getInput());
+		this.update();
 	}
 
 	private void updatePriorities() {
