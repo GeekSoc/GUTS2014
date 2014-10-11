@@ -51,6 +51,10 @@ public class Workload {
 	
 	public void submit(WorkPacket wp){
 		global.combine(wp);
+		System.out.println("Global work done this iteration. Phone: " + wp.getWorkDone(JobType.Phone)
+				+ ". Text: " + wp.getWorkDone(JobType.Text) + ". Social Media: "
+				+ wp.getWorkDone(JobType.SocialMedia) + ". Email: "
+				+ wp.getWorkDone(JobType.Email));
 	}
 
 }
