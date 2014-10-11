@@ -43,6 +43,9 @@ public class WorkspaceRenderer {
 		FontMetrics metrics = c.getFontMetrics(Main.fontBase);
 		g.drawString(String.format("%.2f", Main.cash), container.getWidth()/2-metrics.stringWidth(String.format("%.2f", Main.cash))/2, 20);
 		
+		
+		g.drawString(Main.rep+ " Rep", container.getWidth()/4-metrics.stringWidth( Main.rep+ " Rep")/2, 20);
+		
 		// Render Workload
 
 		// Render Unused Workers

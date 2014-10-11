@@ -17,6 +17,7 @@ public class Main {
 	public static AppGameContainer game;
 	public static TrueTypeFont font;
 	public static Font fontBase;
+	public static int rep;
 	
 	public static void loadResources() throws FontFormatException, IOException  {
         Font fontRaw = Font.createFont(Font.TRUETYPE_FONT, new File("res/font/Varela.ttf"));
