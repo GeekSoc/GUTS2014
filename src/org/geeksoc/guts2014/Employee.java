@@ -73,6 +73,9 @@ public class Employee extends Circle {
 			workDone.put(jobType, jobDone);
 			// Add to experience
 			experience.put(jobType, experience.get(jobType) + jobDone);
+			
+			// Get paid!
+			Main.cash -= getWage();
 		}
 
 		return new WorkPacket(workDone);

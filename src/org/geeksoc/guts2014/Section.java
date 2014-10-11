@@ -33,12 +33,6 @@ public class Section extends WorkerSpace {
 			if (JobFactory.isRunning) {
 				WorkPacket wp = calculateWorkDone();
 				ws.submitWork(wp);
-				// Add cash for job
-				ArrayList<Employee> roomWorkers;
-				roomWorkers = this.getWorkers();
-				for(Employee employee:roomWorkers){
-					Main.cash -= employee.getWage();
-				}
 			}
 			deltaCounter = 0;
 		}
