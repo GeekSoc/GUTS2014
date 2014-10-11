@@ -32,6 +32,19 @@ public class JobFactory {
 		return jobQueue;
 	}
 	
+	public void addInitialJobs(int max) {
+		for(int i = 1; i <= max; i++) {
+			Job job = new Job();
+			jobQueue.add(job);
+			System.out.println(
+				String.format("Initial job %d: %s",
+					i,
+					job.toString()
+				)
+			);
+		}
+	}
+	
 	class Task extends TimerTask {
 		@Override
 		public void run() {
@@ -68,6 +81,7 @@ public class JobFactory {
 	}
 	
 	public void stopJobCreation() {
+		timer = new Timer();
 		clearJobs();
 		isRunning = false;
 	}
