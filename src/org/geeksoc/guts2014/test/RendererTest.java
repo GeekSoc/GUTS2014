@@ -1,5 +1,6 @@
 package org.geeksoc.guts2014.test;
 
+import org.geeksoc.guts2014.Options;
 import org.geeksoc.guts2014.RunningState;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
@@ -14,7 +15,7 @@ public class RendererTest {
 			@Override
 			public void initStatesList(GameContainer container)
 					throws SlickException {
-				this.addState(new RunningState());
+				this.addState(new RunningState(new Options()));
 
 			}
 
