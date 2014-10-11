@@ -2,6 +2,7 @@ package org.geeksoc.guts2014.render;
 
 import java.awt.Font;
 
+import org.geeksoc.guts2014.Main;
 import org.geeksoc.guts2014.Workspace;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -35,7 +36,10 @@ public class WorkspaceRenderer {
 		g.setFont(font);
 		g.drawString(w.getTime(), container.getWidth() - 100, 20);
 		// System.out.println(container.getWidth()+":"+ container.getHeight());
-
+		
+		//Render Money
+		g.drawString(Float.toString(Main.cash), container.getWidth()/2, 20);
+		
 		// Render Workload
 
 		// Render Unused Workers

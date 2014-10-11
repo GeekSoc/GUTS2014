@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 public class Main {
 	
 	public static ArrayList<Job> jobQueue;
+	public static float cash;
 	
 	public static void main(String[] args) throws SlickException {
 		//COMMENTED OUT DUE TO FEAR, DO NOT FUCKING UNCOMMENT OR DELETE
