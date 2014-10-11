@@ -9,8 +9,8 @@ import org.newdawn.slick.Graphics;
 public class Section extends WorkerSpace {
 
 	private Workspace ws;
-	public HashMap<JobType, Integer> priority= new HashMap<JobType,Integer>();
-	private Slider eslider,sslider,pslider,tslider;
+	public HashMap<JobType, Integer> priority = new HashMap<JobType, Integer>();
+	private Slider eslider, sslider, pslider, tslider;
 
 	public Section(Workspace ws) {
 		this.ws = ws;
@@ -31,16 +31,15 @@ public class Section extends WorkerSpace {
 	}
 
 	private void updatePriorities() {
-		
-		if(eslider.getValue()+pslider.getValue()+sslider.getValue()+tslider.getValue() > 100){
-			eslider.setValue(eslider.getValue()-1);
-			pslider.setValue(pslider.getValue()-1);
-			sslider.setValue(sslider.getValue()-1);
-			tslider.setValue(tslider.getValue()-1);
+
+		if (eslider.getValue() + pslider.getValue() + sslider.getValue()
+				+ tslider.getValue() > 100) {
+			eslider.setValue(eslider.getValue() - 1);
+			pslider.setValue(pslider.getValue() - 1);
+			sslider.setValue(sslider.getValue() - 1);
+			tslider.setValue(tslider.getValue() - 1);
 		}
-		
-		
-		
+
 		priority.put(JobType.Email, eslider.getValue());
 		priority.put(JobType.SocialMedia, sslider.getValue());
 		priority.put(JobType.Phone, pslider.getValue());
@@ -54,14 +53,19 @@ public class Section extends WorkerSpace {
 			// WorkPacket wp = new WorkPacket();
 			sp.combine(wp);
 		}
+		System.out.print("Work done. Phone: " + sp.getWorkDone(JobType.Phone)
+				+ ". Text: " + sp.getWorkDone(JobType.Text) + ". Social Media: "
+				+ sp.getWorkDone(JobType.SocialMedia) + ". Email: "
+				+ sp.getWorkDone(JobType.Email));
+		;
 		return sp;
 	}
 
 	public void render(Graphics g, int x, int y) {
-		eslider.render(g,x+10,y+10);
-		sslider.render(g,x+10,y+20);
-		pslider.render(g,x+10,y+30);
-		tslider.render(g,x+10,y+40);
+		eslider.render(g, x + 10, y + 10);
+		sslider.render(g, x + 10, y + 20);
+		pslider.render(g, x + 10, y + 30);
+		tslider.render(g, x + 10, y + 40);
 	}
 
 }
