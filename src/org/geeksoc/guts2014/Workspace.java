@@ -32,9 +32,9 @@ public class Workspace extends WorkerSpace {
 		}
 	}
 
-	public void update(StateBasedGame game, int delta) {
+	public void update(GameContainer cont,StateBasedGame game, int delta) {
 		for(Section s : rooms){
-		s.update();
+		s.update(cont);
 		 }
 		gt.incrementTime(delta);
 		wl.update();
@@ -61,12 +61,12 @@ public class Workspace extends WorkerSpace {
 		return wl;
 	}
 
-	public int getRoomCount() {
-		return rooms.size();
+	public ArrayList<Section> getRooms() {
+		return rooms;
 	}
 
 	public int[] getWorkerCountPerRoom() {
-		int[] res = new int[getRoomCount()];
+		int[] res = new int[rooms.size()];
 		int x=0;
 		for(Section room:rooms){
 			

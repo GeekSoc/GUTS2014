@@ -33,7 +33,7 @@ public class RunningState extends BasicGameState {
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 	
-		w.update(game,delta);
+		w.update(container,game,delta);
 		
 	}
 

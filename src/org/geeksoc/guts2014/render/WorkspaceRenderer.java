@@ -43,7 +43,7 @@ public class WorkspaceRenderer {
 		// renderControls
 
 		// renderRooms
-		rr.render(g, container, w.getRoomCount(), w.getWorkerCountPerRoom());
+		rr.render(g, container, w.getRooms(), w.getWorkerCountPerRoom());
 	}
 
 }

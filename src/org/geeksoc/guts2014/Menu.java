@@ -80,7 +80,7 @@ public class Menu extends BasicGameState {
 					&& mouseX > FSButton.getMinX()
 					&& mouseY < FSButton.getMaxY()
 					&& mouseY > FSButton.getMinY()) {
-				container.setFullscreen(true);
+				container.setFullscreen(container.isFullscreen());
 				
 			}
 			clicked = false;
