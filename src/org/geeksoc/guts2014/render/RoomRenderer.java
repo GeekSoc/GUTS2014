@@ -8,16 +8,21 @@ import org.geeksoc.guts2014.controls.Slider;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.RoundedRectangle;
 
 public class RoomRenderer {
 	
-	private int peepradius = 10;                   //size of people before any modifications
-	private int hallwayWidth = 10;
+	private final int peepRadius = 10;                   //size of people before any modifications
+	private final int hallwayWidth = 10;
+	private final int roomTopMargin = 50;
+	private final int roomSideMargin = 5;
+	private final int peepGap = 5;
 
 
 	public void render(Graphics g, GameContainer c,ArrayList<Section> s, int[] people) { // nrooms is the number of rooms and 'people'
 		                                           // is an array containing number in room
+		
 		g.setColor(Color.black);
 		int nRows = (int) Math.ceil(Math.sqrt(s.size()));
 		int cc;
@@ -25,6 +30,10 @@ public class RoomRenderer {
 		int x;
 		int y;
 		
+		int centerPointerX;
+		int centerPointerY;
+		int tempPrev;
+		//WARNING: MATHS
 		float rHorSize= (c.getWidth()-100-(nRows+1)*hallwayWidth)/nRows;
 		float rVerSize= (c.getHeight()-100-(nRows+1)*hallwayWidth)/nRows;
 		int i=0;
@@ -34,9 +43,25 @@ public class RoomRenderer {
 			x=((cc+1)*hallwayWidth) + (cc*(int)rHorSize-1)+50;
 			y=(cr*hallwayWidth) + ((cr-1)*(int)rVerSize-1)+80;
 			g.setLineWidth(3);
+			g.setColor(Color.black);
 			g.draw(new RoundedRectangle(x,y,rHorSize,rVerSize, rHorSize/20));
 			sec.render(g,x,y);
+			
+			centerPointerX = roomSideMargin+peepRadius+x;
+			centerPointerY = roomTopMargin+peepRadius+y;
+			tempPrev=centerPointerX;
+			for(int p=0; p<people[i]; p++) {
+				g.draw(new Circle(centerPointerX, centerPointerY, peepRadius));
+				centerPointerX = centerPointerX + 2*peepRadius + peepGap;
+				if (centerPointerX+peepRadius>x+rHorSize) {
+					centerPointerX = tempPrev;
+					centerPointerY = centerPointerY + 2*peepRadius + peepGap;
+				}
+			}
+			
 			i++;
+			
 		}
+		
 	}
 }
