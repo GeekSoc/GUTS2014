@@ -23,10 +23,6 @@ public class RoomRenderer {
 	public void render(Graphics g, GameContainer c,ArrayList<Section> s, int[] people) { // nrooms is the number of rooms and 'people'
 		                                           // is an array containing number in room
 		
-		
-		int[] peoplecheat = {3,6,9,12};
-		people = peoplecheat;
-		
 		g.setColor(Color.black);
 		int nRows = (int) Math.ceil(Math.sqrt(s.size()));
 		int cc;
@@ -37,7 +33,7 @@ public class RoomRenderer {
 		int centerPointerX;
 		int centerPointerY;
 		int tempPrev;
-		
+		//WARNING: MATHS
 		float rHorSize= (c.getWidth()-100-(nRows+1)*hallwayWidth)/nRows;
 		float rVerSize= (c.getHeight()-100-(nRows+1)*hallwayWidth)/nRows;
 		int i=0;
