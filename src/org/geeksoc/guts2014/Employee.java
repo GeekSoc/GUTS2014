@@ -2,6 +2,7 @@ package org.geeksoc.guts2014;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Random;
 
@@ -85,7 +86,11 @@ public class Employee extends Circle {
 			// Get paid!
 			Main.cash -= getWage();
 		}
-
+		
+		for (JobType jobType : JobType.values()) {
+		  Main.cash += workDone.get(jobType) * 0.1;
+		}
+		
 		return new WorkPacket(workDone);
 	}
 
