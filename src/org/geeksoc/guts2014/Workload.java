@@ -1,10 +1,21 @@
 package org.geeksoc.guts2014;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class Workload {
 
+	public static final HashMap<JobType, Integer> empty;
+    static
+    {
+        empty = new HashMap<JobType, Integer>();
+        empty.put(JobType.Email,0);
+        empty.put(JobType.Phone,0);
+        empty.put(JobType.SocialMedia,0);
+        empty.put(JobType.Text,0);
+    }
+	
 	private JobFactory jf;
 	public Queue<Job> emails = new LinkedList<Job>();
 	public Queue<Job> phones = new LinkedList<Job>();
@@ -50,7 +61,8 @@ public class Workload {
 				&& socials.peek().workDone(global.getWorkDone(JobType.SocialMedia))) {
 			socials.poll();
 		}
-
+		//System.out.println(global.getWorkDone().toString());
+		global.setWorkDone(empty);
 	}
 
 	public void submit(WorkPacket wp) {
