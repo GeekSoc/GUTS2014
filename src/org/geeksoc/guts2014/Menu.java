@@ -34,11 +34,11 @@ public class Menu extends BasicGameState {
 		Music Sound_1 = new Music("res/sound/background.ogg");
 		//Sound_1.loop(1.0f, 1.0f);
 		//Fuck off wit hte annoying music for now :(
-		Image phone1 = new Image("res/img/phone.gif");
-		Image phone2 = new Image("res/img/phone2.gif");
-		Image phone3 = new Image("res/img/phone3.gif");
-		Image[] phones = new Image[]{phone1,phone2,phone3};
-		phone = new Animation(phones,1);
+		//Image phone1 = new Image("res/img/phone.gif");
+		//Image phone2 = new Image("res/img/phone2.gif");
+		//Image phone3 = new Image("res/img/phone3.gif");
+		//Image[] phones = new Image[]{phone1,phone2,phone3};
+		//phone = new Animation(phones,1);
 		
 	}
 
@@ -61,13 +61,13 @@ public class Menu extends BasicGameState {
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		g.scale(2, 2);
+		/*g.scale(2, 2);
 		g.drawAnimation(phone, 10, 10);
 		for(int x = 0; x<5; x++){
 			for(int y = 0; y<5; y++){
 				g.drawAnimation(phone, (x*60)+10, (y*40)+10);
 			}
-		}
+		}*/
 		
 		g.scale(1, 1);
 		g.setColor(Color.white);
