@@ -1,9 +1,14 @@
 package org.geeksoc.guts2014;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Random;
 
+import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.geom.Circle;
 
 /**
@@ -24,14 +29,17 @@ public class Employee extends Circle {
 	// i.e. his experience as a percentage of jobs done. e.g. <JobType.Email,
 	// 50000> means the employee has dealt with 500 emails.
 	private HashMap<JobType, Integer> experience;
+	private boolean moving;
+	private WorkerSpace home;
 	// Minimum wage
 	private float minimumWage = 6;
 
 	/**
 	 * Creates a new Employee with a random mix of skills.
 	 */
-	public Employee() {
-		super(-100,-100,5);
+	public Employee(WorkerSpace home) {
+		super(-100,-100,10);
+		this.home = home;
 		/*
 		 * Employee skill is set to a random number up to 20
 		 */
@@ -127,6 +135,53 @@ public class Employee extends Circle {
 			totalSkill += skill;
 		}
 		return totalSkill;
+	}
+
+	public void render(Graphics g) {
+		g.setColor(Color.magenta);
+		g.fill(this);
+		
+	}
+
+	public void move(int i, int j) {
+		if(!moving){
+		this.setCenterX(i);
+		this.setCenterY(j);
+		}
+	}
+
+	public void update(GameContainer cont) {
+		if(cont.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+			if(this.contains(cont.getInput().getAbsoluteMouseX(),cont.getInput().getAbsoluteMouseY())){
+				moving = true;
+			}
+		}
+		
+		if(moving){
+			this.setCenterX(cont.getInput().getAbsoluteMouseX());
+			this.setCenterY(cont.getInput().getAbsoluteMouseY());
+		}
+		
+		if(moving&&!cont.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+			for(Section sec:Workspace.instance.rooms){
+				if(sec.rectangle.contains(this.getCenterX(), this.getCenterY())){
+					ArrayList<Employee> tmp = new ArrayList<Employee>();
+					tmp.add(this);
+					home.transferWorkers(sec,tmp);
+					home = sec;
+					moving = false;
+					return;
+				}
+			}
+			ArrayList<Employee> tmp = new ArrayList<Employee>();
+			tmp.add(this);
+			home.transferWorkers(Workspace.instance,tmp);
+			home = Workspace.instance;
+			moving = false;
+			
+			
+		}
+		
 	}
 
 }

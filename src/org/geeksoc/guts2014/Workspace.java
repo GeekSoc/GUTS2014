@@ -14,6 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Workspace extends WorkerSpace {
 
+	public static Workspace instance;
 	Workload wl;
 	WorkspaceRenderer wr;
 	GameTime gt;
@@ -25,6 +26,7 @@ public class Workspace extends WorkerSpace {
 	private RoundedRectangle addRoomButton;
 
 	public Workspace() {
+		instance = this;
 		wr = new WorkspaceRenderer(this);
 
 		jf = new JobFactory();
@@ -40,20 +42,26 @@ public class Workspace extends WorkerSpace {
 		// Add 5 workers to workspace
 		ArrayList<Employee> newEmployees = new ArrayList<Employee>();
 		for (int i = 0; i < 5; i++) {
-			newEmployees.add(new Employee());
+			newEmployees.add(new Employee(this));
 		}
 		addWorkers(newEmployees);
 	}
 
 	public void update(GameContainer cont, StateBasedGame game, int delta) {
 		for (Section s : rooms) {
+
 			s.update(cont, delta);
+
 		}
 
 		gt.incrementTime(delta);
 		wl.update();
 
-		if (cont.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
+		for(Employee e: this.workers){
+			e.update(cont);
+		}
+		if(cont.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)){
+
 			int mouseX = cont.getInput().getMouseX();
 			int mouseY = cont.getInput().getMouseY();
 			if (mouseX < addRoomButton.getMaxX() && mouseX > addRoomButton.getMinX()
@@ -63,6 +71,9 @@ public class Workspace extends WorkerSpace {
 				Main.cash -= 100;
 			}
 		}
+
+		this.update();
+		
 
 	}
 

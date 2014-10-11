@@ -44,7 +44,8 @@ public class RoomRenderer {
 			y=(cr*hallwayWidth) + ((cr-1)*(int)rVerSize-1)+80;
 			g.setLineWidth(3);
 			g.setColor(Color.black);
-			g.draw(new RoundedRectangle(x,y,rHorSize,rVerSize, rHorSize/20));
+			sec.rectangle = new RoundedRectangle(x,y,rHorSize,rVerSize, rHorSize/20);
+			g.draw(sec.rectangle);
 			sec.render(g,x,y);
 			
 			centerPointerX = roomSideMargin+peepRadius+x;

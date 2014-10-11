@@ -7,12 +7,14 @@ import org.geeksoc.guts2014.controls.Slider;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.geom.RoundedRectangle;
 
 public class Section extends WorkerSpace {
 
 	private Workspace ws;
 	public HashMap<JobType, Integer> priority = new HashMap<JobType, Integer>();
 	private Slider eslider, sslider, pslider, tslider;
+	public RoundedRectangle rectangle;
 	// To count up in milliseconds
 	private int deltaCounter;
 
@@ -24,7 +26,11 @@ public class Section extends WorkerSpace {
 		tslider = new Slider();
 	}
 
-	public void update(GameContainer cont, int delta) {
+	public void update(GameContainer cont,int delta) {
+		for(Employee e: this.workers){
+			e.update(cont);
+		}
+
 		updatePriorities();
 
 		deltaCounter += delta;
@@ -41,6 +47,7 @@ public class Section extends WorkerSpace {
 		sslider.update(cont.getInput());
 		pslider.update(cont.getInput());
 		tslider.update(cont.getInput());
+		this.update();
 	}
 
 	private void updatePriorities() {

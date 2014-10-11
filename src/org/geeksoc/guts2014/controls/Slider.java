@@ -1,5 +1,6 @@
 package org.geeksoc.guts2014.controls;
 
+import org.geeksoc.guts2014.Workspace;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -22,6 +23,7 @@ public class Slider{
 		if(input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
 			if(slider.contains(input.getMouseX(), input.getMouseY())){
 				sliderdown=true;
+				
 			}
 		}
 		if(sliderdown){
@@ -37,6 +39,7 @@ public class Slider{
 		}
 		if(!input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
 			sliderdown =false;
+			
 		}
 		
 	}
