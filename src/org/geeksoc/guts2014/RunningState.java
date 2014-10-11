@@ -7,6 +7,12 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class RunningState extends BasicGameState {
+	
+	private int id;
+	
+	public RunningState(int idee) {
+		id=idee;
+	}
 
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
@@ -24,7 +30,7 @@ public class RunningState extends BasicGameState {
 	}
 
 	public int getID() {
-		return 0;
+		return 1;
 	}
 
 }
