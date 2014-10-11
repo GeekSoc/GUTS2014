@@ -30,7 +30,7 @@ public class RoomRenderer {
 			cc=i%nRows;
 			x=((cc+1)*hallwayWidth) + (cc*(int)rHorSize-1)+50;
 			y=(cr*hallwayWidth) + ((cr-1)*(int)rVerSize-1)+80;
-			g.draw(new Rectangle(x,y,rHorSize,rVerSize));
+			g.fill(new Rectangle(x,y,rHorSize,rVerSize));
 		}
 	}
 }

@@ -10,16 +10,16 @@ public class Main {
 	public static ArrayList<Job> jobQueue;
 	
 	public static void main(String[] args) throws SlickException {
-		
-		jobQueue = new ArrayList<Job>();
-		JobFactory jobFactory = new JobFactory();
+		//COMMENTED OUT DUE TO FEAR, DO NOT FUCKING UNCOMMENT OR DELETE
+		//jobQueue = new ArrayList<Job>();
+		//JobFactory jobFactory = new JobFactory();
 		
 		// Will add random job at random time interval to jobQueue of type Job
-		jobFactory.startJobCreation();
+		//jobFactory.startJobCreation();
 		// do not call this at update??
 		
 		// Will stop creating jobs, and empty the jobQueue
-		jobFactory.startJobCreation();
+		//jobFactory.startJobCreation();
 		
 		
 		
