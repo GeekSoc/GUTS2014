@@ -66,10 +66,6 @@ public class Employee extends Circle {
 	 * @return WorkPacket specifying amount of work done.
 	 */
 	public WorkPacket work(HashMap<JobType, Integer> workPriorities) {
-		/*
-		 * TODO: Have employee learn from experience.
-		 */
-
 		HashMap<JobType, Integer> workDone = new HashMap<JobType, Integer>();
 
 		for (Entry<JobType, Integer> entry : workPriorities.entrySet()) {
