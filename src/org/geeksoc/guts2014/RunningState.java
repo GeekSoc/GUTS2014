@@ -29,6 +29,7 @@ public class RunningState extends BasicGameState {
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		w = new Workspace();
+		Main.cash = 10000.0f;
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta)
