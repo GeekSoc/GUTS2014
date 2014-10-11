@@ -34,7 +34,13 @@ public class Section extends WorkerSpace {
 		updatePriorities();
 
 		deltaCounter += delta;
-		if (deltaCounter >= 1000) {
+		
+		int speed = ws.instance.gt.getSpeed();
+		if (speed == 0) {
+			speed = 1;
+		}
+		
+		if (deltaCounter >= 1000/speed) {
 			
 			if (JobFactory.isRunning) {
 				WorkPacket wp = calculateWorkDone();
