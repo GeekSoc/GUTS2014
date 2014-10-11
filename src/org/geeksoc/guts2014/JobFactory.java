@@ -17,7 +17,15 @@ public class JobFactory {
 	private Queue<Job> jobQueue = new LinkedList<Job>();
 
 	public void update(){
-		
+		int speed = GameTime.getSpeed();
+		if (speed == 0) {
+			stopJobCreation();
+		} else {
+			if (!isRunning) {
+				startJobCreation();
+			}
+			setLambda(speed / 1000.0);
+		}
 	}
 
 	public Queue<Job> getJobQueue() {
@@ -36,6 +44,8 @@ public class JobFactory {
 	class Task extends TimerTask {
 		@Override
 		public void run() {
+			update();
+			
 			double randomWait = -Math.log(1.0 - random.nextDouble()) / lambda;
 			long randomWait_ms = (long) randomWait;
 			timer.schedule(new Task(), randomWait_ms);
