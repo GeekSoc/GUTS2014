@@ -22,5 +22,9 @@ public class WorkerSpace {
 		ws.addWorkers(w);
 		this.removeWorkers(w);
 	}
+	
+	public int getWorkerCount(){
+		return workers.size();
+	}
 
 }
