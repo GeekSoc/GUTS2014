@@ -43,6 +43,7 @@ public class RoomRenderer {
 			x=((cc+1)*hallwayWidth) + (cc*(int)rHorSize-1)+50;
 			y=(cr*hallwayWidth) + ((cr-1)*(int)rVerSize-1)+80;
 			g.setLineWidth(3);
+			g.setColor(Color.black);
 			g.draw(new RoundedRectangle(x,y,rHorSize,rVerSize, rHorSize/20));
 			sec.render(g,x,y);
 			

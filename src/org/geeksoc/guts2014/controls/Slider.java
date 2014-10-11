@@ -12,7 +12,6 @@ public class Slider{
 	int value=0;
 	Rectangle slider;
 	boolean sliderdown;
-	private Input input;
 	
 	public Slider(){
 
@@ -27,19 +26,19 @@ public class Slider{
 		}
 		if(sliderdown){
 			slider.setCenterX(input.getAbsoluteMouseX());
-			
+			if(slider.getCenterX()>x+100){
+				slider.setCenterX(x+100);
+			}
+			if(slider.getCenterX()<x){
+				slider.setCenterX(x);
+			}
 			value= Math.round(slider.getCenterX()) -x;
 			System.out.println(value);
 		}
 		if(!input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
 			sliderdown =false;
 		}
-		if(slider.getCenterX()>x+100){
-			slider.setCenterX(x+100);
-		}
-		if(slider.getCenterX()<x){
-			slider.setCenterX(x);
-		}
+		
 	}
 	
 	public void render(Graphics g, int x2, int y2){
@@ -57,6 +56,8 @@ public class Slider{
 
 	public void setValue(int i) {
 		value = i;
+		if (i>100) value = 100;
+		if (i<0) value = 0;
 		
 	}
 

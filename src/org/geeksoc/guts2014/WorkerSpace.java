@@ -26,5 +26,9 @@ public class WorkerSpace {
 	public int getWorkerCount() {
 		return workers.size();
 	}
+	
+public ArrayList<Employee> getWorkers() {
+		return workers;
+	}
 
 }
