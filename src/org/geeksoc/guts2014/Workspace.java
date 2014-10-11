@@ -28,7 +28,7 @@ public class Workspace extends WorkerSpace {
 		//jf.startJobCreation();
 		timeControls = new TimeControls(gt);
 		for(int x=0;x<4; x++){
-			//rooms.add(new Section(this));
+			rooms.add(new Section(this));
 		}
 	}
 
