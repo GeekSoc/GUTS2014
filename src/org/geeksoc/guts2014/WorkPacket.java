@@ -1,6 +1,7 @@
 package org.geeksoc.guts2014;
 
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 public class WorkPacket {
 	/*
@@ -12,25 +13,46 @@ public class WorkPacket {
 
 	/**
 	 * Creates a new WorkPacket, initialised with the amount of work done on each
-	 * job.
+	 * job. If a JobType is missed out of the workDone HashMap then the value for
+	 * that JobType is initialised to 0.
 	 * 
-	 * @param phoneWorkDone
-	 * @param textWorkDone
-	 * @param socialMediaWorkDone
-	 * @param emailWorkDone
+	 * @param workDone
 	 */
-	public WorkPacket(int phoneWorkDone, int textWorkDone,
-			int socialMediaWorkDone, int emailWorkDone) {
+	public WorkPacket(HashMap<JobType, Integer> workDone) {
+		/*
+		 * If there are as many key-value pairs in the HashMap as there are values
+		 * for JobType, then the HashMap includes the work done for all jobs, so we
+		 * can assign it to this instance's workDone field.
+		 * 
+		 * Or else we "fix" it by setting to 0 the work done for all JobTypes not
+		 * mentioned in the HashMap.
+		 */
+		if (!(workDone.size() == JobType.values().length)) {
+			// Tell the user why some workDone has inexplicably been set to 0.
+			System.err
+					.println("An invalid HashMap has been passed to the constructor of WorkPacket.");
+			for (JobType jobType : JobType.values()) {
+				if (workDone.get(jobType) == null) {
+					workDone.put(jobType, 0);
+					System.err.println("Work done on " + jobType.name()
+							+ " is missing from HashMap and has therefore been set to 0.");
+				}
+			}
+		}
 
-		workDone.put(JobType.Phone, phoneWorkDone);
-		workDone.put(JobType.Text, textWorkDone);
-		workDone.put(JobType.SocialMedia, socialMediaWorkDone);
-		workDone.put(JobType.Email, emailWorkDone);
+		this.workDone = workDone;
 	}
 
 	public void combine(WorkPacket wp) {
-		// TODO Auto-generated method stub
-
+		for (Entry<JobType, Integer> entry : workDone.entrySet()) {
+			JobType jobType = entry.getKey();
+			
+			workDone.put(jobType, workDone.get(jobType) + wp.getWorkDone(jobType));
+		}
+	}
+	
+	public int size() {
+		return workDone.size();
 	}
 
 	/**
@@ -43,5 +65,4 @@ public class WorkPacket {
 	public int getWorkDone(JobType jobType) {
 		return workDone.get(jobType);
 	}
-
 }
