@@ -11,7 +11,7 @@ import java.util.Random;
  *
  */
 public class Employee {
-	// The total skill an employee should have, as the sum of their four skills.
+	// The maximum skill of an employee in any category
 	private static int MAX_SKILL = 100;
 	// The HashMap for storing employee's skills.
 	private HashMap<JobType, Integer> skills;
@@ -21,43 +21,19 @@ public class Employee {
 	 */
 	public Employee() {
 		/*
-		 * Employee skill is set to 0 by default.
+		 * Employee skill is set to a random number up to 20
 		 * 
-		 * TODO: Make skills initially a random mixture of skills.
 		 */
 		skills = new HashMap<JobType, Integer>();
 		
-		// TODO: test all this.
 		Random rand = new Random();
 		rand.setSeed(System.currentTimeMillis());
 		
-		skills.put(JobType.Email, 			rand.nextInt(100));
-		skills.put(JobType.Phone, 			rand.nextInt(100));
-		skills.put(JobType.Text,				rand.nextInt(100));
-		skills.put(JobType.SocialMedia,	rand.nextInt(100));
+		skills.put(JobType.Email, 			rand.nextInt(20));
+		skills.put(JobType.Phone, 			rand.nextInt(20));
+		skills.put(JobType.Text,				rand.nextInt(20));
+		skills.put(JobType.SocialMedia,	rand.nextInt(20));
 		
-		int totalSkill = totalOfHashMapValues(skills);
-		
-		if (totalSkill != MAX_SKILL) {
-			int divisor = MAX_SKILL/totalSkill;
-			
-			for (Map.Entry<JobType, Integer> entry : skills.entrySet()) {
-				skills.put(entry.getKey(), entry.getValue() / divisor); 
-			}
-			
-			totalSkill = totalOfHashMapValues(skills);
-			
-			/*
-			 * If the total skill is still not equal to MAX_SKILL, then,
-			 * somewhat lazily, just add enough skill to phone skill such
-			 * that the total skill is 100.
-			 * 
-			 * TODO: something better.
-			 */
-			if (totalSkill != MAX_SKILL) {
-				skills.put(JobType.Phone, skills.get(JobType.Phone) + MAX_SKILL - totalSkill);
-			}
-		}
 	}
 	
 	/**
@@ -82,22 +58,8 @@ public class Employee {
 	 * @param jobType, percentage
 	 */
 	public void train(JobType jobType, int percentage) {
-		skills.put(jobType, skills.get(jobType) + percentage);
-	}
-	
-	/**
-	 * Get the total of the values in a HashMap with the generics
-	 * <JobType, Integer>
-	 * 
-	 * @param map
-	 * @return total
-	 */
-	private int totalOfHashMapValues(HashMap<JobType, Integer> map) {
-		int total = 0;
-		for (int value : skills.values()) {
-			total += value;
-		}
-		return total;
+		int trained = skills.get(jobType) + percentage;
+		skills.put(jobType, (trained > MAX_SKILL) ? MAX_SKILL : trained);
 	}
 
 }
