@@ -81,6 +81,9 @@ public class Employee extends Circle {
 			workDone.put(jobType, jobDone);
 			// Add to experience
 			experience.put(jobType, experience.get(jobType) + jobDone);
+			
+			// Get paid!
+			Main.cash -= getWage();
 		}
 
 		return new WorkPacket(workDone);
@@ -108,6 +111,30 @@ public class Employee extends Circle {
 		
 		// Employees get an experience bonus for their skill
 		return skillLevel + experienceLevel;
+	}
+	
+	/**
+	 * Returns that employee's wage in £ / in-game minute.
+	 * 
+	 * @return wage
+	 */
+	public float getWage() {
+		float wage = 0;
+		
+		// Hourly wage - an extra £2 per hour for 10 skill
+		wage = minimumWage + totalSkill() / 100 * 2;
+		// Per in-game minute
+		wage /= 60;
+		
+		return wage;
+	}
+	
+	private int totalSkill() {
+		int totalSkill = 0;
+		for (int skill : skills.values()) {
+			totalSkill += skill;
+		}
+		return totalSkill;
 	}
 
 	public void render(Graphics g) {

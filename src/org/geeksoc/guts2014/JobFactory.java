@@ -8,7 +8,7 @@ import java.util.TimerTask;
 
 public class JobFactory {
 
-	private static double lambda = 2.0; // rate in the poisson process
+	private static double lambda = 2; // rate in the poisson process
 
 	private static Random random = new Random();
 	public static boolean isRunning;

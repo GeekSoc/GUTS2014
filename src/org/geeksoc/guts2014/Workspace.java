@@ -21,11 +21,10 @@ public class Workspace extends WorkerSpace {
 	JobFactory jf;
 	private TimeControls timeControls;
 	ArrayList<Section> rooms = new ArrayList<Section>();
-	// To count up in milliseconds
-	private int deltaCounter;
-	
+	private int maxRooms = 16;
+
 	private RoundedRectangle addRoomButton;
-	
+
 	public Workspace() {
 		instance = this;
 		wr = new WorkspaceRenderer(this);
@@ -35,10 +34,10 @@ public class Workspace extends WorkerSpace {
 		wl = new Workload(jf);
 
 		timeControls = new TimeControls(gt);
-		for(int x=0;x<4; x++){
+		for (int x = 0; x < 4; x++) {
 			rooms.add(new Section(this));
 		}
-		
+
 		addRoomButton = new RoundedRectangle(20, 20, 20, 20, 0);
 		// Add 5 workers to workspace
 		ArrayList<Employee> newEmployees = new ArrayList<Employee>();
@@ -48,37 +47,38 @@ public class Workspace extends WorkerSpace {
 		addWorkers(newEmployees);
 	}
 
-	public void update(GameContainer cont,StateBasedGame game, int delta) {
-		deltaCounter += delta;
+	public void update(GameContainer cont, StateBasedGame game, int delta) {
 		for (Section s : rooms) {
-			//if (deltaCounter > 1000) {
-				//if (JobFactory.isRunning) {
-					s.update(cont);
-				//}
-				//deltaCounter = 0;
-			//}
+
+			s.update(cont, delta);
+
 		}
+
 		gt.incrementTime(delta);
 		wl.update();
+
 		for(Employee e: this.workers){
 			e.update(cont);
 		}
 		if(cont.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)){
+
 			int mouseX = cont.getInput().getMouseX();
 			int mouseY = cont.getInput().getMouseY();
-			if (mouseX < addRoomButton.getMaxX()
-					&& mouseX > addRoomButton.getMinX()
+			if (mouseX < addRoomButton.getMaxX() && mouseX > addRoomButton.getMinX()
 					&& mouseY < addRoomButton.getMaxY()
-					&& mouseY > addRoomButton.getMinY()) {
+					&& mouseY > addRoomButton.getMinY() && rooms.size() < maxRooms) {
 				rooms.add(new Section(this));
+				Main.cash -= 100;
 			}
 		}
+
 		this.update();
 		
+
 	}
 
 	public void submitWork(WorkPacket wp) {
-		 wl.submit(wp);
+		wl.submit(wp);
 
 	}
 
@@ -87,10 +87,10 @@ public class Workspace extends WorkerSpace {
 		timeControls.setcoords(container.getWidth() - 100, 40);
 		timeControls.render(g, container);
 		WorkLoadRenderer.render(g, wl, 5, container.getHeight() - 20);
-		
+
 		g.setColor(Color.black);
 		g.fill(addRoomButton);
-		
+
 	}
 
 	public String getTime() {
@@ -107,11 +107,11 @@ public class Workspace extends WorkerSpace {
 
 	public int[] getWorkerCountPerRoom() {
 		int[] res = new int[rooms.size()];
-		int x=0;
-		for(Section room:rooms){
-			
+		int x = 0;
+		for (Section room : rooms) {
+
 			res[x] = room.getWorkerCount();
-			x+=1;
+			x += 1;
 		}
 		return res;
 	}

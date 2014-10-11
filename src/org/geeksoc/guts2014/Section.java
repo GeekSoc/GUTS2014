@@ -1,5 +1,6 @@
 package org.geeksoc.guts2014;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.geeksoc.guts2014.controls.Slider;
@@ -14,6 +15,8 @@ public class Section extends WorkerSpace {
 	public HashMap<JobType, Integer> priority = new HashMap<JobType, Integer>();
 	private Slider eslider, sslider, pslider, tslider;
 	public RoundedRectangle rectangle;
+	// To count up in milliseconds
+	private int deltaCounter;
 
 	public Section(Workspace ws) {
 		this.ws = ws;
@@ -23,13 +26,23 @@ public class Section extends WorkerSpace {
 		tslider = new Slider();
 	}
 
-	public void update(GameContainer cont) {
+	public void update(GameContainer cont,int delta) {
 		for(Employee e: this.workers){
 			e.update(cont);
 		}
+
 		updatePriorities();
-		WorkPacket wp = calculateWorkDone();
-		ws.submitWork(wp);
+
+		deltaCounter += delta;
+		if (deltaCounter >= 1000) {
+			
+			if (JobFactory.isRunning) {
+				WorkPacket wp = calculateWorkDone();
+				ws.submitWork(wp);
+			}
+			deltaCounter = 0;
+		}
+
 		eslider.update(cont.getInput());
 		sslider.update(cont.getInput());
 		pslider.update(cont.getInput());
@@ -66,13 +79,13 @@ public class Section extends WorkerSpace {
 	public void render(Graphics g, int x, int y) {
 
 		g.setColor(Color.blue);
-		eslider.render(g,x+10,y+10);
+		eslider.render(g, x + 10, y + 10);
 		g.setColor(Color.green);
-		sslider.render(g,x+10,y+25);
+		sslider.render(g, x + 10, y + 25);
 		g.setColor(Color.orange);
-		pslider.render(g,x+10,y+40);
+		pslider.render(g, x + 10, y + 40);
 		g.setColor(Color.red);
-		tslider.render(g,x+10,y+55);
+		tslider.render(g, x + 10, y + 55);
 
 	}
 
