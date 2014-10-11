@@ -50,7 +50,7 @@ public class WorkPacket {
 			}
 		}
 
-		this.workDone = workDone;
+		this.workDone = workDone; //bad form chris you numpty
 	}
 	
 	public WorkPacket(){

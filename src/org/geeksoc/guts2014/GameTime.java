@@ -48,9 +48,9 @@ public class GameTime {
 			jf.stopJobCreation();
 		} else {
 			if(!JobFactory.isRunning){
-			jf.startJobCreation();
+				jf.startJobCreation();
 			}
-			jf.setLambda(i/100.0);
+			jf.setLambda(i/1000.0);
 		}
 
 	}
