@@ -54,10 +54,16 @@ public class Section extends WorkerSpace {
 			// WorkPacket wp = new WorkPacket();
 			sp.combine(wp);
 		}
+		System.out.print("Work done. Phone: " + sp.getWorkDone(JobType.Phone)
+				+ ". Text: " + sp.getWorkDone(JobType.Text) + ". Social Media: "
+				+ sp.getWorkDone(JobType.SocialMedia) + ". Email: "
+				+ sp.getWorkDone(JobType.Email));
+		;
 		return sp;
 	}
 
 	public void render(Graphics g, int x, int y) {
+
 		g.setColor(Color.blue);
 		eslider.render(g,x+10,y+10);
 		g.setColor(Color.green);
@@ -66,6 +72,7 @@ public class Section extends WorkerSpace {
 		pslider.render(g,x+10,y+40);
 		g.setColor(Color.red);
 		tslider.render(g,x+10,y+55);
+
 	}
 
 }
