@@ -23,9 +23,11 @@ public class Main {
 		// Will stop creating jobs, and empty the jobQueue
 		//jobFactory.startJobCreation();
 		
+		
 		Game g = new Game("geeksoc");
 		game = new AppGameContainer(g);
 		game.setDisplayMode(800, 600, false);
+		game.setShowFPS(false); 
 		game.start();
 		g.enterState(0);
 		
