@@ -6,6 +6,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -77,22 +78,29 @@ public class Menu extends BasicGameState {
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		
-		g.drawAnimation(phone, 10, 10);
+		/*g.drawAnimation(phone, 10, 10);
 		for(int x = 0; x<20; x++){
 			for(int y = 0; y<15; y++){
 				g.drawAnimation(phone, (x*60)+10, (y*40)+10);
 			}
-		}
+		}*/
+		
+		g.setColor(new Color(255, 239, 168));
+		Rectangle r = new Rectangle(0, 0, container.getWidth(),
+				container.getHeight());
+		g.fill(r);
+		
+		g.setAntiAlias(true);
 		
 		g.scale(1, 1);
-		g.setColor(Color.white);
+		g.setColor(new Color(150, 134, 192));
 		g.fill(startButton);
-		g.setColor(Color.black);
+		g.setColor(new Color(102, 84, 149));
 		g.drawString("Start", startButton.getCenterX()-20, startButton.getCenterY()-5);
 		
-		g.setColor(Color.red);
+		g.setColor(new Color(150, 134, 192));
 		g.fill(musicButton);
-		g.setColor(Color.black);
+		g.setColor(new Color(102, 84, 149));
 		g.drawString("Toggle Music", musicButton.getCenterX()-50, musicButton.getCenterY()-5);
 		
 		

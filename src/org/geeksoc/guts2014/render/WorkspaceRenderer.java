@@ -19,7 +19,7 @@ public class WorkspaceRenderer {
 	public WorkspaceRenderer(Workspace w) {
 		this.w = w;
 		Font awtFont = new Font("Times New Roman", Font.BOLD, 24);
-		font = new TrueTypeFont(awtFont, false);
+		font = new TrueTypeFont(awtFont, true);
 		rr= new RoomRenderer();
 	}
 
