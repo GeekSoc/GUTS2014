@@ -172,7 +172,7 @@ public class Menu extends BasicGameState {
 		g.drawString("Full Screen", FSButton.getCenterX()
 				-metrics.stringWidth("Full Screen")/2, FSButton.getCenterY()-5);
 		
-		mpic.draw(container.getWidth()/2 , container.getHeight()/4, container.getHeight()/2 -10 , container.getHeight()/2 -10 );
+		mpic.draw(container.getWidth()/2 , container.getHeight()/4, container.getHeight()/2, container.getHeight()/2 );
 			
 	}
 	
