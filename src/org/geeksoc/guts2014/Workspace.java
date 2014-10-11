@@ -29,7 +29,7 @@ public class Workspace extends WorkerSpace {
 		jf = new JobFactory();
 		gt = new GameTime(jf, 12, 0);
 		wl = new Workload(jf);
-		jf.addInitialJobs(10);
+
 		timeControls = new TimeControls(gt);
 		for(int x=0;x<4; x++){
 			rooms.add(new Section(this));

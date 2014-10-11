@@ -3,6 +3,7 @@ package org.geeksoc.guts2014;
 import java.util.HashMap;
 
 import org.geeksoc.guts2014.controls.Slider;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
@@ -62,10 +63,16 @@ public class Section extends WorkerSpace {
 	}
 
 	public void render(Graphics g, int x, int y) {
-		eslider.render(g, x + 10, y + 10);
-		sslider.render(g, x + 10, y + 20);
-		pslider.render(g, x + 10, y + 30);
-		tslider.render(g, x + 10, y + 40);
+
+		g.setColor(Color.blue);
+		eslider.render(g,x+10,y+10);
+		g.setColor(Color.green);
+		sslider.render(g,x+10,y+25);
+		g.setColor(Color.orange);
+		pslider.render(g,x+10,y+40);
+		g.setColor(Color.red);
+		tslider.render(g,x+10,y+55);
+
 	}
 
 }
