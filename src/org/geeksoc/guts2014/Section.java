@@ -53,11 +53,6 @@ public class Section extends WorkerSpace {
 			// WorkPacket wp = new WorkPacket();
 			sp.combine(wp);
 		}
-		System.out.print("Work done. Phone: " + sp.getWorkDone(JobType.Phone)
-				+ ". Text: " + sp.getWorkDone(JobType.Text) + ". Social Media: "
-				+ sp.getWorkDone(JobType.SocialMedia) + ". Email: "
-				+ sp.getWorkDone(JobType.Email));
-		;
 		return sp;
 	}
 

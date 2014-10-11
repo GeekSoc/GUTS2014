@@ -17,6 +17,8 @@ public class Workspace extends WorkerSpace {
 	JobFactory jf;
 	private TimeControls timeControls;
 	ArrayList<Section> rooms = new ArrayList<Section>();
+	// To count up in milliseconds
+	private int deltaCounter;
 	
 	public Workspace() {
 		wr = new WorkspaceRenderer(this);
@@ -39,9 +41,15 @@ public class Workspace extends WorkerSpace {
 	}
 
 	public void update(GameContainer cont,StateBasedGame game, int delta) {
-		for(Section s : rooms){
-		s.update(cont);
-		 }
+		deltaCounter += delta;
+		for (Section s : rooms) {
+			if (deltaCounter > 1000) {
+				if (JobFactory.isRunning) {
+					s.update(cont);
+				}
+				deltaCounter = 0;
+			}
+		}
 		gt.incrementTime(delta);
 		wl.update();
 	}
