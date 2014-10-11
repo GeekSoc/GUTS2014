@@ -34,27 +34,36 @@ public class Workload {
 				break;
 			}
 		}
-		if(!emails.isEmpty()&&emails.peek().workDone(global.getWorkDone(JobType.Email))){
+		if (!emails.isEmpty()
+				&& emails.peek().workDone(global.getWorkDone(JobType.Email))) {
 			emails.poll();
 		}
-		if(!phones.isEmpty()&&phones.peek().workDone(global.getWorkDone(JobType.Phone))){
+		if (!phones.isEmpty()
+				&& phones.peek().workDone(global.getWorkDone(JobType.Phone))) {
 			phones.poll();
 		}
-		if(!texts.isEmpty()&&texts.peek().workDone(global.getWorkDone(JobType.Text))){
+		if (!texts.isEmpty()
+				&& texts.peek().workDone(global.getWorkDone(JobType.Text))) {
 			texts.poll();
 		}
-		if(!socials.isEmpty()&&socials.peek().workDone(global.getWorkDone(JobType.SocialMedia))){
+		if (!socials.isEmpty()
+				&& socials.peek().workDone(global.getWorkDone(JobType.SocialMedia))) {
 			socials.poll();
 		}
-		
-	}
-	
-	public void submit(WorkPacket wp){
-		global.combine(wp);
-		System.out.println("Global work done this iteration. Phone: " + wp.getWorkDone(JobType.Phone)
-				+ ". Text: " + wp.getWorkDone(JobType.Text) + ". Social Media: "
-				+ wp.getWorkDone(JobType.SocialMedia) + ". Email: "
-				+ wp.getWorkDone(JobType.Email));
+
 	}
 
+	public void submit(WorkPacket wp) {
+		global.combine(wp);
+		// Print number of jobs done in this iteration.
+		System.out.println("Global work done this iteration. Phone: "
+				+ wp.getWorkDone(JobType.Phone) + ". Text: "
+				+ wp.getWorkDone(JobType.Text) + ". Social Media: "
+				+ wp.getWorkDone(JobType.SocialMedia) + ". Email: "
+				+ wp.getWorkDone(JobType.Email));
+		// Print number of jobs in queue.
+		System.out.println("Jobs remaining at the end of this iteration. Phone: "
+				+ phones.size() + ". Text: " + texts.size() + ". Social Media: "
+				+ socials.size() + ". Email: " + emails.size());
+	}
 }
