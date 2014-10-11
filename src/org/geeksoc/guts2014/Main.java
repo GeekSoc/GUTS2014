@@ -24,7 +24,7 @@ public class Main {
 		
 		
 		AppGameContainer game = new AppGameContainer(new Game("geeksoc"));
-		
+		game.setDisplayMode(1000, 600, false);
 		game.start();
 	}
 	

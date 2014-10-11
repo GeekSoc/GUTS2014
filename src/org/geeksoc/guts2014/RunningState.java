@@ -30,7 +30,7 @@ public class RunningState extends BasicGameState {
 	}
 
 	public int getID() {
-		return 1;
+		return id;
 	}
 
 }
