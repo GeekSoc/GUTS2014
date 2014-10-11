@@ -1,6 +1,8 @@
 package org.geeksoc.guts2014.render;
 
+import java.awt.Canvas;
 import java.awt.Font;
+import java.awt.FontMetrics;
 
 import org.geeksoc.guts2014.Employee;
 import org.geeksoc.guts2014.Main;
@@ -37,7 +39,9 @@ public class WorkspaceRenderer {
 		// System.out.println(container.getWidth()+":"+ container.getHeight());
 		
 		//Render Money
-		g.drawString(Float.toString(Main.cash), container.getWidth()/2, 20);
+		Canvas c = new Canvas();
+		FontMetrics metrics = c.getFontMetrics(Main.fontBase);
+		g.drawString(String.format("%.2f", Main.cash), container.getWidth()/2-metrics.stringWidth(String.format("%.2f", Main.cash))/2, 20);
 		
 		// Render Workload
 

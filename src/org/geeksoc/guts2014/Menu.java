@@ -19,6 +19,9 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.Music;
 
+import org.newdawn.slick.font.effects.ShadowEffect;
+
+
 public class Menu extends BasicGameState {
 	
 	private GameContainer c;
@@ -42,7 +45,7 @@ public class Menu extends BasicGameState {
 	private Animation phone;
 	private Music Sound_1;
 	private Image mpic;
-
+	
 	public Menu(Options o) {
 		options = o;
 	}
@@ -169,7 +172,7 @@ public class Menu extends BasicGameState {
 		g.drawString("Full Screen", FSButton.getCenterX()
 				-metrics.stringWidth("Full Screen")/2, FSButton.getCenterY()-5);
 		
-		mpic.draw(container.getWidth()/2 , container.getHeight()/4, container.getWidth()/2 -10 , container.getHeight()/2 -10 );
+		mpic.draw(container.getWidth()/2 , container.getHeight()/4, container.getHeight()/2 -10 , container.getHeight()/2 -10 );
 			
 	}
 	

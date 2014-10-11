@@ -28,7 +28,8 @@ public class Workspace extends WorkerSpace {
 	ArrayList<Section> rooms = new ArrayList<Section>();
 	private int maxRooms = 16;
 
-	private RoundedRectangle addRoomButton;
+	private Image addRoomButton;
+	private Rectangle addRoomButton2;
 	private Image hireWorker;
 	private Rectangle hireWorker2;
 
@@ -45,7 +46,7 @@ public class Workspace extends WorkerSpace {
 			rooms.add(new Section(this));
 		}
 
-		addRoomButton = new RoundedRectangle(20, 20, 20, 20, 0);
+		addRoomButton = new Image("res/img/hire.png");
 		hireWorker = new Image("res/img/hire.png");
 	
 		
@@ -74,9 +75,7 @@ public class Workspace extends WorkerSpace {
 
 			int mouseX = cont.getInput().getMouseX();
 			int mouseY = cont.getInput().getMouseY();
-			if (mouseX < addRoomButton.getMaxX() && mouseX > addRoomButton.getMinX()
-					&& mouseY < addRoomButton.getMaxY()
-					&& mouseY > addRoomButton.getMinY() && rooms.size() < maxRooms) {
+			if (addRoomButton2.contains(mouseX, mouseY) && rooms.size() < maxRooms) {
 				rooms.add(new Section(this));
 				Main.cash -= 100;
 			}
@@ -104,7 +103,8 @@ public class Workspace extends WorkerSpace {
 		WorkLoadRenderer.render(g, wl, 5, container.getHeight() - 20);
 
 		g.setColor(Color.black);
-		g.fill(addRoomButton);
+		addRoomButton.draw(20 , 20, 20, 20);
+		addRoomButton2 = new Rectangle(20 , 20, 20, 20);
 		hireWorker.draw(container.getWidth() - 25 , container.getHeight() - 25, 20, 20);
 		hireWorker2 = new Rectangle(container.getWidth() - 25 , container.getHeight() - 25, 20, 20);
 

@@ -24,7 +24,7 @@ public class RoomRenderer {
 	public void render(Graphics g, GameContainer c,ArrayList<Section> s, int[] people) { // nrooms is the number of rooms and 'people'
 		                                           // is an array containing number in room
 		
-		g.setColor(Color.black);
+		g.setColor(new Color(240, 240, 240));
 		int nRows = (int) Math.ceil(Math.sqrt(s.size()));
 		int cc;
 		int cr;
@@ -43,10 +43,10 @@ public class RoomRenderer {
 			cc=i%nRows;
 			x=((cc+1)*hallwayWidth) + (cc*(int)rHorSize-1)+50;
 			y=(cr*hallwayWidth) + ((cr-1)*(int)rVerSize-1)+80;
-			g.setLineWidth(3);
-			g.setColor(Color.black);
+			//g.setLineWidth(3);
+			g.setColor(new Color(240, 240, 240));
 			sec.rectangle = new RoundedRectangle(x,y,rHorSize,rVerSize, rHorSize/20);
-			g.draw(sec.rectangle);
+			g.fill(sec.rectangle);
 			sec.render(g,x,y);
 			
 			centerPointerX = roomSideMargin+peepRadius+x;
