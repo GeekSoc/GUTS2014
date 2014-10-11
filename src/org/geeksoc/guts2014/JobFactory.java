@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class JobFactory {
 	
-	private static double lambda = 2; // rate in the poisson process
+	private static double lambda = 2.0; // rate in the poisson process
 	
 	private static Random random = new Random();
 	private static boolean isRunning;
@@ -85,7 +85,12 @@ public class JobFactory {
 	public void clearJobs() {
 		jobQueue.clear();
 	}
+	
 	public int numJobs() {
 		return jobQueue.size();
+	}
+	
+	public void setLambda(double lmb) {
+		lambda = lmb;
 	}
 }

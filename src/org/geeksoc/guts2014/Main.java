@@ -12,8 +12,8 @@ public class Main {
 	public static void main(String[] args) throws SlickException {
 		Queue<Job> jobQueue = new LinkedList<Job>();
 		JobFactory jobFactory = new JobFactory();
-		// Set the random time between jobs to be between 1 and 3 seconds
-		jobFactory.setWaitingTimes(1000, 3000);
+		// Set the rate of jobs per second
+		jobFactory.setLambda(2.0);
 		// Add a few jobs to start with
 		jobFactory.addInitialJobs(10);
 		// Will add random job at random time interval to jobQueue of type Job
