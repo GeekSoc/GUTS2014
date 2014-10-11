@@ -41,6 +41,7 @@ public class WorkPacket {
 			}
 		}
 
+
 		this.setWorkDone(workDone);
 		
 	}
