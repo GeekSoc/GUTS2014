@@ -24,7 +24,7 @@ public class Main {
 	}
 	
 	public static void main(String[] args) throws SlickException {
-		//COMMENTED OUT DUE TO FEAR, DO NOT FUCKING UNCOMMENT OR DELETE
+		//COMMENTED OUT DUE TO FEAR, PLEASE DO NOT UNCOMMENT OR DELETE. THANKS :-)
 		//jobQueue = new ArrayList<Job>();
 		//JobFactory jobFactory = new JobFactory();
 		
