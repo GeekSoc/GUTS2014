@@ -1,0 +1,63 @@
+package org.geeksoc.guts2014.controls;
+
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.state.StateBasedGame;
+
+public class Slider{
+	
+	int x,y=0;
+	int value=0;
+	Rectangle slider;
+	boolean sliderdown;
+	private Input input;
+	
+	public Slider(){
+
+		slider = new Rectangle(x,y-5,5,10);
+	}
+	
+	public void update(Input input){
+		if(input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+			if(slider.contains(input.getMouseX(), input.getMouseY())){
+				sliderdown=true;
+			}
+		}
+		if(sliderdown){
+			slider.setCenterX(input.getAbsoluteMouseX());
+			
+			value= Math.round(slider.getCenterX()) -x;
+			System.out.println(value);
+		}
+		if(!input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+			sliderdown =false;
+		}
+		if(slider.getCenterX()>x+100){
+			slider.setCenterX(x+100);
+		}
+		if(slider.getCenterX()<x){
+			slider.setCenterX(x);
+		}
+	}
+	
+	public void render(Graphics g, int x2, int y2){
+		x=x2;
+		y=y2;
+		slider.setCenterY(y2);
+		slider.setCenterX(x2+value);
+		g.fillRect(x, y, 100, 3);
+		g.fill(slider);
+	}
+	
+	public int getValue(){
+		return value;
+	}
+
+	public void setValue(int i) {
+		value = i;
+		
+	}
+
+}
