@@ -15,7 +15,7 @@ public class WorkerSpace {
 	}
 
 	public void addWorkers(ArrayList<Employee> w) {
-		
+
 		newWorkers.addAll(w);
 	}
 
@@ -31,12 +31,12 @@ public class WorkerSpace {
 	public int getWorkerCount() {
 		return workers.size();
 	}
-	
-public ArrayList<Employee> getWorkers() {
+
+	public ArrayList<Employee> getWorkers() {
 		return workers;
 	}
 
-	public void update(){
+	public void update() {
 		workers.removeAll(oldWorkers);
 		workers.addAll(newWorkers);
 		oldWorkers.clear();

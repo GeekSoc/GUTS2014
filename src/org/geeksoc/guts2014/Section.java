@@ -1,6 +1,5 @@
 package org.geeksoc.guts2014;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.geeksoc.guts2014.controls.Slider;
@@ -35,7 +34,7 @@ public class Section extends WorkerSpace {
 
 		deltaCounter += delta;
 		
-		int speed = ws.instance.gt.getSpeed();
+		int speed = GameTime.getSpeed();
 		if (speed == 0) {
 			speed = 1;
 		}
