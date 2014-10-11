@@ -1,5 +1,6 @@
 package org.geeksoc.guts2014;
 
+import java.math.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -13,8 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class JobFactory {
 	
-	private static int MIN_WAIT = 1000; // 1000 ms is minimum time between new jobs being created
-	private static int MAX_WAIT = 3000; // 3000 ms is maximum time between new jobs being created
+	private static double lambda = 2; // rate in the poisson process
 	
 	private static Random random = new Random();
 	private static boolean isRunning;
@@ -35,15 +35,16 @@ public class JobFactory {
 	class Task extends TimerTask {
 		@Override
 		public void run() {
-			int randomWait = randomNumber(MIN_WAIT, MAX_WAIT);
-			timer.schedule(new Task(), randomWait);
+			double randomWait = -Math.log(random.nextDouble())/lambda * 1000;
+			long randomWait_ms = (long) randomWait;
+			timer.schedule(new Task(), randomWait_ms);
 			Job job = new Job();
 			jobQueue.add(job);
 			
 			System.out.println(
 				String.format(
 					"Job added (%dms) - %s",
-					randomWait,
+					randomWait_ms,
 					job.toString()
 				)
 			);
@@ -54,11 +55,6 @@ public class JobFactory {
 		if(isRunning) {
 			new Task().run();
 		}
-	}
-	
-	public void setWaitingTimes(int min, int max) {
-		MIN_WAIT = min;
-		MAX_WAIT = max;
 	}
 	
 	public void startJobCreation() {
@@ -77,9 +73,5 @@ public class JobFactory {
 	}
 	public int numJobs() {
 		return jobQueue.size();
-	}
-	
-	public static int randomNumber(int min, int max) {
-		return random.nextInt(max) + min;
 	}
 }
