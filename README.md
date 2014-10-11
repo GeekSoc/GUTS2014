@@ -4,6 +4,7 @@ Geeksoc
 Geeksoc's attempt at the Kana Challenge.
 
 Excluding the unrare bug, this software will be
+
 excellent.
 
 Kana inspired us to create interesting
