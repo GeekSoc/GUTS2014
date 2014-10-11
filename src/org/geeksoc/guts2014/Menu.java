@@ -6,6 +6,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.Music;
 
 public class Menu extends BasicGameState {
 	
@@ -26,6 +27,8 @@ public class Menu extends BasicGameState {
 		
 		int x1 = (container.getWidth()/2)-(buttonWidth/2);
 		startButton=new Rectangle(x1, 100, buttonWidth, buttonHeight);
+		Music Sound_1 = new Music("res/sound/background.ogg");
+		Sound_1.loop(1.0f, 1.0f);
 		
 	}
 	

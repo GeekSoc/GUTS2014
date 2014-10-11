@@ -5,6 +5,7 @@ import org.geeksoc.guts2014.Menu;
 import org.geeksoc.guts2014.RunningState;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.ScalableGame;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -15,6 +16,7 @@ public class RendererTest {
 			@Override
 			public void initStatesList(GameContainer container) throws SlickException {
 				this.addState(new RunningState(1));
+				
 			}
 			
 		});
