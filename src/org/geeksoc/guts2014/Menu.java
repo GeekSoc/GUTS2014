@@ -1,5 +1,6 @@
 package org.geeksoc.guts2014;
 
+import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -80,10 +81,13 @@ public class Menu extends BasicGameState {
 					&& mouseX > FSButton.getMinX()
 					&& mouseY < FSButton.getMaxY()
 					&& mouseY > FSButton.getMinY()) {
-				container.setFullscreen(container.isFullscreen());
+				container.setFullscreen(!container.isFullscreen());
 				
 			}
 			clicked = false;
+		}
+		if(container.getInput().isKeyPressed(Keyboard.KEY_ESCAPE)){
+			container.setFullscreen(false);
 		}
 
 	}
