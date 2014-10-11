@@ -1,25 +1,23 @@
 package org.geeksoc.guts2014;
 
-public class GameTime {
+public final class GameTime {
 
-	int hours, minutes, speed;
-	private int ms;
-	private JobFactory jf;
+	private static int hours = 0, minutes = 0, speed = 0, ms = 0;
 
-	public GameTime(JobFactory jf, int h, int m) {
-		this.jf = jf;
-		hours = h;
-		minutes = m;
-		speed = 0;
+	private GameTime() {
 	}
 
-	public void incrementTime(int delta) {
+	public static void setTime(int h, int m) {
+		hours = h;
+		minutes = m;
+	}
+
+	public static void incrementTime(int delta) {
 		ms += delta;
 		if (ms > 1000) {
 			ms = ms - 1000;
-
 			minutes += speed;
-			if (minutes >= 60) {
+			if (minutes > 59) {
 				hours += 1;
 				minutes = 0;
 			}
@@ -29,7 +27,7 @@ public class GameTime {
 		}
 	}
 
-	public String toString() {
+	public static String toStringHack() {
 		StringBuilder sb = new StringBuilder();
 		if (hours < 10) {
 			sb.append(0);
@@ -42,20 +40,12 @@ public class GameTime {
 		return sb.toString();
 	}
 
-	public void setSpeed(int i) {
-		speed = i;
-		if (speed == 0) {
-			jf.stopJobCreation();
-		} else {
-			if(!JobFactory.isRunning){
-				jf.startJobCreation();
-			}
-			jf.setLambda(i/1000.0);
-		}
-
+	public static void setSpeed(int s) {
+		speed = s;
+		
 	}
 
-	public int getSpeed() {
+	public static int getSpeed() {
 		return speed;
 	}
 

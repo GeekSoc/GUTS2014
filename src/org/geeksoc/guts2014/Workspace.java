@@ -22,7 +22,6 @@ public class Workspace extends WorkerSpace {
 	public static boolean sliderLock;
 	Workload wl;
 	WorkspaceRenderer wr;
-	GameTime gt;
 	JobFactory jf;
 	private TimeControls timeControls;
 	ArrayList<Section> rooms = new ArrayList<Section>();
@@ -40,10 +39,12 @@ public class Workspace extends WorkerSpace {
 		wr = new WorkspaceRenderer(this);
 
 		jf = new JobFactory();
-		gt = new GameTime(jf, 12, 0);
 		wl = new Workload(jf);
+		
+		GameTime.setTime(12,0);
+		GameTime.setSpeed(0);
 
-		timeControls = new TimeControls(gt);
+		timeControls = new TimeControls();
 		for (int x = 0; x < 4; x++) {
 			rooms.add(new Section(this));
 		}
@@ -69,7 +70,7 @@ public class Workspace extends WorkerSpace {
 
 		}
 
-		gt.incrementTime(delta);
+		GameTime.incrementTime(delta);
 		wl.update();
 
 		for(Employee e: this.workers){
@@ -122,7 +123,7 @@ public class Workspace extends WorkerSpace {
 	}
 
 	public String getTime() {
-		return gt.toString();
+		return GameTime.toStringHack();
 	}
 
 	public Workload getWorkload() {
