@@ -19,7 +19,7 @@ public class GameTime {
 			ms = ms - 1000;
 
 			minutes += speed;
-			if (minutes > 60) {
+			if (minutes >= 60) {
 				hours += 1;
 				minutes = 0;
 			}
