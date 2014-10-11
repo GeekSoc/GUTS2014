@@ -88,7 +88,7 @@ public class Employee extends Circle {
 		}
 		
 		for (JobType jobType : JobType.values()) {
-		  Main.cash += workDone.get(jobType) * 0.1;
+			Main.cash += workDone.get(jobType);
 		}
 		
 		return new WorkPacket(workDone);
