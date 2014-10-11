@@ -31,6 +31,7 @@ public class Employee {
 		 * Employee skill is set to a random number up to 20
 		 */
 		skills = new HashMap<JobType, Integer>();
+		experience = new HashMap<JobType, Integer>();
 
 		// TODO: test all this.
 		Random rand = new Random();
