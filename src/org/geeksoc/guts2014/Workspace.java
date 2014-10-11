@@ -8,13 +8,18 @@ import org.geeksoc.guts2014.render.WorkspaceRenderer;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Polygon;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Workspace extends WorkerSpace {
 
 	public static Workspace instance;
+	public static boolean sliderLock;
 	Workload wl;
 	WorkspaceRenderer wr;
 	GameTime gt;
@@ -24,8 +29,10 @@ public class Workspace extends WorkerSpace {
 	private int maxRooms = 16;
 
 	private RoundedRectangle addRoomButton;
+	private Image hireWorker;
+	private Rectangle hireWorker2;
 
-	public Workspace() {
+	public Workspace() throws SlickException {
 		instance = this;
 		wr = new WorkspaceRenderer(this);
 
@@ -39,6 +46,9 @@ public class Workspace extends WorkerSpace {
 		}
 
 		addRoomButton = new RoundedRectangle(20, 20, 20, 20, 0);
+		hireWorker = new Image("res/img/hire.png");
+	
+		
 		// Add 5 workers to workspace
 		ArrayList<Employee> newEmployees = new ArrayList<Employee>();
 		for (int i = 0; i < 5; i++) {
@@ -70,6 +80,11 @@ public class Workspace extends WorkerSpace {
 				rooms.add(new Section(this));
 				Main.cash -= 100;
 			}
+			if(hireWorker2.contains(mouseX, mouseY)){
+						ArrayList<Employee> temp = new ArrayList<Employee>();
+						temp.add(new Employee(this));
+						addWorkers(temp);
+					}
 		}
 
 		this.update();
@@ -90,6 +105,8 @@ public class Workspace extends WorkerSpace {
 
 		g.setColor(Color.black);
 		g.fill(addRoomButton);
+		hireWorker.draw(container.getWidth() - 25 , container.getHeight() - 25, 20, 20);
+		hireWorker2 = new Rectangle(container.getWidth() - 25 , container.getHeight() - 25, 20, 20);
 
 	}
 
