@@ -22,6 +22,7 @@ public class Workload {
 	public Queue<Job> texts = new LinkedList<Job>();
 	public Queue<Job> socials = new LinkedList<Job>();
 	private WorkPacket global = new WorkPacket();
+	private int loop;
 
 	public Workload(JobFactory jf) {
 		this.jf = jf;
@@ -61,8 +62,42 @@ public class Workload {
 				&& socials.peek().workDone(global.getWorkDone(JobType.SocialMedia))) {
 			socials.poll();
 		}
+		
+		if(loop>5){
+		if (emails.size()>50){
+			Main.rep -= 1;
+		}
+		if (phones.size()>50){
+			Main.rep -= 1;
+		}
+		if (texts.size()>50){
+			Main.rep -= 1;
+		}
+		if (socials.size()>50){
+			Main.rep -= 1;
+		}
+		
+		if (emails.isEmpty()){
+			Main.rep += 1;
+		}
+		if (phones.isEmpty()){
+			Main.rep += 1;
+		}
+		if (texts.isEmpty()){
+			Main.rep += 1;
+		}
+		if (socials.isEmpty()){
+			Main.rep += 1;
+		}
+		
+		if (Main.rep<0)Main.rep = 0;
+		if (Main.rep>100) Main.rep=100;
+		
+		}
 		//System.out.println(global.getWorkDone().toString());
 		global.setWorkDone(empty);
+		
+		loop++;
 	}
 
 	public void submit(WorkPacket wp) {
