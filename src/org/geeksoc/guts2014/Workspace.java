@@ -25,11 +25,11 @@ public class Workspace extends WorkerSpace {
 		gt = new GameTime(jf, 12, 0);
 		wl = new Workload(jf);
 		jf.addInitialJobs(10);
-		jf.startJobCreation();
+		//jf.startJobCreation();
 		timeControls = new TimeControls(gt);
 	}
 
-	public void update(int delta) {
+	public void update(StateBasedGame game, int delta) {
 		// for(Section s : sections){
 		// s.update();
 		// }

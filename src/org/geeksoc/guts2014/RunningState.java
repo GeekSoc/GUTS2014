@@ -19,17 +19,17 @@ public class RunningState extends BasicGameState {
 		instance = this;
 		mouseListeners = new ArrayList<GMouseListener>();
 
-		w = new Workspace();
+		
 	}
 
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-
+		w = new Workspace();
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
-		w.update(delta);
+		w.update(game,delta);
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g)

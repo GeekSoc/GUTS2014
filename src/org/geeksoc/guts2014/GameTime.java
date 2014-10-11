@@ -10,7 +10,7 @@ public class GameTime {
 		this.jf = jf;
 		hours = h;
 		minutes = m;
-		speed = 1;
+		speed = 0;
 	}
 
 	public void incrementTime(int delta) {

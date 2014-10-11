@@ -1,5 +1,6 @@
 package org.geeksoc.guts2014;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -27,7 +28,8 @@ public class Menu extends BasicGameState {
 		int x1 = (container.getWidth() / 2) - (buttonWidth / 2);
 		startButton = new Rectangle(x1, 100, buttonWidth, buttonHeight);
 		Music Sound_1 = new Music("res/sound/background.ogg");
-		Sound_1.loop(1.0f, 1.0f);
+		//Sound_1.loop(1.0f, 1.0f);
+		//Fuck off wit hte annoying music for now :(
 
 	}
 
@@ -50,8 +52,10 @@ public class Menu extends BasicGameState {
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-
+		g.setColor(Color.white);
 		g.fill(startButton);
+		g.setColor(Color.black);
+		g.drawString("Start", startButton.getCenterX()-20, startButton.getCenterY());
 
 	}
 
