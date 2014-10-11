@@ -22,6 +22,7 @@ public class Workspace extends WorkerSpace {
 	ArrayList<Section> rooms = new ArrayList<Section>();
 	// To count up in milliseconds
 	private int deltaCounter;
+	private int maxRooms = 16;
 	
 	private RoundedRectangle addRoomButton;
 	
@@ -50,13 +51,15 @@ public class Workspace extends WorkerSpace {
 		deltaCounter += delta;
 		for (Section s : rooms) {
 			if (deltaCounter >= 1000) {
+				ArrayList<Employee> roomWorkers;
+				roomWorkers = s.getWorkers();
+				for(Employee employee:roomWorkers){
+					Main.cash -= employee.getWage();
+				}
+				
 				if (JobFactory.isRunning) {
 					s.update(cont);
-					ArrayList<Employee> roomWorkers;
-					roomWorkers = s.getWorkers();
-					for(Employee employee:roomWorkers){
-						Main.cash -= employee.getWage();
-					}
+					//Add cash for job
 				}
 				deltaCounter = 0;
 			}
@@ -71,7 +74,8 @@ public class Workspace extends WorkerSpace {
 			if (mouseX < addRoomButton.getMaxX()
 					&& mouseX > addRoomButton.getMinX()
 					&& mouseY < addRoomButton.getMaxY()
-					&& mouseY > addRoomButton.getMinY()) {
+					&& mouseY > addRoomButton.getMinY()
+					&& rooms.size() < maxRooms) {
 				rooms.add(new Section(this));
 				Main.cash -= 100;
 			}
