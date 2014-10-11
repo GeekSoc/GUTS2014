@@ -51,7 +51,7 @@ public class Workspace extends WorkerSpace {
 		gt.incrementTime(delta);
 		wl.update();
 		
-		if(cont.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+		if(cont.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)){
 			int mouseX = cont.getInput().getMouseX();
 			int mouseY = cont.getInput().getMouseY();
 			if (mouseX < addRoomButton.getMaxX()
