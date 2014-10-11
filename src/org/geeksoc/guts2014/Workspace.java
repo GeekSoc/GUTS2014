@@ -49,7 +49,7 @@ public class Workspace extends WorkerSpace {
 	public void update(GameContainer cont,StateBasedGame game, int delta) {
 		deltaCounter += delta;
 		for (Section s : rooms) {
-			if (deltaCounter > 1000) {
+			if (deltaCounter >= 1000) {
 				if (JobFactory.isRunning) {
 					s.update(cont);
 				}

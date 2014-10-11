@@ -24,6 +24,8 @@ public class Employee extends Circle {
 	// i.e. his experience as a percentage of jobs done. e.g. <JobType.Email,
 	// 50000> means the employee has dealt with 500 emails.
 	private HashMap<JobType, Integer> experience;
+	// Minimum wage
+	private float minimumWage = 6;
 
 	/**
 	 * Creates a new Employee with a random mix of skills.
@@ -98,6 +100,22 @@ public class Employee extends Circle {
 		
 		// Employees get an experience bonus for their skill
 		return skillLevel + experienceLevel;
+	}
+	
+	public float getWage() {
+		float wage = 0;
+		
+		wage = totalSkill() / MAX_SKILL;
+		
+		return wage;
+	}
+	
+	private int totalSkill() {
+		int totalSkill = 0;
+		for (int skill : skills.values()) {
+			totalSkill += skill;
+		}
+		return totalSkill;
 	}
 
 }
