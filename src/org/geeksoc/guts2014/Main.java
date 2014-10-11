@@ -1,25 +1,25 @@
 package org.geeksoc.guts2014;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
 public class Main {
 	
-	public static ArrayList<Job> jobQueue;
-	
 	public static void main(String[] args) throws SlickException {
-		
-		jobQueue = new ArrayList<Job>();
+		Queue<Job> jobQueue = new LinkedList<Job>();
 		JobFactory jobFactory = new JobFactory();
-		
+		// Set the random time between jobs to be between 1 and 3 seconds
+		jobFactory.setWaitingTimes(1000, 3000);
 		// Will add random job at random time interval to jobQueue of type Job
 		jobFactory.startJobCreation();
-		// do not call this at update??
-		
+		// call this in update
+		jobQueue = jobFactory.getJobQueue();
 		// Will stop creating jobs, and empty the jobQueue
-		jobFactory.startJobCreation();
+		jobFactory.stopJobCreation();
 		
 		
 		
