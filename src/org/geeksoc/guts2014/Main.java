@@ -14,6 +14,8 @@ public class Main {
 		JobFactory jobFactory = new JobFactory();
 		// Set the random time between jobs to be between 1 and 3 seconds
 		jobFactory.setWaitingTimes(1000, 3000);
+		// Add a few jobs to start with
+		jobFactory.addInitialJobs(10);
 		// Will add random job at random time interval to jobQueue of type Job
 		jobFactory.startJobCreation();
 		// call this in update
