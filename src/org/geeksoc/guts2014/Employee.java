@@ -31,10 +31,10 @@ public class Employee {
 		Random rand = new Random();
 		rand.setSeed(System.currentTimeMillis());
 		
-		skills.put(JobType.Email, 			rand.nextInt(100));
-		skills.put(JobType.Phone, 			rand.nextInt(100));
-		skills.put(JobType.Text,				rand.nextInt(100));
-		skills.put(JobType.SocialMedia,	rand.nextInt(100));
+		skills.put(JobType.Email, rand.nextInt(100));
+		skills.put(JobType.Phone, rand.nextInt(100));
+		skills.put(JobType.Text, rand.nextInt(100));
+		skills.put(JobType.SocialMedia, rand.nextInt(100));
 		
 		int totalSkill = totalOfHashMapValues(skills);
 		
@@ -62,17 +62,21 @@ public class Employee {
 	
 	/**
 	 * 
+	 * 
 	 * @return WorkPacket specifying amount of work done.
 	 */
-	public WorkPacket work() {
-		WorkPacket wp = new WorkPacket();
-		
+	public WorkPacket work(HashMap<JobType, Integer> workPriorities) {
 		/*
 		 * TODO: Calculate work done.
 		 * TODO: Have employee learn from experience.
 		 */
 		
-		return wp;
+		// Work done
+		for (Map.Entry<JobType, Integer> entry : workPriorities.entrySet()) {
+			
+		}
+		
+		return new WorkPacket();
 	}
 	
 	/**
