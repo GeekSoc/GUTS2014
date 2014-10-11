@@ -21,9 +21,9 @@ public class Slider{
 	
 	public void update(Input input){
 		if(input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
-			if(slider.contains(input.getMouseX(), input.getMouseY())){
+			if(!Workspace.sliderLock&&slider.contains(input.getMouseX(), input.getMouseY())){
 				sliderdown=true;
-				
+				Workspace.sliderLock = true;
 			}
 		}
 		if(sliderdown){
@@ -39,7 +39,7 @@ public class Slider{
 		}
 		if(!input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
 			sliderdown =false;
-			
+			Workspace.sliderLock=false;
 		}
 		
 	}
