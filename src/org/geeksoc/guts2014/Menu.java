@@ -34,11 +34,11 @@ public class Menu extends BasicGameState {
 		Music Sound_1 = new Music("res/sound/background.ogg");
 		//Sound_1.loop(1.0f, 1.0f);
 		//Fuck off wit hte annoying music for now :(
-		//Image phone1 = new Image("res/img/phone.gif");
-		//Image phone2 = new Image("res/img/phone2.gif");
-		//Image phone3 = new Image("res/img/phone3.gif");
-		//Image[] phones = new Image[]{phone1,phone2,phone3};
-		//phone = new Animation(phones,1);
+		Image phone1 = new Image("res/img/phone.gif");
+		Image phone2 = new Image("res/img/phone2.gif");
+		Image phone3 = new Image("res/img/phone3.gif");
+		Image[] phones = new Image[]{phone1,phone2,phone3};
+		phone = new Animation(phones,1);
 		
 	}
 
