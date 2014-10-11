@@ -30,16 +30,21 @@ public class Workspace extends WorkerSpace {
 		gt = new GameTime(jf, 12, 0);
 		wl = new Workload(jf);
 		jf.addInitialJobs(10);
-		jf.startJobCreation();
 		timeControls = new TimeControls(gt);
 		for(int x=0;x<4; x++){
 			rooms.add(new Section(this));
 		}
 		
 		addRoomButton = new RoundedRectangle(20, 20, 20, 20, 0);
+		// Add 5 workers to workspace
+		ArrayList<Employee> newEmployees = new ArrayList<Employee>();
+		for (int i = 0; i < 5; i++) {
+			newEmployees.add(new Employee());
+		}
+		addWorkers(newEmployees);
 	}
 
-	public void update(GameContainer cont,StateBasedGame game, int delta) {		
+	public void update(GameContainer cont,StateBasedGame game, int delta) {
 		for(Section s : rooms){
 		s.update(cont);
 		 }

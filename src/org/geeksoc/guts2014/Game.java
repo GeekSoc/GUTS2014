@@ -16,7 +16,6 @@ public class Game extends StateBasedGame {
 		Options options = new Options();
 		this.addState(new Menu(options));
 		this.addState(new RunningState(options));
-		this.addState(new OptionsMenu(options));
 	}
 
 }
