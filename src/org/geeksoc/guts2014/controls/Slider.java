@@ -12,7 +12,6 @@ public class Slider{
 	int value=0;
 	Rectangle slider;
 	boolean sliderdown;
-	private Input input;
 	
 	public Slider(){
 
