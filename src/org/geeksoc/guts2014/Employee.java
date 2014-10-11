@@ -102,10 +102,18 @@ public class Employee extends Circle {
 		return skillLevel + experienceLevel;
 	}
 	
+	/**
+	 * Returns that employee's wage in £ / in-game minute.
+	 * 
+	 * @return wage
+	 */
 	public float getWage() {
 		float wage = 0;
 		
-		wage = totalSkill() / MAX_SKILL;
+		// Hourly wage - an extra £2 per hour for 10 skill
+		wage = minimumWage + totalSkill() / 100 * 2;
+		// Per in-game minute
+		wage /= 60;
 		
 		return wage;
 	}
