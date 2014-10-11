@@ -16,6 +16,8 @@ import org.newdawn.slick.Music;
 
 public class Menu extends BasicGameState {
 	
+	private GameContainer c;
+	
 	private static final int[] xResolutions = {1920,1366,1280,800};
 	private static final int[] yResolutions = {1080,768,720,600};
 	private int resI = 3;
@@ -41,8 +43,16 @@ public class Menu extends BasicGameState {
 
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-
+		
+			c=container;
+			reiniti(c);
+		}
+	
+	private void reiniti(GameContainer container) throws SlickException {
 		int x1 = (container.getWidth() / 2) - (buttonWidth / 2);
+		
+		//Fuck off wit hte annoying music for now :(
+				
 		startButton = new RoundedRectangle(x1, 100, buttonWidth, buttonHeight, 20);
 		musicButton = new RoundedRectangle(x1, 200, buttonWidth, buttonHeight, 20);
 		rButton = new RoundedRectangle(x1,300,buttonWidth,buttonHeight, 20);
@@ -51,7 +61,6 @@ public class Menu extends BasicGameState {
 		Sound_1.loop(1.0f, 1.0f);
 		buttonColor = new Color(150, 134, 192);
 		textColor = new Color(102, 84, 149);
-		//Fuck off wit hte annoying music for now :(
 		//Image phone1 = new Image("res/img/phone.gif");
 		//Image phone2 = new Image("res/img/phone2.gif");
 		//Image phone3 = new Image("res/img/phone3.gif");
@@ -142,6 +151,7 @@ public class Menu extends BasicGameState {
 			resI=0;
 		}
 		Main.game.setDisplayMode(xResolutions[resI], yResolutions[resI], false);
+		reiniti(c);
 	}
 
 	public void mouseClicked(int button, int x, int y, int clickCount) {
