@@ -10,8 +10,8 @@ import org.newdawn.slick.Graphics;
 public class Section extends WorkerSpace {
 
 	private Workspace ws;
-	public HashMap<JobType, Integer> priority= new HashMap<JobType,Integer>();
-	private Slider eslider,sslider,pslider,tslider;
+	public HashMap<JobType, Integer> priority = new HashMap<JobType, Integer>();
+	private Slider eslider, sslider, pslider, tslider;
 
 	public Section(Workspace ws) {
 		this.ws = ws;
@@ -32,16 +32,15 @@ public class Section extends WorkerSpace {
 	}
 
 	private void updatePriorities() {
-		
-		if(eslider.getValue()+pslider.getValue()+sslider.getValue()+tslider.getValue() > 100){
-			eslider.setValue(eslider.getValue()-1);
-			pslider.setValue(pslider.getValue()-1);
-			sslider.setValue(sslider.getValue()-1);
-			tslider.setValue(tslider.getValue()-1);
+
+		if (eslider.getValue() + pslider.getValue() + sslider.getValue()
+				+ tslider.getValue() > 100) {
+			eslider.setValue(eslider.getValue() - 1);
+			pslider.setValue(pslider.getValue() - 1);
+			sslider.setValue(sslider.getValue() - 1);
+			tslider.setValue(tslider.getValue() - 1);
 		}
-		
-		
-		
+
 		priority.put(JobType.Email, eslider.getValue());
 		priority.put(JobType.SocialMedia, sslider.getValue());
 		priority.put(JobType.Phone, pslider.getValue());

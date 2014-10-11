@@ -4,13 +4,15 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Random;
 
+import org.newdawn.slick.geom.Circle;
+
 /**
  * Employee
  * 
  * @author Chris Bean (lastsplash)
  *
  */
-public class Employee {
+public class Employee extends Circle {
 	// The total maximum skill an employee should have, as the sum of their four
 	// skills.
 	private static int MAX_SKILL = 100;
@@ -27,6 +29,7 @@ public class Employee {
 	 * Creates a new Employee with a random mix of skills.
 	 */
 	public Employee() {
+		super(-100,-100,5);
 		/*
 		 * Employee skill is set to a random number up to 20
 		 */

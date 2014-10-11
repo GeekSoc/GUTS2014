@@ -2,6 +2,7 @@ package org.geeksoc.guts2014.render;
 
 import java.awt.Font;
 
+import org.geeksoc.guts2014.Employee;
 import org.geeksoc.guts2014.Main;
 import org.geeksoc.guts2014.Workspace;
 import org.newdawn.slick.Color;
@@ -45,7 +46,12 @@ public class WorkspaceRenderer {
 		// Render Unused Workers
 
 		// renderControls
-
+		for(Employee e:w.getWorkers()){
+			e.setCenterY(container.getWidth()-10);
+			e.setCenterX(container.getHeight()-10);
+			g.setColor(Color.magenta);
+			g.fill(e);
+		}
 		// renderRooms
 		rr.render(g, container, w.getRooms(), w.getWorkerCountPerRoom());
 	}
