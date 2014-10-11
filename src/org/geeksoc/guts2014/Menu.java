@@ -2,6 +2,7 @@ package org.geeksoc.guts2014;
 
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -14,12 +15,17 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.Music;
 
 public class Menu extends BasicGameState {
-
+	
+	private static final int[] xResolutions = {1920,1366,1280,800};
+	private static final int[] yResolutions = {1080,768,720,600};
+	private int resI = 3;
+	
 	private static int buttonWidth = 300;
 	private static int buttonHeight = 50;
 	private RoundedRectangle startButton;
 	private RoundedRectangle musicButton;
 	private RoundedRectangle FSButton;
+	private RoundedRectangle rButton;
 	private Color buttonColor;
 	private Color textColor;
 	private boolean clicked = false;
@@ -39,7 +45,8 @@ public class Menu extends BasicGameState {
 		int x1 = (container.getWidth() / 2) - (buttonWidth / 2);
 		startButton = new RoundedRectangle(x1, 100, buttonWidth, buttonHeight, 20);
 		musicButton = new RoundedRectangle(x1, 200, buttonWidth, buttonHeight, 20);
-		FSButton = new RoundedRectangle(x1, 300, buttonWidth, buttonHeight, 20);
+		rButton = new RoundedRectangle(x1,300,buttonWidth,buttonHeight, 20);
+		FSButton = new RoundedRectangle(x1, 400, buttonWidth, buttonHeight, 20);
 		Sound_1= new Music("res/sound/background.ogg");
 		Sound_1.loop(1.0f, 1.0f);
 		buttonColor = new Color(150, 134, 192);
@@ -50,7 +57,6 @@ public class Menu extends BasicGameState {
 		//Image phone3 = new Image("res/img/phone3.gif");
 		//Image[] phones = new Image[]{phone1,phone2,phone3};
 		//phone = new Animation(phones,1);
-		
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta)
@@ -65,7 +71,7 @@ public class Menu extends BasicGameState {
 					&& mouseY > startButton.getMinY()) {
 				game.enterState(1);
 			}
-			if (mouseX < musicButton.getMaxX()
+			else if (mouseX < musicButton.getMaxX()
 					&& mouseX > musicButton.getMinX()
 					&& mouseY < musicButton.getMaxY()
 					&& mouseY > musicButton.getMinY()) {
@@ -77,7 +83,13 @@ public class Menu extends BasicGameState {
 				}
 				
 			}
-			if (mouseX < FSButton.getMaxX()
+			else if(mouseX < rButton.getMaxX()
+					&& mouseX > rButton.getMinX()
+					&& mouseY < rButton.getMaxY()
+					&& mouseY > rButton.getMinY()) {
+				toggleResolution();
+			}
+			else if (mouseX < FSButton.getMaxX()
 					&& mouseX > FSButton.getMinX()
 					&& mouseY < FSButton.getMaxY()
 					&& mouseY > FSButton.getMinY()) {
@@ -112,19 +124,24 @@ public class Menu extends BasicGameState {
 		g.scale(1, 1);
 		g.setColor(buttonColor);
 		g.fill(startButton);
+		g.fill(musicButton);
+		g.fill(rButton);
+		g.fill(FSButton);
+		
 		g.setColor(textColor);
 		g.drawString("Start", startButton.getCenterX()-20, startButton.getCenterY()-5);
-		
-		g.setColor(buttonColor);
-		g.fill(musicButton);
-		g.setColor(textColor);
 		g.drawString("Toggle Music", musicButton.getCenterX()-50, musicButton.getCenterY()-5);
-		
-		g.setColor(buttonColor);
-		g.fill(FSButton);
-		g.setColor(textColor);
+		g.drawString(xResolutions[resI]+"x"+yResolutions[resI], rButton.getCenterX()-50, rButton.getCenterY()-5);
 		g.drawString("Full Screen", FSButton.getCenterX()-50, FSButton.getCenterY()-5);
 		
+	}
+	
+	public void toggleResolution() throws SlickException {
+		resI++;
+		if(resI>3) {
+			resI=0;
+		}
+		Main.game.setDisplayMode(xResolutions[resI], yResolutions[resI], false);
 	}
 
 	public void mouseClicked(int button, int x, int y, int clickCount) {

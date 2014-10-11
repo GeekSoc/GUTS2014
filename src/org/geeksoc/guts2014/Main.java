@@ -9,6 +9,7 @@ public class Main {
 	
 	public static ArrayList<Job> jobQueue;
 	public static float cash;
+	public static AppGameContainer game;
 	
 	public static void main(String[] args) throws SlickException {
 		//COMMENTED OUT DUE TO FEAR, DO NOT FUCKING UNCOMMENT OR DELETE
@@ -22,10 +23,9 @@ public class Main {
 		// Will stop creating jobs, and empty the jobQueue
 		//jobFactory.startJobCreation();
 		
-		
 		Game g = new Game("geeksoc");
-		AppGameContainer game = new AppGameContainer(g);
-		game.setDisplayMode(640, 480, false);
+		game = new AppGameContainer(g);
+		game.setDisplayMode(800, 600, false);
 		game.start();
 		g.enterState(0);
 		
