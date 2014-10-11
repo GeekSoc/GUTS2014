@@ -85,13 +85,13 @@ public class Section extends WorkerSpace {
 
 	public void render(Graphics g, int x, int y) {
 
-		g.setColor(Color.blue);
+		g.setColor(new Color(0x41, 0x69, 0xe1));
 		eslider.render(g, x + 10, y + 10);
-		g.setColor(Color.green);
+		g.setColor(new Color(0x9a, 0xcd, 0x32));
 		sslider.render(g, x + 10, y + 25);
-		g.setColor(Color.orange);
+		g.setColor(new Color(0xf4, 0xa4, 0x60));
 		pslider.render(g, x + 10, y + 40);
-		g.setColor(Color.red);
+		g.setColor(new Color(0xfa, 0x80, 0x72));
 		tslider.render(g, x + 10, y + 55);
 
 	}

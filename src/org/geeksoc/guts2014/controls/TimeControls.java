@@ -56,22 +56,22 @@ public class TimeControls implements GMouseListener {
 	public void render(Graphics g, GameContainer container) {
 		g.setColor(Color.black);
 		if (gt.getSpeed() == 0)
-			g.setColor(Color.green);
+			g.setColor(new Color(230, 230, 230));
 		g.fill(pause1);
 		g.fill(pause2);
 		g.setColor(Color.black);
 		if (gt.getSpeed() == 1)
-			g.setColor(Color.green);
+			g.setColor(new Color(230, 230, 230));
 
 		g.fill(play);
 		g.setColor(Color.black);
 		if (gt.getSpeed() == 2)
-			g.setColor(Color.green);
+			g.setColor(new Color(230, 230, 230));
 
 		g.fill(fast);
 		g.setColor(Color.black);
 		if (gt.getSpeed() == 5)
-			g.setColor(Color.green);
+			g.setColor(new Color(230, 230, 230));
 
 		g.fill(faster);
 		g.setColor(Color.black);

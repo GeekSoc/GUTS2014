@@ -4,19 +4,19 @@ import org.geeksoc.guts2014.Workspace;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Slider{
 	
 	int x,y=0;
 	int value=0;
-	Rectangle slider;
+	RoundedRectangle slider;
 	boolean sliderdown;
 	
 	public Slider(){
 
-		slider = new Rectangle(x,y-5,5,10);
+		slider = new RoundedRectangle(x,y-5,5,10,10);
 	}
 	
 	public void update(Input input){
