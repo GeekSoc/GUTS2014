@@ -71,12 +71,7 @@ public class Employee {
 		 * TODO: Have employee learn from experience.
 		 */
 		
-		// Work done
-		for (Map.Entry<JobType, Integer> entry : workPriorities.entrySet()) {
-			
-		}
-		
-		return new WorkPacket();
+		return new WorkPacket(0, 0, 0, 0); // TODO: proper variables
 	}
 	
 	/**
