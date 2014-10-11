@@ -3,6 +3,7 @@ package org.geeksoc.guts2014;
 import java.util.ArrayList;
 
 import org.geeksoc.guts2014.controls.TimeControls;
+import org.geeksoc.guts2014.render.WorkLoadRenderer;
 import org.geeksoc.guts2014.render.WorkspaceRenderer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -14,11 +15,17 @@ public class Workspace extends WorkerSpace {
 	WorkspaceRenderer wr;
 	ArrayList<Section> sections;
 	GameTime gt;
+	JobFactory jf;
 	private TimeControls timeControls;
 	
 	public Workspace(){
 		wr = new WorkspaceRenderer(this);
-		gt = new GameTime(12,0);
+		
+		jf = new JobFactory();
+		gt = new GameTime(jf,12,0);
+		wl = new Workload(jf);
+		jf.addInitialJobs(10);
+		jf.startJobCreation();
 		timeControls = new TimeControls(gt);
 	}
 	
@@ -27,7 +34,7 @@ public class Workspace extends WorkerSpace {
 		//	s.update();
 		//}
 		gt.incrementTime(delta);
-		
+		wl.update();
 	}
 
 	
@@ -41,6 +48,7 @@ public class Workspace extends WorkerSpace {
 		wr.render(container,game,g);
 		timeControls.setcoords(container.getWidth()-100, 40);
 		timeControls.render(g, container);
+		WorkLoadRenderer.render(g,wl,5,container.getHeight()-20);
 	}
 
 	public String getTime() {

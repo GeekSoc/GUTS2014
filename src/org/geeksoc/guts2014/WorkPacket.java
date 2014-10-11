@@ -28,6 +28,10 @@ public class WorkPacket {
 		workDone.put(JobType.Email, emailWorkDone);
 	}
 
+	public WorkPacket() {
+		this(0,0,0,0);
+	}
+
 	public void combine(WorkPacket wp) {
 		// TODO Auto-generated method stub
 

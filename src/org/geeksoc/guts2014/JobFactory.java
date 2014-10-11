@@ -77,6 +77,7 @@ public class JobFactory {
 	}
 	
 	public void stopJobCreation() {
+		timer.cancel();
 		timer = new Timer();
 		clearJobs();
 		isRunning = false;

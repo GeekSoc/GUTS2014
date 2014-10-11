@@ -2,6 +2,7 @@ package org.geeksoc.guts2014.controls;
 
 import org.geeksoc.guts2014.GameTime;
 import org.geeksoc.guts2014.RunningState;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Polygon;
@@ -44,9 +45,7 @@ public class TimeControls implements GMouseListener {
 		faster.addPoint(x+65, y+5);
 		faster.addPoint(x + 70, y + 10);
 		faster.addPoint(x+70, y+5);
-		
 		faster.addPoint(x + 80, y + 15);
-		
 		faster.addPoint(x + 70, y + 25);		
 		faster.addPoint(x + 70, y + 20);
 		faster.addPoint(x + 65, y + 25);		
@@ -55,11 +54,23 @@ public class TimeControls implements GMouseListener {
 	}
 
 	public void render(Graphics g, GameContainer container) {
+		g.setColor(Color.black);
+		if(gt.getSpeed()==0)g.setColor(Color.green);
 		g.fill(pause1);
 		g.fill(pause2);
+		g.setColor(Color.black);
+		if(gt.getSpeed()==1)g.setColor(Color.green);
+		
 		g.fill(play);
+		g.setColor(Color.black);
+		if(gt.getSpeed()==2)g.setColor(Color.green);
+		
 		g.fill(fast);
+		g.setColor(Color.black);
+		if(gt.getSpeed()==5)g.setColor(Color.green);
+		
 		g.fill(faster);
+		g.setColor(Color.black);
 	}
 
 	@Override

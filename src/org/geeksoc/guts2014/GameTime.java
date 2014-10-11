@@ -4,8 +4,10 @@ public class GameTime {
 	
 	int hours,minutes,speed;
 	private int ms;
+	private JobFactory jf;
 	
-	public GameTime(int h, int m){
+	public GameTime(JobFactory jf, int h, int m){
+		this.jf = jf;
 		hours = h;
 		minutes = m;
 		speed = 1;
@@ -41,7 +43,17 @@ public class GameTime {
 
 	public void setSpeed(int i) {
 		speed = i;
+		if(speed == 0){
+			jf.stopJobCreation();
+		}else{
+			jf.startJobCreation();
+			jf.setLambda(i);
+		}
 		
+	}
+
+	public int getSpeed() {
+		return speed;
 	}
 	
 
