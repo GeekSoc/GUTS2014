@@ -52,10 +52,16 @@ public class Workspace extends WorkerSpace {
 			if (deltaCounter >= 1000) {
 				if (JobFactory.isRunning) {
 					s.update(cont);
+					ArrayList<Employee> roomWorkers;
+					roomWorkers = s.getWorkers();
+					for(Employee employee:roomWorkers){
+						Main.cash -= employee.getWage();
+					}
 				}
 				deltaCounter = 0;
 			}
 		}
+		
 		gt.incrementTime(delta);
 		wl.update();
 		
@@ -68,14 +74,6 @@ public class Workspace extends WorkerSpace {
 					&& mouseY > addRoomButton.getMinY()) {
 				rooms.add(new Section(this));
 				Main.cash -= 100;
-			}
-		}
-		
-		for(Section room:rooms){
-			ArrayList<Employee> roomWorkers;
-			roomWorkers = room.getWorkers();
-			for(Employee employee:roomWorkers){
-				Main.cash -= employee.getWage();
 			}
 		}
 		
