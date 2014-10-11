@@ -50,7 +50,7 @@ public class WorkspaceRenderer {
 		// renderControls
 		int i = 0;
 		for(Employee e:w.getWorkers()){
-			e.move(container.getWidth()-10,container.getHeight()-30-(i*20));
+			e.move(container.getWidth() - 15,container.getHeight()-40-(i*20));
 			e.render(g);
 			
 			i++;
