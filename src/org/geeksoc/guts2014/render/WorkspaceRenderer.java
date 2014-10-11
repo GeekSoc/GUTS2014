@@ -2,7 +2,6 @@ package org.geeksoc.guts2014.render;
 
 import java.awt.Font;
 
-import org.geeksoc.guts2014.RoomRenderer;
 import org.geeksoc.guts2014.Workspace;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
