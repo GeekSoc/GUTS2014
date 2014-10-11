@@ -76,6 +76,7 @@ public class Section extends WorkerSpace {
 		WorkPacket sp = new WorkPacket();
 		for (Employee e : this.workers) {
 			WorkPacket wp = e.work(priority);
+			
 			// WorkPacket wp = new WorkPacket();
 			sp.combine(wp);
 		}

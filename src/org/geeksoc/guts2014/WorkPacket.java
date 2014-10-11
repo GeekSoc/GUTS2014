@@ -11,15 +11,6 @@ public class WorkPacket {
 	 */
 	private HashMap<JobType, Integer> workDone;
 	
-	private static final HashMap<JobType, Integer> empty;
-    static
-    {
-        empty = new HashMap<JobType, Integer>();
-        empty.put(JobType.Email,0);
-        empty.put(JobType.Phone,0);
-        empty.put(JobType.SocialMedia,0);
-        empty.put(JobType.Text,0);
-    }
 
 	/**
 	 * Creates a new WorkPacket, initialised with the amount of work done on each
@@ -50,31 +41,40 @@ public class WorkPacket {
 			}
 		}
 
-		this.workDone = workDone;
+
+		this.setWorkDone(workDone);
+		
 	}
 	
 	public WorkPacket(){
-		this(empty);
+		this(0,0,0,0);
+		
 	}
 	
 	public WorkPacket(int e, int p, int t, int s){
-		this(empty);
-		  workDone.put(JobType.Email,e);
-		  workDone.put(JobType.Phone,p);
-		  workDone.put(JobType.SocialMedia,s);
-		  workDone.put(JobType.Text,t);
+		this(new HashMap<JobType, Integer>(){/**
+			 * 
+			 */
+			private static final long serialVersionUID = 6137594892801277374L;
+
+		{
+			put(JobType.Email,0);
+		  put(JobType.Phone,0);
+		  put(JobType.SocialMedia,0);
+		  put(JobType.Text,0);};});
+		 
 	}
 
 	public void combine(WorkPacket wp) {
-		for (Entry<JobType, Integer> entry : workDone.entrySet()) {
+		for (Entry<JobType, Integer> entry : getWorkDone().entrySet()) {
 			JobType jobType = entry.getKey();
 			
-			workDone.put(jobType, workDone.get(jobType) + wp.getWorkDone(jobType));
+			getWorkDone().put(jobType, getWorkDone().get(jobType) + wp.getWorkDone(jobType));
 		}
 	}
 	
 	public int size() {
-		return workDone.size();
+		return getWorkDone().size();
 	}
 
 	/**
@@ -87,5 +87,14 @@ public class WorkPacket {
 	public int getWorkDone(JobType jobType) {
 		return workDone.get(jobType);
 	}
+
+	public HashMap<JobType, Integer> getWorkDone() {
+		return workDone;
+	}
+
+	public void setWorkDone(HashMap<JobType, Integer> workDone) {
+		this.workDone = workDone;
+	}
+	
 
 }
