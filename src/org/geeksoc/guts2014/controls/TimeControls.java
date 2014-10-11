@@ -15,10 +15,8 @@ public class TimeControls implements GMouseListener {
 	Polygon play;
 	Polygon fast;
 	Polygon faster;
-	private GameTime gt;
 
-	public TimeControls(GameTime gt) {
-		this.gt = gt;
+	public TimeControls() {
 		RunningState.instance.registerMouseListener(this);
 	}
 
@@ -55,22 +53,22 @@ public class TimeControls implements GMouseListener {
 
 	public void render(Graphics g, GameContainer container) {
 		g.setColor(Color.black);
-		if (gt.getSpeed() == 0)
+		if (GameTime.getSpeed() == 0)
 			g.setColor(new Color(230, 230, 230));
 		g.fill(pause1);
 		g.fill(pause2);
 		g.setColor(Color.black);
-		if (gt.getSpeed() == 1)
+		if (GameTime.getSpeed() == 1)
 			g.setColor(new Color(230, 230, 230));
 
 		g.fill(play);
 		g.setColor(Color.black);
-		if (gt.getSpeed() == 2)
+		if (GameTime.getSpeed() == 2)
 			g.setColor(new Color(230, 230, 230));
 
 		g.fill(fast);
 		g.setColor(Color.black);
-		if (gt.getSpeed() == 5)
+		if (GameTime.getSpeed() == 5)
 			g.setColor(new Color(230, 230, 230));
 
 		g.fill(faster);
@@ -81,15 +79,15 @@ public class TimeControls implements GMouseListener {
 	public void onClick(int x, int y) {
 		System.out.println("Derp");
 		if (pause1.contains(x, y) || pause2.contains(x, y)) {
-			gt.setSpeed(0);
+			GameTime.setSpeed(0);
 			System.out.println("Derp");
 		} else if (play.contains(x, y)) {
-			gt.setSpeed(1);
+			GameTime.setSpeed(1);
 
 		} else if (fast.contains(x, y)) {
-			gt.setSpeed(2);
+			GameTime.setSpeed(2);
 		} else if (faster.contains(x, y)) {
-			gt.setSpeed(5);
+			GameTime.setSpeed(5);
 		}
 
 	}

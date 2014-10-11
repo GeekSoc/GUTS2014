@@ -6,8 +6,6 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.geeksoc.guts2014.randomevents.RandomEventGenerator;
-
 public class JobFactory {
 
 	private static double lambda = 1.0/100.0; // rate in the poisson process
@@ -23,6 +21,15 @@ public class JobFactory {
 	private long randomWait_ms;
 
 	public void update(){
+<<<<<<< HEAD
+		if (addNew) {
+			Job job = new Job();
+			jobQueue.add(job);
+			addNew=false;
+			
+			System.out.println(String.format("Job added (%dms) - %s",
+					randomWait_ms, job.toString()));
+=======
 		int speed = GameTime.getSpeed();
 		if (speed == 0) {
 			stopJobCreation();
@@ -31,6 +38,7 @@ public class JobFactory {
 				startJobCreation();
 			}
 			setLambda(speed / 1000.0);
+>>>>>>> 79bfc9bd0f4d32a92a7cdcc6858c4d5c024f0fcb
 		}
 	}
 
@@ -50,16 +58,17 @@ public class JobFactory {
 	class Task extends TimerTask {
 		@Override
 		public void run() {
+<<<<<<< HEAD
+			randomWait = -Math.log(1.0 - random.nextDouble()) / lambda;
+			randomWait_ms = (long) randomWait;
+=======
 			update();
 			
 			double randomWait = -Math.log(1.0 - random.nextDouble()) / lambda;
 			long randomWait_ms = (long) randomWait;
+>>>>>>> 79bfc9bd0f4d32a92a7cdcc6858c4d5c024f0fcb
 			timer.schedule(new Task(), randomWait_ms);
-			Job job = new Job();
-			jobQueue.add(job);
-			if(random.nextInt(100)==0)RandomEventGenerator.generateEvent(jobQueue);
-			System.out.println(String.format("Job added (%dms) - %s",
-					randomWait_ms, job.toString()));
+			addNew = true;
 		}
 	}
 
