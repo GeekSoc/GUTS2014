@@ -59,6 +59,15 @@ public class Workspace extends WorkerSpace {
 					&& mouseY < addRoomButton.getMaxY()
 					&& mouseY > addRoomButton.getMinY()) {
 				rooms.add(new Section(this));
+				Main.cash -= 100;
+			}
+		}
+		
+		for(Section room:rooms){
+			ArrayList<Employee> roomWorkers;
+			roomWorkers = room.getWorkers();
+			for(Employee employee:roomWorkers){
+				Main.cash -= employee.getWage();
 			}
 		}
 		
