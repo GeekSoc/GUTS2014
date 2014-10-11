@@ -21,7 +21,7 @@ public class Employee {
 	 */
 	public Employee() {
 		/*
-		 * Employee skill is set to 0 by default.
+		 * Employee skill is set to a random number up to 20
 		 * 
 		 * TODO: Make skills initially a random mixture of skills.
 		 */
@@ -31,10 +31,10 @@ public class Employee {
 		Random rand = new Random();
 		rand.setSeed(System.currentTimeMillis());
 		
-		skills.put(JobType.Email, rand.nextInt(100));
-		skills.put(JobType.Phone, rand.nextInt(100));
-		skills.put(JobType.Text, rand.nextInt(100));
-		skills.put(JobType.SocialMedia, rand.nextInt(100));
+		skills.put(JobType.Email, 			rand.nextInt(20));
+		skills.put(JobType.Phone, 			rand.nextInt(20));
+		skills.put(JobType.Text,				rand.nextInt(20));
+		skills.put(JobType.SocialMedia,	rand.nextInt(20));
 		
 		int totalSkill = totalOfHashMapValues(skills);
 		
@@ -62,7 +62,6 @@ public class Employee {
 	
 	/**
 	 * 
-	 * 
 	 * @return WorkPacket specifying amount of work done.
 	 */
 	public WorkPacket work(HashMap<JobType, Integer> workPriorities) {
@@ -81,22 +80,8 @@ public class Employee {
 	 * @param jobType, percentage
 	 */
 	public void train(JobType jobType, int percentage) {
-		skills.put(jobType, skills.get(jobType) + percentage);
-	}
-	
-	/**
-	 * Get the total of the values in a HashMap with the generics
-	 * <JobType, Integer>
-	 * 
-	 * @param map
-	 * @return total
-	 */
-	private int totalOfHashMapValues(HashMap<JobType, Integer> map) {
-		int total = 0;
-		for (int value : skills.values()) {
-			total += value;
-		}
-		return total;
+		int trained = skills.get(jobType) + percentage;
+		skills.put(jobType, (trained > MAX_SKILL) ? MAX_SKILL : trained);
 	}
 
 }
