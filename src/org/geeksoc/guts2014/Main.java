@@ -26,6 +26,7 @@ public class Main {
 		Game g = new Game("geeksoc");
 		AppGameContainer game = new AppGameContainer(g);
 		game.setDisplayMode(640, 480, false);
+		game.setShowFPS(false); 
 		game.start();
 		g.enterState(0);
 		
