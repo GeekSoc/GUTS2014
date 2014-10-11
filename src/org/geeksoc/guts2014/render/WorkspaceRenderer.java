@@ -32,7 +32,7 @@ public class WorkspaceRenderer {
 
 		// Render Time
 		g.setColor(Color.black);
-		//g.setFont(Main.font);
+		g.setFont(Main.font);
 		g.drawString(w.getTime(), container.getWidth() - 100, 20);
 		// System.out.println(container.getWidth()+":"+ container.getHeight());
 		

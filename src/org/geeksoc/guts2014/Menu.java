@@ -1,6 +1,8 @@
 package org.geeksoc.guts2014;
 
+import java.awt.Canvas;
 import java.awt.FontFormatException;
+import java.awt.FontMetrics;
 import java.io.IOException;
 
 import org.lwjgl.input.Keyboard;
@@ -39,6 +41,7 @@ public class Menu extends BasicGameState {
 	private Options options;
 	private Animation phone;
 	private Music Sound_1;
+	private Image mpic;
 
 	public Menu(Options o) {
 		options = o;
@@ -62,7 +65,7 @@ public class Menu extends BasicGameState {
 		}
 	
 	private void reiniti(GameContainer container) throws SlickException {
-		int x1 = (container.getWidth() / 2) - (buttonWidth / 2);
+		int x1 = (container.getWidth() / 4) - (buttonWidth / 2);
 		
 		//Fuck off wit hte annoying music for now :(
 				
@@ -72,8 +75,11 @@ public class Menu extends BasicGameState {
 		FSButton = new RoundedRectangle(x1, 400, buttonWidth, buttonHeight, 20);
 		Sound_1= new Music("res/sound/background.ogg");
 		Sound_1.loop(1.0f, 1.0f);
-		buttonColor = new Color(150, 134, 192);
-		textColor = new Color(102, 84, 149);
+		buttonColor = new Color(240, 240, 240);
+		textColor = new Color( 0, 120, 173);
+		
+		mpic = new Image("res/img/menu_pic.png");
+		
 		//Image phone1 = new Image("res/img/phone.gif");
 		//Image phone2 = new Image("res/img/phone2.gif");
 		//Image phone3 = new Image("res/img/phone3.gif");
@@ -136,7 +142,7 @@ public class Menu extends BasicGameState {
 			}
 		}*/
 		
-		g.setColor(new Color(255, 239, 168));
+		g.setColor(new Color(255, 255, 255));
 		Rectangle r = new Rectangle(0, 0, container.getWidth(),
 				container.getHeight());
 		g.fill(r);
@@ -152,11 +158,19 @@ public class Menu extends BasicGameState {
 		g.fill(FSButton);
 		
 		g.setColor(textColor);
-		g.drawString("Start", startButton.getCenterX()-20, startButton.getCenterY()-5);
-		g.drawString("Toggle Music", musicButton.getCenterX()-50, musicButton.getCenterY()-5);
-		g.drawString(xResolutions[resI]+"x"+yResolutions[resI], rButton.getCenterX()-50, rButton.getCenterY()-5);
-		g.drawString("Full Screen", FSButton.getCenterX()-50, FSButton.getCenterY()-5);
+		Canvas c = new Canvas();
+		FontMetrics metrics = c.getFontMetrics(Main.fontBase);
+		g.drawString("Start", startButton.getCenterX()
+				-metrics.stringWidth("Start")/2, startButton.getCenterY()-5);
+		g.drawString("Toggle Music", musicButton.getCenterX()
+				-metrics.stringWidth("Toogle Music")/2, musicButton.getCenterY()-5);
+		g.drawString(xResolutions[resI]+"x"+yResolutions[resI], rButton.getCenterX()
+				-metrics.stringWidth(xResolutions[resI]+"x"+yResolutions[resI])/2, rButton.getCenterY()-5);
+		g.drawString("Full Screen", FSButton.getCenterX()
+				-metrics.stringWidth("Full Screen")/2, FSButton.getCenterY()-5);
 		
+		mpic.draw(container.getWidth()/2 , container.getHeight()/4, container.getWidth()/2 -10 , container.getHeight()/2 -10 );
+			
 	}
 	
 	public void toggleResolution() throws SlickException {
