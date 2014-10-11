@@ -3,6 +3,7 @@ package org.geeksoc.guts2014;
 import java.util.ArrayList;
 
 import org.geeksoc.guts2014.controls.GMouseListener;
+import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -34,6 +35,10 @@ public class RunningState extends BasicGameState {
 			throws SlickException {
 	
 		w.update(container,game,delta);
+		
+		if(container.getInput().isKeyPressed(Keyboard.KEY_ESCAPE)){
+			container.setFullscreen(false);
+		}
 		
 	}
 
