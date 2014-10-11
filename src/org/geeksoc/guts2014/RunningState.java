@@ -10,7 +10,6 @@ public class RunningState extends BasicGameState {
 	
 	Workspace ws;
 
-	
 	private int id;
 	
 	public RunningState(int idee) {
