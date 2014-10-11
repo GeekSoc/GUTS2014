@@ -30,6 +30,8 @@ public class Workspace extends WorkerSpace {
 
 	private Image addRoomButton;
 	private Rectangle addRoomButton2;
+	private Image rmRoomButton;
+	private Rectangle rmRoomButton2;
 	private Image hireWorker;
 	private Rectangle hireWorker2;
 
@@ -47,6 +49,7 @@ public class Workspace extends WorkerSpace {
 		}
 
 		addRoomButton = new Image("res/img/hire.png");
+		rmRoomButton = new Image("res/img/unhire.png");
 		hireWorker = new Image("res/img/hire.png");
 	
 		
@@ -79,6 +82,9 @@ public class Workspace extends WorkerSpace {
 				rooms.add(new Section(this));
 				Main.cash -= 100;
 			}
+			if (rmRoomButton2.contains(mouseX, mouseY) && rooms.size() > 1) {
+				rooms.remove(1) ;
+			}
 			if(hireWorker2.contains(mouseX, mouseY)){
 						ArrayList<Employee> temp = new ArrayList<Employee>();
 						temp.add(new Employee(this));
@@ -105,6 +111,8 @@ public class Workspace extends WorkerSpace {
 		g.setColor(Color.black);
 		addRoomButton.draw(20 , 20, 20, 20);
 		addRoomButton2 = new Rectangle(20 , 20, 20, 20);
+		rmRoomButton.draw(20 , 40, 20, 20);
+		rmRoomButton2 = new Rectangle(20 , 40, 20, 20);
 		hireWorker.draw(container.getWidth() - 25 , container.getHeight() - 25, 20, 20);
 		hireWorker2 = new Rectangle(container.getWidth() - 25 , container.getHeight() - 25, 20, 20);
 
