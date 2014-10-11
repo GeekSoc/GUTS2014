@@ -44,7 +44,7 @@ public class Employee extends Circle {
 		super(-100,-100,10);
 		this.home = home;
 		/*
-		 * Employee skill is set to a random number up to 20
+		 * Employee skill is set to a random number from 1 to 20
 		 */
 		skills = new HashMap<JobType, Integer>();
 		experience = new HashMap<JobType, Integer>();
@@ -54,7 +54,7 @@ public class Employee extends Circle {
 		rand.setSeed(System.currentTimeMillis());
 
 		for (JobType jobType : JobType.values()) {
-			skills.put(jobType, rand.nextInt(20));
+			skills.put(jobType, rand.nextInt(20)+1);
 			experience.put(jobType, 0);
 		}
 		System.out.println(skills.toString());
@@ -74,7 +74,7 @@ public class Employee extends Circle {
 			int priority = entry.getValue();
 
 			/*
-			 * skill in range 0 - 100, priority in range 0 - 100. Divide by 100 to
+			 * skill in range 1 - 100, priority in range 0 - 100. Divide by 100 to
 			 * keep numbers at the right size.
 			 */
 			int jobDone = (skills.get(jobType) * priority) / (MAX_SKILL*workCo);
