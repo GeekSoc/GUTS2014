@@ -3,6 +3,7 @@ package org.geeksoc.guts2014.render;
 import java.math.*;
 import java.util.ArrayList;
 
+import org.geeksoc.guts2014.Employee;
 import org.geeksoc.guts2014.Section;
 import org.geeksoc.guts2014.controls.Slider;
 import org.newdawn.slick.Color;
@@ -15,7 +16,7 @@ public class RoomRenderer {
 	
 	private final int peepRadius = 10;                   //size of people before any modifications
 	private final int hallwayWidth = 10;
-	private final int roomTopMargin = 50;
+	private final int roomTopMargin = 80;
 	private final int roomSideMargin = 5;
 	private final int peepGap = 5;
 
@@ -51,14 +52,16 @@ public class RoomRenderer {
 			centerPointerX = roomSideMargin+peepRadius+x;
 			centerPointerY = roomTopMargin+peepRadius+y;
 			tempPrev=centerPointerX;
-			for(int p=0; p<people[i]; p++) {
-				g.draw(new Circle(centerPointerX, centerPointerY, peepRadius));
+			for(Employee e:sec.getWorkers()) {
+				e.move(centerPointerX, centerPointerY);
+				e.render(g);
 				centerPointerX = centerPointerX + 2*peepRadius + peepGap;
 				if (centerPointerX+peepRadius>x+rHorSize) {
 					centerPointerX = tempPrev;
 					centerPointerY = centerPointerY + 2*peepRadius + peepGap;
 				}
 			}
+			
 			
 			i++;
 			
