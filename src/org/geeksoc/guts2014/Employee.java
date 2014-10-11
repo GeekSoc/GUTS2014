@@ -23,7 +23,6 @@ public class Employee {
 		/*
 		 * Employee skill is set to a random number up to 20
 		 * 
-		 * TODO: Make skills initially a random mixture of skills.
 		 */
 		skills = new HashMap<JobType, Integer>();
 		
@@ -36,28 +35,6 @@ public class Employee {
 		skills.put(JobType.Text,				rand.nextInt(20));
 		skills.put(JobType.SocialMedia,	rand.nextInt(20));
 		
-		int totalSkill = totalOfHashMapValues(skills);
-		
-		if (totalSkill != MAX_SKILL) {
-			int divisor = MAX_SKILL/totalSkill;
-			
-			for (Map.Entry<JobType, Integer> entry : skills.entrySet()) {
-				skills.put(entry.getKey(), entry.getValue() / divisor); 
-			}
-			
-			totalSkill = totalOfHashMapValues(skills);
-			
-			/*
-			 * If the total skill is still not equal to MAX_SKILL, then,
-			 * somewhat lazily, just add enough skill to phone skill such
-			 * that the total skill is 100.
-			 * 
-			 * TODO: something better.
-			 */
-			if (totalSkill != MAX_SKILL) {
-				skills.put(JobType.Phone, skills.get(JobType.Phone) + MAX_SKILL - totalSkill);
-			}
-		}
 	}
 	
 	/**
