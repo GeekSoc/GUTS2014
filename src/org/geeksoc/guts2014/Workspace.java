@@ -65,6 +65,7 @@ public class Workspace extends WorkerSpace {
 		for (Section s : rooms) {
 
 			s.update(cont, delta);
+			jf.update();
 
 		}
 

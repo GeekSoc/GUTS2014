@@ -12,12 +12,23 @@ public class JobFactory {
 
 	private static Random random = new Random();
 	public static boolean isRunning;
+	private boolean addNew = false;
 	private static Timer timer = new Timer();
 
 	private Queue<Job> jobQueue = new LinkedList<Job>();
+	
+	private double randomWait;
+	private long randomWait_ms;
 
 	public void update(){
-		
+		if (addNew) {
+			Job job = new Job();
+			jobQueue.add(job);
+			addNew=false;
+			
+			System.out.println(String.format("Job added (%dms) - %s",
+					randomWait_ms, job.toString()));
+		}
 	}
 
 	public Queue<Job> getJobQueue() {
@@ -36,14 +47,10 @@ public class JobFactory {
 	class Task extends TimerTask {
 		@Override
 		public void run() {
-			double randomWait = -Math.log(1.0 - random.nextDouble()) / lambda;
-			long randomWait_ms = (long) randomWait;
+			randomWait = -Math.log(1.0 - random.nextDouble()) / lambda;
+			randomWait_ms = (long) randomWait;
 			timer.schedule(new Task(), randomWait_ms);
-			Job job = new Job();
-			jobQueue.add(job);
-
-			System.out.println(String.format("Job added (%dms) - %s",
-					randomWait_ms, job.toString()));
+			addNew = true;
 		}
 	}
 
