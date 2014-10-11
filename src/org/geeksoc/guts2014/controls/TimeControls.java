@@ -2,6 +2,7 @@ package org.geeksoc.guts2014.controls;
 
 import org.geeksoc.guts2014.GameTime;
 import org.geeksoc.guts2014.RunningState;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Polygon;
@@ -32,34 +33,48 @@ public class TimeControls implements GMouseListener {
 		fast = new Polygon();
 		fast.addPoint(x + 40, y + 5);
 		fast.addPoint(x + 45, y + 10);
-		fast.addPoint(x+45, y+5);
+		fast.addPoint(x + 45, y + 5);
 		fast.addPoint(x + 55, y + 15);
-		fast.addPoint(x + 45, y + 25);		
-		fast.addPoint(x + 45, y + 20);		
+		fast.addPoint(x + 45, y + 25);
+		fast.addPoint(x + 45, y + 20);
 		fast.addPoint(x + 40, y + 25);
 
 		faster = new Polygon();
 		faster.addPoint(x + 60, y + 5);
 		faster.addPoint(x + 65, y + 10);
-		faster.addPoint(x+65, y+5);
+		faster.addPoint(x + 65, y + 5);
 		faster.addPoint(x + 70, y + 10);
-		faster.addPoint(x+70, y+5);
-		
+		faster.addPoint(x + 70, y + 5);
 		faster.addPoint(x + 80, y + 15);
-		
-		faster.addPoint(x + 70, y + 25);		
+		faster.addPoint(x + 70, y + 25);
 		faster.addPoint(x + 70, y + 20);
-		faster.addPoint(x + 65, y + 25);		
-		faster.addPoint(x + 65, y + 20);		
+		faster.addPoint(x + 65, y + 25);
+		faster.addPoint(x + 65, y + 20);
 		faster.addPoint(x + 60, y + 25);
 	}
 
 	public void render(Graphics g, GameContainer container) {
+		g.setColor(Color.black);
+		if (gt.getSpeed() == 0)
+			g.setColor(Color.green);
 		g.fill(pause1);
 		g.fill(pause2);
+		g.setColor(Color.black);
+		if (gt.getSpeed() == 1)
+			g.setColor(Color.green);
+
 		g.fill(play);
+		g.setColor(Color.black);
+		if (gt.getSpeed() == 2)
+			g.setColor(Color.green);
+
 		g.fill(fast);
+		g.setColor(Color.black);
+		if (gt.getSpeed() == 5)
+			g.setColor(Color.green);
+
 		g.fill(faster);
+		g.setColor(Color.black);
 	}
 
 	@Override
@@ -71,9 +86,9 @@ public class TimeControls implements GMouseListener {
 		} else if (play.contains(x, y)) {
 			gt.setSpeed(1);
 
-		} else if (fast.contains(x, y)){
+		} else if (fast.contains(x, y)) {
 			gt.setSpeed(2);
-		} else if (faster.contains(x,y)){
+		} else if (faster.contains(x, y)) {
 			gt.setSpeed(5);
 		}
 

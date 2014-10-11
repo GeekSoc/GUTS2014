@@ -1,7 +1,7 @@
 package org.geeksoc.guts2014;
 
 import java.util.HashMap;
-import java.util.Map.Entry;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -15,16 +15,17 @@ public class Employee {
 	private static int MAX_SKILL = 100;
 	// The HashMap for storing employee's skills.
 	private HashMap<JobType, Integer> skills;
-
+	
 	/**
 	 * Creates a new Employee with a random mix of skills.
 	 */
 	public Employee() {
 		/*
 		 * Employee skill is set to a random number up to 20
+		 * 
 		 */
 		skills = new HashMap<JobType, Integer>();
-
+		
 		// TODO: test all this.
 		Random rand = new Random();
 		rand.setSeed(System.currentTimeMillis());
@@ -35,7 +36,7 @@ public class Employee {
 		skills.put(JobType.SocialMedia, rand.nextInt(20));
 
 	}
-
+	
 	/**
 	 * 
 	 * Work priority passed in range 0 - 100 please
@@ -62,13 +63,12 @@ public class Employee {
 
 		return new WorkPacket(workDone);
 	}
-
+	
 	/**
 	 * Improve an employee's skill in a given JobType by the "percentage" passed
 	 * as the second parameter.
 	 * 
-	 * @param jobType
-	 *          , percentage
+	 * @param jobType, percentage
 	 */
 	public void train(JobType jobType, int percentage) {
 		int trained = skills.get(jobType) + percentage;

@@ -65,4 +65,5 @@ public class WorkPacket {
 	public int getWorkDone(JobType jobType) {
 		return workDone.get(jobType);
 	}
+
 }

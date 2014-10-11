@@ -25,20 +25,26 @@ public class Splash extends Window implements StatusListener {
 	private BufferedImage image;
 	/** The message to be displayed */
 	private String message = "Locating fonts..";
-	
+
 	/**
-	 * Create a new splash screen 
+	 * Create a new splash screen
 	 */
 	Splash() {
 		super(new Frame());
-		
+
 		FontData.setStatusListener(this);
-		
+
 		try {
-			image = ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("org/newdawn/slick/tools/hiero/resources/splash.png"));
+			image = ImageIO
+					.read(Thread
+							.currentThread()
+							.getContextClassLoader()
+							.getResourceAsStream(
+									"org/newdawn/slick/tools/hiero/resources/splash.png"));
 			Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-			setSize(400,250);
-			setLocation((size.width - getWidth())/2, (size.height - getHeight()) / 2);
+			setSize(400, 250);
+			setLocation((size.width - getWidth()) / 2,
+					(size.height - getHeight()) / 2);
 			setVisible(true);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -51,7 +57,7 @@ public class Splash extends Window implements StatusListener {
 	public void update(Graphics g) {
 		paint(g);
 	}
-	
+
 	/**
 	 * @see java.awt.Container#paint(java.awt.Graphics)
 	 */

@@ -1,4 +1,3 @@
-
 package org.newdawn.slick.font.effects;
 
 import java.awt.Color;
@@ -38,9 +37,12 @@ public class GradientEffect implements ConfigurableEffect {
 	/**
 	 * Create a new effect to apply a graident
 	 * 
-	 * @param topColor The colour at the top of the graident
-	 * @param bottomColor The colour at the bottom of the gradient
-	 * @param scale The scale of the graident
+	 * @param topColor
+	 *            The colour at the top of the graident
+	 * @param bottomColor
+	 *            The colour at the bottom of the gradient
+	 * @param scale
+	 *            The scale of the graident
 	 */
 	public GradientEffect(Color topColor, Color bottomColor, float scale) {
 		this.topColor = topColor;
@@ -49,13 +51,18 @@ public class GradientEffect implements ConfigurableEffect {
 	}
 
 	/**
-	 * @see org.newdawn.slick.font.effects.Effect#draw(java.awt.image.BufferedImage, java.awt.Graphics2D, org.newdawn.slick.UnicodeFont, org.newdawn.slick.font.Glyph)
+	 * @see org.newdawn.slick.font.effects.Effect#draw(java.awt.image.BufferedImage,
+	 *      java.awt.Graphics2D, org.newdawn.slick.UnicodeFont,
+	 *      org.newdawn.slick.font.Glyph)
 	 */
-	public void draw(BufferedImage image, Graphics2D g, UnicodeFont unicodeFont, Glyph glyph) {
+	public void draw(BufferedImage image, Graphics2D g,
+			UnicodeFont unicodeFont, Glyph glyph) {
 		int ascent = unicodeFont.getAscent();
 		float height = (ascent) * scale;
-		float top = -glyph.getYOffset() + unicodeFont.getDescent() + offset + ascent / 2 - height / 2;
-		g.setPaint(new GradientPaint(0, top, topColor, 0, top + height, bottomColor, cyclic));
+		float top = -glyph.getYOffset() + unicodeFont.getDescent() + offset
+				+ ascent / 2 - height / 2;
+		g.setPaint(new GradientPaint(0, top, topColor, 0, top + height,
+				bottomColor, cyclic));
 		g.fill(glyph.getShape());
 	}
 
@@ -71,7 +78,8 @@ public class GradientEffect implements ConfigurableEffect {
 	/**
 	 * Set the colour at the top of the graident
 	 * 
-	 * @param topColor The colour at the top of the graident
+	 * @param topColor
+	 *            The colour at the top of the graident
 	 */
 	public void setTopColor(Color topColor) {
 		this.topColor = topColor;
@@ -82,14 +90,15 @@ public class GradientEffect implements ConfigurableEffect {
 	 * 
 	 * @return The colour at the bottom of the gradient
 	 */
-	public Color getBottomColor () {
+	public Color getBottomColor() {
 		return bottomColor;
 	}
 
 	/**
 	 * Set the colour at the bottom of the graident
 	 * 
-	 * @param bottomColor The colour at the bottom of the graident
+	 * @param bottomColor
+	 *            The colour at the bottom of the graident
 	 */
 	public void setBottomColor(Color bottomColor) {
 		this.bottomColor = bottomColor;
@@ -105,17 +114,19 @@ public class GradientEffect implements ConfigurableEffect {
 	}
 
 	/**
-	 * Sets the pixel offset to move the gradient up or down. 
-	 * The gradient is normally centered on the glyph.
+	 * Sets the pixel offset to move the gradient up or down. The gradient is
+	 * normally centered on the glyph.
 	 * 
-	 * @param offset The offset the gradient is moved by
+	 * @param offset
+	 *            The offset the gradient is moved by
 	 */
-	public void setOffset (int offset) {
+	public void setOffset(int offset) {
 		this.offset = offset;
 	}
 
 	/**
-	 * Get the percentage scaling being applied to the gradient across the surface
+	 * Get the percentage scaling being applied to the gradient across the
+	 * surface
 	 * 
 	 * @return The scale of the graident
 	 */
@@ -124,12 +135,13 @@ public class GradientEffect implements ConfigurableEffect {
 	}
 
 	/**
-	 * Changes the height of the gradient by a percentage. The gradient is 
+	 * Changes the height of the gradient by a percentage. The gradient is
 	 * normally the height of most glyphs in the font.
 	 * 
-	 * @param scale The scale to apply
+	 * @param scale
+	 *            The scale to apply
 	 */
-	public void setScale (float scale) {
+	public void setScale(float scale) {
 		this.scale = scale;
 	}
 
@@ -145,7 +157,8 @@ public class GradientEffect implements ConfigurableEffect {
 	/**
 	 * If set to true, the gradient will repeat.
 	 * 
-	 * @param cyclic True if the graident repeats
+	 * @param cyclic
+	 *            True if the graident repeats
 	 */
 	public void setCyclic(boolean cyclic) {
 		this.cyclic = cyclic;
@@ -165,11 +178,21 @@ public class GradientEffect implements ConfigurableEffect {
 		List values = new ArrayList();
 		values.add(EffectUtil.colorValue("Top color", topColor));
 		values.add(EffectUtil.colorValue("Bottom color", bottomColor));
-		values.add(EffectUtil.intValue("Offset", offset,
-			"This setting allows you to move the gradient up or down. The gradient is normally centered on the glyph."));
-		values.add(EffectUtil.floatValue("Scale", scale, 0, 1, "This setting allows you to change the height of the gradient by a"
-			+ "percentage. The gradient is normally the height of most glyphs in the font."));
-		values.add(EffectUtil.booleanValue("Cyclic", cyclic, "If this setting is checked, the gradient will repeat."));
+		values.add(EffectUtil
+				.intValue(
+						"Offset",
+						offset,
+						"This setting allows you to move the gradient up or down. The gradient is normally centered on the glyph."));
+		values.add(EffectUtil
+				.floatValue(
+						"Scale",
+						scale,
+						0,
+						1,
+						"This setting allows you to change the height of the gradient by a"
+								+ "percentage. The gradient is normally the height of most glyphs in the font."));
+		values.add(EffectUtil.booleanValue("Cyclic", cyclic,
+				"If this setting is checked, the gradient will repeat."));
 		return values;
 	}
 
@@ -178,17 +201,17 @@ public class GradientEffect implements ConfigurableEffect {
 	 */
 	public void setValues(List values) {
 		for (Iterator iter = values.iterator(); iter.hasNext();) {
-			Value value = (Value)iter.next();
+			Value value = (Value) iter.next();
 			if (value.getName().equals("Top color")) {
-				topColor = (Color)value.getObject();
+				topColor = (Color) value.getObject();
 			} else if (value.getName().equals("Bottom color")) {
-				bottomColor = (Color)value.getObject();
+				bottomColor = (Color) value.getObject();
 			} else if (value.getName().equals("Offset")) {
-				offset = ((Integer)value.getObject()).intValue();
+				offset = ((Integer) value.getObject()).intValue();
 			} else if (value.getName().equals("Scale")) {
-				scale = ((Float)value.getObject()).floatValue();
+				scale = ((Float) value.getObject()).floatValue();
 			} else if (value.getName().equals("Cyclic")) {
-				cyclic = ((Boolean)value.getObject()).booleanValue();
+				cyclic = ((Boolean) value.getObject()).booleanValue();
 			}
 		}
 	}

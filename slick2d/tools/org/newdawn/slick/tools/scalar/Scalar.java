@@ -20,10 +20,10 @@ import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileFilter;
 
 /**
- * A simple tool for applying Scale2X and Scale3X for small cartoon
- * style images. The Scale2X and 3X algorithms provide a better scaling
- * for block/cartoon images since they're based on pattern analysis rather
- * than simple pixel scaling and filtering.
+ * A simple tool for applying Scale2X and Scale3X for small cartoon style
+ * images. The Scale2X and 3X algorithms provide a better scaling for
+ * block/cartoon images since they're based on pattern analysis rather than
+ * simple pixel scaling and filtering.
  * 
  * @author kevin
  */
@@ -36,7 +36,7 @@ public class Scalar extends JFrame {
 	private ImagePanel imagePanel;
 	/** The last selectd file */
 	private File lastSelected;
-	
+
 	/**
 	 * Create the scalar window and tool
 	 */
@@ -58,14 +58,14 @@ public class Scalar extends JFrame {
 				if (f.getName().endsWith(".png")) {
 					return true;
 				}
-				
+
 				return false;
 			}
 
 			public String getDescription() {
 				return "Image files (*.png, *.jpg, *.gif)";
 			}
-			
+
 		});
 		loadChooser.addChoosableFileFilter(new FileFilter() {
 
@@ -82,16 +82,16 @@ public class Scalar extends JFrame {
 				if (f.getName().endsWith(".png")) {
 					return true;
 				}
-				
+
 				return false;
 			}
 
 			public String getDescription() {
 				return "Image files (*.png, *.jpg, *.gif)";
 			}
-			
+
 		});
-		
+
 		JMenuBar bar = new JMenuBar();
 		JMenu file = new JMenu("File");
 		JMenuItem load = new JMenuItem("Load Image");
@@ -99,7 +99,7 @@ public class Scalar extends JFrame {
 		JMenuItem scale2x = new JMenuItem("Apply Scale2X");
 		JMenuItem scale3x = new JMenuItem("Apply Scale3X");
 		JMenuItem quit = new JMenuItem("Exit");
-		
+
 		file.add(load);
 		file.add(save);
 		file.addSeparator();
@@ -109,7 +109,7 @@ public class Scalar extends JFrame {
 		file.add(quit);
 		bar.add(file);
 		setJMenuBar(bar);
-		
+
 		load.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				load();
@@ -135,22 +135,23 @@ public class Scalar extends JFrame {
 				quit();
 			}
 		});
-		
+
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}
 		});
-		
+
 		imagePanel = new ImagePanel();
 		setContentPane(new JScrollPane(imagePanel));
-		
-		setSize(600,600);
-    	Dimension dims = Toolkit.getDefaultToolkit().getScreenSize();
-		setLocation((dims.width - getWidth())/2, (dims.height - getHeight()) / 2);
-        setVisible(true);
+
+		setSize(600, 600);
+		Dimension dims = Toolkit.getDefaultToolkit().getScreenSize();
+		setLocation((dims.width - getWidth()) / 2,
+				(dims.height - getHeight()) / 2);
+		setVisible(true);
 	}
-	
+
 	/**
 	 * Load the current image
 	 */
@@ -164,11 +165,12 @@ public class Scalar extends JFrame {
 				imagePanel.setImage(image);
 			} catch (Exception e) {
 				e.printStackTrace();
-				JOptionPane.showMessageDialog(this, "Unable to load image "+lastSelected.getName()+" ");
+				JOptionPane.showMessageDialog(this, "Unable to load image "
+						+ lastSelected.getName() + " ");
 			}
 		}
 	}
-	
+
 	/**
 	 * Save the current image
 	 */
@@ -187,47 +189,51 @@ public class Scalar extends JFrame {
 				type = "JPG";
 			}
 			if (type == null) {
-				file = new File(file.getAbsolutePath()+".png");
+				file = new File(file.getAbsolutePath() + ".png");
 				type = "PNG";
 			}
-			
+
 			try {
 				ImageIO.write(imagePanel.getImage(), type, file);
 			} catch (Exception e) {
 				e.printStackTrace();
-				JOptionPane.showMessageDialog(this, "Unable to save file "+file.getName());
+				JOptionPane.showMessageDialog(this, "Unable to save file "
+						+ file.getName());
 			}
 		}
 	}
-	
+
 	/**
 	 * Scale the current image using scale 2X
 	 */
 	public void scale2x() {
-		imagePanel.setImage(new ImageScale2x(imagePanel.getImage()).getScaledImage());
+		imagePanel.setImage(new ImageScale2x(imagePanel.getImage())
+				.getScaledImage());
 	}
-	
+
 	/**
 	 * Scale the current image using scale 3X
 	 */
 	public void scale3x() {
-		imagePanel.setImage(new ImageScale3x(imagePanel.getImage()).getScaledImage());
+		imagePanel.setImage(new ImageScale3x(imagePanel.getImage())
+				.getScaledImage());
 	}
-	
+
 	/**
 	 * Quit the tool
 	 */
 	public void quit() {
 		System.exit(0);
 	}
-	
+
 	/**
 	 * Entry point to the scalar tool
 	 * 
-	 * @param argv The arguments passed into the application
+	 * @param argv
+	 *            The arguments passed into the application
 	 */
 	public static void main(String[] argv) {
 		new Scalar();
 	}
-	
+
 }

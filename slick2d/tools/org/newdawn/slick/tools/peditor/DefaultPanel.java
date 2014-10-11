@@ -16,9 +16,9 @@ public class DefaultPanel extends JPanel {
 	 */
 	public void setEnabled(boolean enabled) {
 		super.setEnabled(enabled);
-		
+
 		Component[] components = getComponents();
-		for (int i=0;i<components.length;i++) {
+		for (int i = 0; i < components.length; i++) {
 			components[i].setEnabled(enabled);
 		}
 	}

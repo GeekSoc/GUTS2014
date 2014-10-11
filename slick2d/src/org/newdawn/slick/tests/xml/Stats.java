@@ -18,9 +18,11 @@ public class Stats {
 	/**
 	 * Dump this object to sysout
 	 * 
-	 * @param prefix The prefix to apply to all lines
+	 * @param prefix
+	 *            The prefix to apply to all lines
 	 */
 	public void dump(String prefix) {
-		System.out.println(prefix+"Stats "+hp+","+mp+","+age+","+exp);
+		System.out.println(prefix + "Stats " + hp + "," + mp + "," + age + ","
+				+ exp);
 	}
 }

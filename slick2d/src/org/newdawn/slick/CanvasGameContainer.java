@@ -22,20 +22,25 @@ public class CanvasGameContainer extends Canvas {
 	/**
 	 * Create a new panel
 	 * 
-	 * @param game The game being held
-	 * @throws SlickException Indicates a failure during creation of the container
+	 * @param game
+	 *            The game being held
+	 * @throws SlickException
+	 *             Indicates a failure during creation of the container
 	 */
 	public CanvasGameContainer(Game game) throws SlickException {
 		this(game, false);
 	}
-	
+
 	/**
 	 * Create a new panel
 	 * 
-	 * @param game The game being held
-	 * @param shared True if shared GL context should be enabled. This allows multiple panels
-	 * to share textures and other GL resources.
-	 * @throws SlickException Indicates a failure during creation of the container
+	 * @param game
+	 *            The game being held
+	 * @param shared
+	 *            True if shared GL context should be enabled. This allows
+	 *            multiple panels to share textures and other GL resources.
+	 * @throws SlickException
+	 *             Indicates a failure during creation of the container
 	 */
 	public CanvasGameContainer(Game game, boolean shared) throws SlickException {
 		super();
@@ -43,8 +48,8 @@ public class CanvasGameContainer extends Canvas {
 		this.game = game;
 		setIgnoreRepaint(true);
 		requestFocus();
-		setSize(500,500);
-		
+		setSize(500, 500);
+
 		container = new Container(game, shared);
 		container.setForceExit(false);
 	}
@@ -52,20 +57,22 @@ public class CanvasGameContainer extends Canvas {
 	/**
 	 * Start the game container rendering
 	 * 
-	 * @throws SlickException Indicates a failure during game execution
+	 * @throws SlickException
+	 *             Indicates a failure during game execution
 	 */
 	public void start() throws SlickException {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Input.disableControllers();
-					
+
 					try {
 						Display.setParent(CanvasGameContainer.this);
 					} catch (LWJGLException e) {
-						throw new SlickException("Failed to setParent of canvas", e);
+						throw new SlickException(
+								"Failed to setParent of canvas", e);
 					}
-					
+
 					container.setup();
 					scheduleUpdate();
 				} catch (SlickException e) {
@@ -75,7 +82,7 @@ public class CanvasGameContainer extends Canvas {
 			}
 		});
 	}
-	
+
 	/**
 	 * Schedule an update on the EDT
 	 */
@@ -83,7 +90,7 @@ public class CanvasGameContainer extends Canvas {
 		if (!isVisible()) {
 			return;
 		}
-		
+
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -96,6 +103,7 @@ public class CanvasGameContainer extends Canvas {
 			}
 		});
 	}
+
 	/**
 	 * Dispose the container and any resources it holds
 	 */
@@ -122,16 +130,19 @@ public class CanvasGameContainer extends Canvas {
 		 * 
 		 * @param game
 		 *            The game to be held in this container
-		 * @param shared True if shared GL context should be enabled. This allows multiple panels
-		 * to share textures and other GL resources.
-		 * @throws SlickException Indicates a failure to initialise
+		 * @param shared
+		 *            True if shared GL context should be enabled. This allows
+		 *            multiple panels to share textures and other GL resources.
+		 * @throws SlickException
+		 *             Indicates a failure to initialise
 		 */
 		public Container(Game game, boolean shared) throws SlickException {
-			super(game, CanvasGameContainer.this.getWidth(), CanvasGameContainer.this.getHeight(), false);
+			super(game, CanvasGameContainer.this.getWidth(),
+					CanvasGameContainer.this.getHeight(), false);
 
 			width = CanvasGameContainer.this.getWidth();
 			height = CanvasGameContainer.this.getHeight();
-			
+
 			if (shared) {
 				enableSharedContext();
 			}
@@ -169,12 +180,12 @@ public class CanvasGameContainer extends Canvas {
 		 * Check the dimensions of the canvas match the display
 		 */
 		public void checkDimensions() {
-			if ((width != CanvasGameContainer.this.getWidth()) ||
-			    (height != CanvasGameContainer.this.getHeight())) {
-				
+			if ((width != CanvasGameContainer.this.getWidth())
+					|| (height != CanvasGameContainer.this.getHeight())) {
+
 				try {
-					setDisplayMode(CanvasGameContainer.this.getWidth(), 
-								   CanvasGameContainer.this.getHeight(), false);
+					setDisplayMode(CanvasGameContainer.this.getWidth(),
+							CanvasGameContainer.this.getHeight(), false);
 				} catch (SlickException e) {
 					Log.error(e);
 				}

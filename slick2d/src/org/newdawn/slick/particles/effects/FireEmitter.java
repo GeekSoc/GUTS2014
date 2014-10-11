@@ -15,14 +15,14 @@ public class FireEmitter implements ParticleEmitter {
 	private int x;
 	/** The y coordinate of the center of the fire effect */
 	private int y;
-	
+
 	/** The particle emission rate */
 	private int interval = 50;
 	/** Time til the next particle */
 	private int timer;
 	/** The size of the initial particles */
 	private float size = 40;
-	
+
 	/**
 	 * Create a default fire effect at 0,0
 	 */
@@ -32,8 +32,10 @@ public class FireEmitter implements ParticleEmitter {
 	/**
 	 * Create a default fire effect at x,y
 	 * 
-	 * @param x The x coordinate of the fire effect
-	 * @param y The y coordinate of the fire effect
+	 * @param x
+	 *            The x coordinate of the fire effect
+	 * @param y
+	 *            The y coordinate of the fire effect
 	 */
 	public FireEmitter(int x, int y) {
 		this.x = x;
@@ -43,18 +45,22 @@ public class FireEmitter implements ParticleEmitter {
 	/**
 	 * Create a default fire effect at x,y
 	 * 
-	 * @param x The x coordinate of the fire effect
-	 * @param y The y coordinate of the fire effect
-	 * @param size The size of the particle being pumped out
+	 * @param x
+	 *            The x coordinate of the fire effect
+	 * @param y
+	 *            The y coordinate of the fire effect
+	 * @param size
+	 *            The size of the particle being pumped out
 	 */
 	public FireEmitter(int x, int y, float size) {
 		this.x = x;
 		this.y = y;
 		this.size = size;
 	}
-	
+
 	/**
-	 * @see org.newdawn.slick.particles.ParticleEmitter#update(org.newdawn.slick.particles.ParticleSystem, int)
+	 * @see org.newdawn.slick.particles.ParticleEmitter#update(org.newdawn.slick.particles.ParticleSystem,
+	 *      int)
 	 */
 	public void update(ParticleSystem system, int delta) {
 		timer -= delta;
@@ -66,12 +72,13 @@ public class FireEmitter implements ParticleEmitter {
 			p.setSize(size);
 			float vx = (float) (-0.02f + (Math.random() * 0.04f));
 			float vy = (float) (-(Math.random() * 0.15f));
-			p.setVelocity(vx,vy,1.1f);
+			p.setVelocity(vx, vy, 1.1f);
 		}
 	}
 
 	/**
-	 * @see org.newdawn.slick.particles.ParticleEmitter#updateParticle(org.newdawn.slick.particles.Particle, int)
+	 * @see org.newdawn.slick.particles.ParticleEmitter#updateParticle(org.newdawn.slick.particles.Particle,
+	 *      int)
 	 */
 	public void updateParticle(Particle particle, int delta) {
 		if (particle.getLife() > 600) {
@@ -80,7 +87,7 @@ public class FireEmitter implements ParticleEmitter {
 			particle.adjustSize(-0.04f * delta * (size / 40.0f));
 		}
 		float c = 0.002f * delta;
-		particle.adjustColor(0,-c/2,-c*2,-c/4);
+		particle.adjustColor(0, -c / 2, -c * 2, -c / 4);
 	}
 
 	/**

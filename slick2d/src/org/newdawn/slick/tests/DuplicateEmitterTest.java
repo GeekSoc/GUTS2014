@@ -14,6 +14,7 @@ import org.newdawn.slick.particles.ParticleSystem;
 
 /**
  * A test for duplicating a ConfigurableEmitter several times
+ * 
  * @author Tommy
  *
  */
@@ -21,45 +22,55 @@ public class DuplicateEmitterTest extends BasicGame {
 
 	/** the game container */
 	private GameContainer container;
-	/** the particle system which contains an explosion emitter which we want to duplicate */
+	/**
+	 * the particle system which contains an explosion emitter which we want to
+	 * duplicate
+	 */
 	private ParticleSystem explosionSystem;
 	/** The original emitter we've duplicated */
 	private ConfigurableEmitter explosionEmitter;
-	
+
 	/**
 	 * Create a new DuplicateEmitterTest
 	 */
 	public DuplicateEmitterTest() {
 		super("DuplicateEmitterTest");
 	}
-	
+
 	/**
 	 * load ressources (the particle system) and create our duplicate emitters
 	 * and place them nicely on the screen
-	 * @param container The surrounding game container
+	 * 
+	 * @param container
+	 *            The surrounding game container
 	 */
 	public void init(GameContainer container) throws SlickException {
 		this.container = container;
-		
+
 		try {
 			// load the particle system containing our explosion emitter
-			explosionSystem = ParticleIO.loadConfiguredSystem("testdata/endlessexplosion.xml");
-			// get the emitter, it's the first (and only one) in this particle system
-			explosionEmitter = (ConfigurableEmitter) explosionSystem.getEmitter(0);
+			explosionSystem = ParticleIO
+					.loadConfiguredSystem("testdata/endlessexplosion.xml");
+			// get the emitter, it's the first (and only one) in this particle
+			// system
+			explosionEmitter = (ConfigurableEmitter) explosionSystem
+					.getEmitter(0);
 			// set the original emitter in the middle of the screen at the top
-			explosionEmitter.setPosition(400,100);
+			explosionEmitter.setPosition(400, 100);
 			// create 5 duplicate emitters
 			for (int i = 0; i < 5; i++) {
 				// a single duplicate of the first emitter is created here
 				ConfigurableEmitter newOne = explosionEmitter.duplicate();
 				// we might get null as a result - protect against that
 				if (newOne == null)
-					throw new SlickException("Failed to duplicate explosionEmitter");
+					throw new SlickException(
+							"Failed to duplicate explosionEmitter");
 				// give the new emitter a new unique name
 				newOne.name = newOne.name + "_" + i;
 				// place it somewhere on a row below the original emitter
-				newOne.setPosition((i+1)* (800/6), 400);
-				// and add it to the original particle system to get the new emitter updated and rendered
+				newOne.setPosition((i + 1) * (800 / 6), 400);
+				// and add it to the original particle system to get the new
+				// emitter updated and rendered
 				explosionSystem.addEmitter(newOne);
 			}
 		} catch (IOException e) {
@@ -68,16 +79,20 @@ public class DuplicateEmitterTest extends BasicGame {
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer, int)
+	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
+	 *      int)
 	 */
-	public void update(GameContainer container, int delta) throws SlickException {
+	public void update(GameContainer container, int delta)
+			throws SlickException {
 		explosionSystem.update(delta);
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.Graphics)
 	 */
-	public void render(GameContainer container, Graphics g) throws SlickException {
+	public void render(GameContainer container, Graphics g)
+			throws SlickException {
 		explosionSystem.render();
 	}
 
@@ -96,12 +111,14 @@ public class DuplicateEmitterTest extends BasicGame {
 	/**
 	 * Entry point to our test
 	 * 
-	 * @param argv The arguments to pass into the test, not used here
+	 * @param argv
+	 *            The arguments to pass into the test, not used here
 	 */
 	public static void main(String[] argv) {
 		try {
-			AppGameContainer container = new AppGameContainer(new DuplicateEmitterTest());
-			container.setDisplayMode(800,600,false);
+			AppGameContainer container = new AppGameContainer(
+					new DuplicateEmitterTest());
+			container.setDisplayMode(800, 600, false);
 			container.start();
 		} catch (SlickException e) {
 			e.printStackTrace();

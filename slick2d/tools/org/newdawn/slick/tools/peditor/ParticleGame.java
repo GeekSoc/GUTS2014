@@ -61,7 +61,7 @@ public class ParticleGame extends BasicGame {
 
 	/** An input listener to be added on init */
 	private InputListener listener;
-	
+
 	/**
 	 * Create a new canvas
 	 * 
@@ -77,12 +77,13 @@ public class ParticleGame extends BasicGame {
 	/**
 	 * Set the input listener to be added on init
 	 * 
-	 * @param listener The listener to be added on init
+	 * @param listener
+	 *            The listener to be added on init
 	 */
 	public void setListener(InputListener listener) {
 		this.listener = listener;
 	}
-	
+
 	/**
 	 * Set the image to display behind the particle system
 	 * 
@@ -223,7 +224,7 @@ public class ParticleGame extends BasicGame {
 	public void init(GameContainer container) throws SlickException {
 		container.getInput().addListener(listener);
 		container.setShowFPS(false);
-		
+
 		system = new ParticleSystem("org/newdawn/slick/data/particle.tga", 2000);
 		system.setBlendingMode(ParticleSystem.BLEND_ADDITIVE);
 		system.setRemoveCompletedEmitters(false);
@@ -277,19 +278,18 @@ public class ParticleGame extends BasicGame {
 		GL11.glLoadIdentity();
 
 		if (background != null) {
-			g.fillRect(0, 0, container.getWidth(), container.getHeight(), background, 0, 0);
+			g.fillRect(0, 0, container.getWidth(), container.getHeight(),
+					background, 0, 0);
 		}
 		max = Math.max(max, system.getParticleCount());
 
 		if (hudOn) {
 			g.setColor(Color.white);
 			g.drawString("FPS: " + container.getFPS(), 10, 10);
-			g.drawString("Particles: " + system.getParticleCount(), 10,
-					25);
+			g.drawString("Particles: " + system.getParticleCount(), 10, 25);
 			g.drawString("Max: " + max, 10, 40);
-			g.drawString(
-					"LMB: Position Emitter       RMB: Default Position", 20,
-					527);
+			g.drawString("LMB: Position Emitter       RMB: Default Position",
+					20, 527);
 		}
 
 		GL11.glTranslatef(250, 300, 0);

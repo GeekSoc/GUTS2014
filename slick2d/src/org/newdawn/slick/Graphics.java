@@ -41,19 +41,19 @@ public class Graphics {
 
 	/** Draw multiplying the source and destination colours */
 	public static int MODE_COLOR_MULTIPLY = 4;
-	
+
 	/** Draw adding the existing colour to the new colour */
 	public static int MODE_ADD = 5;
-	
+
 	/** Draw blending the new image into the old one by a factor of it's colour */
 	public static int MODE_SCREEN = 6;
-	
+
 	/** The default number of segments that will be used when drawing an oval */
 	private static final int DEFAULT_SEGMENTS = 50;
 
 	/** The last graphics context in use */
 	protected static Graphics currentGraphics = null;
-	
+
 	/** The default font to use */
 	protected static Font DEFAULT_FONT;
 
@@ -61,11 +61,12 @@ public class Graphics {
 	private float sx = 1;
 	/** The last set scale */
 	private float sy = 1;
-	
+
 	/**
 	 * Set the current graphics context in use
 	 * 
-	 * @param current The graphics context that should be considered current
+	 * @param current
+	 *            The graphics context that should be considered current
 	 */
 	public static void setCurrent(Graphics current) {
 		if (currentGraphics != current) {
@@ -76,7 +77,7 @@ public class Graphics {
 			currentGraphics.enable();
 		}
 	}
-	
+
 	/** The font in use */
 	private Font font;
 
@@ -121,9 +122,9 @@ public class Graphics {
 	/**
 	 * Default constructor for sub-classes
 	 */
-	public Graphics() {	
+	public Graphics() {
 	}
-	
+
 	/**
 	 * Create a new graphics context. Only the container should be doing this
 	 * really
@@ -148,7 +149,7 @@ public class Graphics {
 				}
 			});
 		}
-		
+
 		this.font = DEFAULT_FONT;
 		screenWidth = width;
 		screenHeight = height;
@@ -157,14 +158,16 @@ public class Graphics {
 	/**
 	 * Set the dimensions considered by the graphics context
 	 * 
-	 * @param width The width of the graphics context
-	 * @param height The height of the graphics context
+	 * @param width
+	 *            The width of the graphics context
+	 * @param height
+	 *            The height of the graphics context
 	 */
 	void setDimensions(int width, int height) {
 		screenWidth = width;
 		screenHeight = height;
 	}
-	
+
 	/**
 	 * Set the drawing mode to use. This mode defines how pixels are drawn to
 	 * the graphics context. It can be used to draw into the alpha map.
@@ -218,14 +221,14 @@ public class Graphics {
 	public void clearAlphaMap() {
 		pushTransform();
 		GL.glLoadIdentity();
-		
+
 		int originalMode = currentDrawingMode;
 		setDrawMode(MODE_ALPHA_MAP);
-		setColor(new Color(0,0,0,0));
+		setColor(new Color(0, 0, 0, 0));
 		fillRect(0, 0, screenWidth, screenHeight);
 		setColor(currentColor);
 		setDrawMode(originalMode);
-		
+
 		popTransform();
 	}
 
@@ -276,9 +279,9 @@ public class Graphics {
 	}
 
 	/**
-	 * Set the background colour of the graphics context. This colour
-	 * is used when clearing the context. Note that calling this method
-	 * alone does not cause the context to be cleared.
+	 * Set the background colour of the graphics context. This colour is used
+	 * when clearing the context. Note that calling this method alone does not
+	 * cause the context to be cleared.
 	 * 
 	 * @param color
 	 *            The background color of the graphics context
@@ -318,7 +321,7 @@ public class Graphics {
 	public void resetTransform() {
 		sx = 1;
 		sy = 1;
-		
+
 		if (pushed) {
 			predraw();
 			GL.glPopMatrix();
@@ -350,7 +353,7 @@ public class Graphics {
 	public void scale(float sx, float sy) {
 		this.sx = this.sx * sx;
 		this.sy = this.sy * sy;
-		
+
 		checkPush();
 
 		predraw();
@@ -421,7 +424,7 @@ public class Graphics {
 		if (color == null) {
 			return;
 		}
-		
+
 		currentColor = new Color(color);
 		predraw();
 		currentColor.bind();
@@ -451,7 +454,7 @@ public class Graphics {
 	 */
 	public void drawLine(float x1, float y1, float x2, float y2) {
 		float lineWidth = this.lineWidth - 1;
-		
+
 		if (LSR.applyGLLineFixes()) {
 			if (x1 == x2) {
 				if (y1 > y2) {
@@ -461,7 +464,8 @@ public class Graphics {
 				}
 				float step = 1 / sy;
 				lineWidth = lineWidth / sy;
-				fillRect(x1-(lineWidth/2.0f),y1-(lineWidth/2.0f),lineWidth+step,(y2-y1)+lineWidth+step);
+				fillRect(x1 - (lineWidth / 2.0f), y1 - (lineWidth / 2.0f),
+						lineWidth + step, (y2 - y1) + lineWidth + step);
 				return;
 			} else if (y1 == y2) {
 				if (x1 > x2) {
@@ -471,20 +475,21 @@ public class Graphics {
 				}
 				float step = 1 / sx;
 				lineWidth = lineWidth / sx;
-				fillRect(x1-(lineWidth/2.0f),y1-(lineWidth/2.0f),(x2-x1)+lineWidth+step,lineWidth+step);
+				fillRect(x1 - (lineWidth / 2.0f), y1 - (lineWidth / 2.0f),
+						(x2 - x1) + lineWidth + step, lineWidth + step);
 				return;
 			}
 		}
-		
+
 		predraw();
 		currentColor.bind();
 		TextureImpl.bindNone();
 
 		LSR.start();
-		LSR.vertex(x1,y1);
-		LSR.vertex(x2,y2);
+		LSR.vertex(x1, y1);
+		LSR.vertex(x2, y2);
 		LSR.end();
-		
+
 		postdraw();
 	}
 
@@ -641,7 +646,7 @@ public class Graphics {
 		} else {
 			ShapeRenderer.texture(shape, image, scaleX, scaleY);
 		}
-		
+
 		postdraw();
 	}
 
@@ -684,11 +689,11 @@ public class Graphics {
 	 */
 	public void drawRect(float x1, float y1, float width, float height) {
 		float lineWidth = getLineWidth();
-		
-		drawLine(x1,y1,x1+width,y1);
-		drawLine(x1+width,y1,x1+width,y1+height);
-		drawLine(x1+width,y1+height,x1,y1+height);
-		drawLine(x1,y1+height,x1,y1);
+
+		drawLine(x1, y1, x1 + width, y1);
+		drawLine(x1 + width, y1, x1 + width, y1 + height);
+		drawLine(x1 + width, y1 + height, x1, y1 + height);
+		drawLine(x1, y1 + height, x1, y1);
 	}
 
 	/**
@@ -720,7 +725,7 @@ public class Graphics {
 	public void setWorldClip(float x, float y, float width, float height) {
 		predraw();
 		worldClipRecord = new Rectangle(x, y, width, height);
-		
+
 		GL.glEnable(SGL.GL_CLIP_PLANE0);
 		worldClip.put(1).put(0).put(0).put(-x).flip();
 		GL.glClipPlane(SGL.GL_CLIP_PLANE0, worldClip);
@@ -761,8 +766,8 @@ public class Graphics {
 		if (clip == null) {
 			clearWorldClip();
 		} else {
-			setWorldClip(clip.getX(), clip.getY(), clip.getWidth(), clip
-					.getHeight());
+			setWorldClip(clip.getX(), clip.getY(), clip.getWidth(),
+					clip.getHeight());
 		}
 	}
 
@@ -791,14 +796,14 @@ public class Graphics {
 	 */
 	public void setClip(int x, int y, int width, int height) {
 		predraw();
-		
+
 		if (clip == null) {
 			GL.glEnable(SGL.GL_SCISSOR_TEST);
 			clip = new Rectangle(x, y, width, height);
 		} else {
-			clip.setBounds(x,y,width,height);
+			clip.setBounds(x, y, width, height);
 		}
-		
+
 		GL.glScissor(x, screenHeight - y - height, width, height);
 		postdraw();
 	}
@@ -863,8 +868,8 @@ public class Graphics {
 		// Draw all the quads we need
 		for (int c = 0; c < cols; c++) {
 			for (int r = 0; r < rows; r++) {
-				pattern.draw(c * pattern.getWidth() + x - offX, r
-						* pattern.getHeight() + y - offY);
+				pattern.draw(c * pattern.getWidth() + x - offX,
+						r * pattern.getHeight() + y - offY);
 			}
 		}
 		postdraw();
@@ -1004,7 +1009,7 @@ public class Graphics {
 			float x = (float) (cx + (FastTrig.cos(Math.toRadians(ang)) * width / 2.0f));
 			float y = (float) (cy + (FastTrig.sin(Math.toRadians(ang)) * height / 2.0f));
 
-			LSR.vertex(x,y);
+			LSR.vertex(x, y);
 		}
 		LSR.end();
 		postdraw();
@@ -1316,11 +1321,11 @@ public class Graphics {
 	 */
 	public void resetLineWidth() {
 		predraw();
-		
+
 		Renderer.getLineStripRenderer().setWidth(1.0f);
 		GL.glLineWidth(1.0f);
 		GL.glPointSize(1.0f);
-		
+
 		postdraw();
 	}
 
@@ -1547,33 +1552,37 @@ public class Graphics {
 				SGL.GL_UNSIGNED_BYTE, readBuffer);
 		postdraw();
 
-		return new Color(translate(readBuffer.get(0)), translate(readBuffer
-				.get(1)), translate(readBuffer.get(2)), translate(readBuffer
-				.get(3)));
+		return new Color(translate(readBuffer.get(0)),
+				translate(readBuffer.get(1)), translate(readBuffer.get(2)),
+				translate(readBuffer.get(3)));
 	}
 
 	/**
 	 * Get an ara of pixels as RGBA values into a buffer
 	 * 
-	 * @param x The x position in the context to grab from
-	 * @param y The y position in the context to grab from
-	 * @param width The width of the area to grab from 
-	 * @param height The hiehgt of the area to grab from
-	 * @param target The target buffer to grab into
+	 * @param x
+	 *            The x position in the context to grab from
+	 * @param y
+	 *            The y position in the context to grab from
+	 * @param width
+	 *            The width of the area to grab from
+	 * @param height
+	 *            The hiehgt of the area to grab from
+	 * @param target
+	 *            The target buffer to grab into
 	 */
-	public void getArea(int x, int y, int width, int height, ByteBuffer target)
-	{
-		if (target.capacity() < width * height * 4) 
-		{
-			throw new IllegalArgumentException("Byte buffer provided to get area is not big enough");
+	public void getArea(int x, int y, int width, int height, ByteBuffer target) {
+		if (target.capacity() < width * height * 4) {
+			throw new IllegalArgumentException(
+					"Byte buffer provided to get area is not big enough");
 		}
-		
-		predraw();	
-		GL.glReadPixels(x, screenHeight - y - height, width, height, SGL.GL_RGBA,
-				SGL.GL_UNSIGNED_BYTE, target);
+
+		predraw();
+		GL.glReadPixels(x, screenHeight - y - height, width, height,
+				SGL.GL_RGBA, SGL.GL_UNSIGNED_BYTE, target);
 		postdraw();
 	}
-	
+
 	/**
 	 * Draw a section of an image at a particular location and scale on the
 	 * screen
@@ -1671,8 +1680,8 @@ public class Graphics {
 	 *            The ending position's alpha value
 	 */
 	public void drawGradientLine(float x1, float y1, float red1, float green1,
-									float blue1, float alpha1, float x2, float y2, float red2,
-									float green2, float blue2, float alpha2) {
+			float blue1, float alpha1, float x2, float y2, float red2,
+			float green2, float blue2, float alpha2) {
 		predraw();
 
 		TextureImpl.bindNone();
@@ -1707,7 +1716,7 @@ public class Graphics {
 	 *            The ending position's color
 	 */
 	public void drawGradientLine(float x1, float y1, Color Color1, float x2,
-								 float y2, Color Color2) {
+			float y2, Color Color2) {
 		predraw();
 
 		TextureImpl.bindNone();
@@ -1724,16 +1733,16 @@ public class Graphics {
 
 		postdraw();
 	}
-	
+
 	/**
-	 * Push the current state of the transform from this graphics contexts
-	 * onto the underlying graphics stack's transform stack. An associated 
-	 * popTransform() must be performed to restore the state before the end
-	 * of the rendering loop.
+	 * Push the current state of the transform from this graphics contexts onto
+	 * the underlying graphics stack's transform stack. An associated
+	 * popTransform() must be performed to restore the state before the end of
+	 * the rendering loop.
 	 */
 	public void pushTransform() {
 		predraw();
-		
+
 		FloatBuffer buffer;
 		if (stackIndex >= stack.size()) {
 			buffer = BufferUtils.createFloatBuffer(18);
@@ -1741,40 +1750,41 @@ public class Graphics {
 		} else {
 			buffer = (FloatBuffer) stack.get(stackIndex);
 		}
-		
+
 		GL.glGetFloat(SGL.GL_MODELVIEW_MATRIX, buffer);
 		buffer.put(16, sx);
 		buffer.put(17, sy);
 		stackIndex++;
-		
+
 		postdraw();
 	}
-	
+
 	/**
-	 * Pop a previously pushed transform from the stack to the current. This should
-	 * only be called if a transform has been previously pushed.
+	 * Pop a previously pushed transform from the stack to the current. This
+	 * should only be called if a transform has been previously pushed.
 	 */
 	public void popTransform() {
 		if (stackIndex == 0) {
-			throw new RuntimeException("Attempt to pop a transform that hasn't be pushed");
+			throw new RuntimeException(
+					"Attempt to pop a transform that hasn't be pushed");
 		}
-		
+
 		predraw();
-		
+
 		stackIndex--;
 		FloatBuffer oldBuffer = (FloatBuffer) stack.get(stackIndex);
 		GL.glLoadMatrix(oldBuffer);
 		sx = oldBuffer.get(16);
 		sy = oldBuffer.get(17);
-		
+
 		postdraw();
 	}
-	
+
 	/**
-	 * Dispose this graphics context, this will release any underlying resourses. However
-	 * this will also invalidate it's use
+	 * Dispose this graphics context, this will release any underlying
+	 * resourses. However this will also invalidate it's use
 	 */
 	public void destroy() {
-		
+
 	}
 }

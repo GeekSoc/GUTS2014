@@ -1,4 +1,3 @@
-
 package org.newdawn.slick.font;
 
 import java.awt.Rectangle;
@@ -33,20 +32,28 @@ public class Glyph {
 	/**
 	 * Create a new glyph
 	 * 
-	 * @param codePoint The code point in which this glyph can be found
-	 * @param bounds The bounds that this glrph can fill
-	 * @param vector The vector this glyph is part of
-	 * @param index The index of this glyph within the vector
-	 * @param unicodeFont The font this glyph forms part of
+	 * @param codePoint
+	 *            The code point in which this glyph can be found
+	 * @param bounds
+	 *            The bounds that this glrph can fill
+	 * @param vector
+	 *            The vector this glyph is part of
+	 * @param index
+	 *            The index of this glyph within the vector
+	 * @param unicodeFont
+	 *            The font this glyph forms part of
 	 */
-	public Glyph(int codePoint, Rectangle bounds, GlyphVector vector, int index, UnicodeFont unicodeFont) {
+	public Glyph(int codePoint, Rectangle bounds, GlyphVector vector,
+			int index, UnicodeFont unicodeFont) {
 		this.codePoint = codePoint;
 
 		GlyphMetrics metrics = vector.getGlyphMetrics(index);
-		int lsb = (int)metrics.getLSB();
-		if (lsb > 0) lsb = 0;
-		int rsb = (int)metrics.getRSB();
-		if (rsb > 0) rsb = 0;
+		int lsb = (int) metrics.getLSB();
+		if (lsb > 0)
+			lsb = 0;
+		int rsb = (int) metrics.getRSB();
+		if (rsb > 0)
+			rsb = 0;
 
 		int glyphWidth = bounds.width - lsb - rsb;
 		int glyphHeight = bounds.height;
@@ -56,14 +63,16 @@ public class Glyph {
 			int padBottom = unicodeFont.getPaddingBottom();
 			int padLeft = unicodeFont.getPaddingLeft();
 			int glyphSpacing = 1; // Needed to prevent filtering problems.
-			width = (short)(glyphWidth + padLeft + padRight + glyphSpacing);
-			height = (short)(glyphHeight + padTop + padBottom + glyphSpacing);
-			yOffset = (short)(unicodeFont.getAscent() + bounds.y - padTop);
+			width = (short) (glyphWidth + padLeft + padRight + glyphSpacing);
+			height = (short) (glyphHeight + padTop + padBottom + glyphSpacing);
+			yOffset = (short) (unicodeFont.getAscent() + bounds.y - padTop);
 		}
 
-		shape = vector.getGlyphOutline(index, -bounds.x + unicodeFont.getPaddingLeft(), -bounds.y + unicodeFont.getPaddingTop());
+		shape = vector.getGlyphOutline(index,
+				-bounds.x + unicodeFont.getPaddingLeft(), -bounds.y
+						+ unicodeFont.getPaddingTop());
 
-		isMissing = !unicodeFont.getFont().canDisplay((char)codePoint);
+		isMissing = !unicodeFont.getFont().canDisplay((char) codePoint);
 	}
 
 	/**
@@ -71,7 +80,7 @@ public class Glyph {
 	 * 
 	 * @return The codepoint the glyph represents
 	 */
-	public int getCodePoint () {
+	public int getCodePoint() {
 		return codePoint;
 	}
 
@@ -80,7 +89,7 @@ public class Glyph {
 	 * 
 	 * @return True if this glyph is not defined in the given code point
 	 */
-	public boolean isMissing () {
+	public boolean isMissing() {
 		return isMissing;
 	}
 
@@ -89,7 +98,7 @@ public class Glyph {
 	 * 
 	 * @return The width in pixels of the glyphs image
 	 */
-	public int getWidth () {
+	public int getWidth() {
 		return width;
 	}
 
@@ -98,51 +107,53 @@ public class Glyph {
 	 * 
 	 * @return The height in pixels of the glyphs image
 	 */
-	public int getHeight () {
+	public int getHeight() {
 		return height;
 	}
 
 	/**
-	 * The shape to use to draw this glyph. This is set to null after the glyph is stored 
-	 * in a GlyphPage.
+	 * The shape to use to draw this glyph. This is set to null after the glyph
+	 * is stored in a GlyphPage.
 	 * 
 	 * @return The shape drawn for this glyph
 	 */
-	public Shape getShape () {
+	public Shape getShape() {
 		return shape;
 	}
 
 	/**
 	 * Set the shape that should be drawn for this glyph
 	 * 
-	 * @param shape The shape that should be drawn for this glyph
+	 * @param shape
+	 *            The shape that should be drawn for this glyph
 	 */
 	public void setShape(Shape shape) {
 		this.shape = shape;
 	}
 
 	/**
-	 * The image to use for this glyph. This is null until after the glyph is stored in a 
-	 * GlyphPage.
+	 * The image to use for this glyph. This is null until after the glyph is
+	 * stored in a GlyphPage.
 	 * 
 	 * @return The image that has been generated for this glyph
 	 */
-	public Image getImage () {
+	public Image getImage() {
 		return image;
 	}
 
 	/**
 	 * Set the image that has been generated for this glyph
 	 * 
-	 * @param image The image that has been generated for this glyph
+	 * @param image
+	 *            The image that has been generated for this glyph
 	 */
 	public void setImage(Image image) {
 		this.image = image;
 	}
 
 	/**
-	 * The distance from drawing y location to top of this glyph, causing the glyph to sit 
-	 * on the baseline.
+	 * The distance from drawing y location to top of this glyph, causing the
+	 * glyph to sit on the baseline.
 	 * 
 	 * @return The offset on the y axis this glyph should be drawn at
 	 */

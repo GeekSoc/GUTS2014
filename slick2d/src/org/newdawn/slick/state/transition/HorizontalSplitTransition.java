@@ -10,8 +10,8 @@ import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * Horitzonal split transition that causes the previous state to split horizontally
- * revealing the new state underneath.
+ * Horitzonal split transition that causes the previous state to split
+ * horizontally revealing the new state underneath.
  * 
  * This state is an enter transition.
  * 
@@ -34,20 +34,22 @@ public class HorizontalSplitTransition implements Transition {
 	 * Create a new transition
 	 */
 	public HorizontalSplitTransition() {
-		
+
 	}
 
 	/**
 	 * Create a new transition
 	 * 
-	 * @param background The background colour to draw under the previous state
+	 * @param background
+	 *            The background colour to draw under the previous state
 	 */
 	public HorizontalSplitTransition(Color background) {
 		this.background = background;
 	}
-	
+
 	/**
-	 * @see org.newdawn.slick.state.transition.Transition#init(org.newdawn.slick.state.GameState, org.newdawn.slick.state.GameState)
+	 * @see org.newdawn.slick.state.transition.Transition#init(org.newdawn.slick.state.GameState,
+	 *      org.newdawn.slick.state.GameState)
 	 */
 	public void init(GameState firstState, GameState secondState) {
 		prev = secondState;
@@ -61,28 +63,32 @@ public class HorizontalSplitTransition implements Transition {
 	}
 
 	/**
-	 * @see org.newdawn.slick.state.transition.Transition#postRender(org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.state.transition.Transition#postRender(org.newdawn.slick.state.StateBasedGame,
+	 *      org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
 	 */
-	public void postRender(StateBasedGame game, GameContainer container, Graphics g) throws SlickException {
+	public void postRender(StateBasedGame game, GameContainer container,
+			Graphics g) throws SlickException {
 		g.translate(-offset, 0);
-		g.setClip((int)-offset,0,container.getWidth()/2,container.getHeight());
+		g.setClip((int) -offset, 0, container.getWidth() / 2,
+				container.getHeight());
 		if (background != null) {
 			Color c = g.getColor();
 			g.setColor(background);
-			g.fillRect(0,0,container.getWidth(),container.getHeight());
+			g.fillRect(0, 0, container.getWidth(), container.getHeight());
 			g.setColor(c);
 		}
 		GL.glPushMatrix();
 		prev.render(container, game, g);
 		GL.glPopMatrix();
 		g.clearClip();
-		
-		g.translate(offset*2, 0);
-		g.setClip((int)((container.getWidth()/2)+offset),0,container.getWidth()/2,container.getHeight());
+
+		g.translate(offset * 2, 0);
+		g.setClip((int) ((container.getWidth() / 2) + offset), 0,
+				container.getWidth() / 2, container.getHeight());
 		if (background != null) {
 			Color c = g.getColor();
 			g.setColor(background);
-			g.fillRect(0,0,container.getWidth(),container.getHeight());
+			g.fillRect(0, 0, container.getWidth(), container.getHeight());
 			g.setColor(c);
 		}
 		GL.glPushMatrix();
@@ -93,14 +99,16 @@ public class HorizontalSplitTransition implements Transition {
 	}
 
 	/**
-	 * @see org.newdawn.slick.state.transition.Transition#preRender(org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.state.transition.Transition#preRender(org.newdawn.slick.state.StateBasedGame,
+	 *      org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
 	 */
 	public void preRender(StateBasedGame game, GameContainer container,
 			Graphics g) throws SlickException {
 	}
 
 	/**
-	 * @see org.newdawn.slick.state.transition.Transition#update(org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.GameContainer, int)
+	 * @see org.newdawn.slick.state.transition.Transition#update(org.newdawn.slick.state.StateBasedGame,
+	 *      org.newdawn.slick.GameContainer, int)
 	 */
 	public void update(StateBasedGame game, GameContainer container, int delta)
 			throws SlickException {

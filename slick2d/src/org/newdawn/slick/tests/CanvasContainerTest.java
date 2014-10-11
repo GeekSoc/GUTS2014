@@ -33,14 +33,14 @@ public class CanvasContainerTest extends BasicGame {
 	private Image subImage;
 	/** The current rotation of our test image */
 	private float rot;
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public CanvasContainerTest() {
 		super("Canvas Container Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -49,38 +49,40 @@ public class CanvasContainerTest extends BasicGame {
 		scaleMe = new Image("testdata/logo.tga", true, Image.FILTER_NEAREST);
 		gif = new Image("testdata/logo.gif");
 		scaled = gif.getScaledCopy(120, 120);
-		subImage = image.getSubImage(200,0,70,260);
+		subImage = image.getSubImage(200, 0, 70, 260);
 		rot = 0;
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.Graphics)
 	 */
 	public void render(GameContainer container, Graphics g) {
-		image.draw(0,0);
-		image.draw(500,0,200,100);
-		scaleMe.draw(500,100,200,100);
-		scaled.draw(400,500);
+		image.draw(0, 0);
+		image.draw(500, 0, 200, 100);
+		scaleMe.draw(500, 100, 200, 100);
+		scaled.draw(400, 500);
 		Image flipped = scaled.getFlippedCopy(true, false);
-		flipped.draw(520,500);
+		flipped.draw(520, 500);
 		Image flipped2 = flipped.getFlippedCopy(false, true);
-		flipped2.draw(520,380);
+		flipped2.draw(520, 380);
 		Image flipped3 = flipped2.getFlippedCopy(true, false);
-		flipped3.draw(400,380);
-		
-		for (int i=0;i<3;i++) {
-			subImage.draw(200+(i*30),300);
+		flipped3.draw(400, 380);
+
+		for (int i = 0; i < 3; i++) {
+			subImage.draw(200 + (i * 30), 300);
 		}
-		
+
 		g.translate(500, 200);
 		g.rotate(50, 50, rot);
-		g.scale(0.3f,0.3f);
+		g.scale(0.3f, 0.3f);
 		image.draw();
 		g.resetTransform();
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer, int)
+	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
+	 *      int)
 	 */
 	public void update(GameContainer container, int delta) {
 		rot += delta * 0.1f;
@@ -92,17 +94,19 @@ public class CanvasContainerTest extends BasicGame {
 	/**
 	 * Entry point to our test
 	 * 
-	 * @param argv The arguments to pass into the test
+	 * @param argv
+	 *            The arguments to pass into the test
 	 */
 	public static void main(String[] argv) {
 		try {
-			CanvasGameContainer container = new CanvasGameContainer(new CanvasContainerTest());
-			
+			CanvasGameContainer container = new CanvasGameContainer(
+					new CanvasContainerTest());
+
 			Frame frame = new Frame("Test");
-			frame.setLayout(new GridLayout(1,2));
-			frame.setSize(500,500);
+			frame.setLayout(new GridLayout(1, 2));
+			frame.setSize(500, 500);
 			frame.add(container);
-			
+
 			frame.addWindowListener(new WindowAdapter() {
 				public void windowClosing(WindowEvent e) {
 					System.exit(0);

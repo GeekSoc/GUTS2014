@@ -1,4 +1,3 @@
-
 package org.newdawn.slick.font.effects;
 
 import java.awt.Color;
@@ -29,16 +28,20 @@ public class ColorEffect implements ConfigurableEffect {
 	/**
 	 * Create a new effect to colour the text
 	 * 
-	 * @param color The colour to apply across the text
+	 * @param color
+	 *            The colour to apply across the text
 	 */
 	public ColorEffect(Color color) {
 		this.color = color;
 	}
 
 	/**
-	 * @see org.newdawn.slick.font.effects.Effect#draw(java.awt.image.BufferedImage, java.awt.Graphics2D, org.newdawn.slick.UnicodeFont, org.newdawn.slick.font.Glyph)
+	 * @see org.newdawn.slick.font.effects.Effect#draw(java.awt.image.BufferedImage,
+	 *      java.awt.Graphics2D, org.newdawn.slick.UnicodeFont,
+	 *      org.newdawn.slick.font.Glyph)
 	 */
-	public void draw(BufferedImage image, Graphics2D g, UnicodeFont unicodeFont, Glyph glyph) {
+	public void draw(BufferedImage image, Graphics2D g,
+			UnicodeFont unicodeFont, Glyph glyph) {
 		g.setColor(color);
 		g.fill(glyph.getShape());
 	}
@@ -55,17 +58,19 @@ public class ColorEffect implements ConfigurableEffect {
 	/**
 	 * Set the colour being applied by this effect
 	 * 
-	 * @param color The colour being applied by this effect
+	 * @param color
+	 *            The colour being applied by this effect
 	 */
 	public void setColor(Color color) {
-		if (color == null) throw new IllegalArgumentException("color cannot be null.");
+		if (color == null)
+			throw new IllegalArgumentException("color cannot be null.");
 		this.color = color;
 	}
 
 	/**
 	 * @see java.lang.Object#toString()
 	 */
-	public String toString () {
+	public String toString() {
 		return "Color";
 	}
 
@@ -83,9 +88,9 @@ public class ColorEffect implements ConfigurableEffect {
 	 */
 	public void setValues(List values) {
 		for (Iterator iter = values.iterator(); iter.hasNext();) {
-			Value value = (Value)iter.next();
+			Value value = (Value) iter.next();
 			if (value.getName().equals("Color")) {
-				setColor((Color)value.getObject());
+				setColor((Color) value.getObject());
 			}
 		}
 	}

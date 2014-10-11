@@ -23,7 +23,6 @@ import java.awt.geom.PathIterator;
 import java.util.Iterator;
 import java.util.List;
 
-
 /**
  * An effect to generate a uniformly zigzaging line around text
  * 
@@ -55,7 +54,8 @@ public class OutlineZigzagEffect extends OutlineEffect {
 	/**
 	 * Sets the wavelength of the wobble effect.
 	 * 
-	 * @param wavelength The wavelength of the wobble effect
+	 * @param wavelength
+	 *            The wavelength of the wobble effect
 	 */
 	public void setWavelength(float wavelength) {
 		this.wavelength = wavelength;
@@ -73,17 +73,20 @@ public class OutlineZigzagEffect extends OutlineEffect {
 	/**
 	 * Sets the amplitude of the wobble effect.
 	 * 
-	 * @param amplitude The detail of the wobble effect
+	 * @param amplitude
+	 *            The detail of the wobble effect
 	 */
 	public void setAmplitude(float amplitude) {
 		this.amplitude = amplitude;
 	}
-	
+
 	/**
 	 * Create a new effect to generate a zigzagging line around the text
 	 * 
-	 * @param width The width of the line
-	 * @param color The colour of the line
+	 * @param width
+	 *            The width of the line
+	 * @param color
+	 *            The colour of the line
 	 */
 	public OutlineZigzagEffect(int width, Color color) {
 		super(width, color);
@@ -92,7 +95,7 @@ public class OutlineZigzagEffect extends OutlineEffect {
 	/**
 	 * @see org.newdawn.slick.font.effects.OutlineEffect#toString()
 	 */
-	public String toString () {
+	public String toString() {
 		return "Outline (Zigzag)";
 	}
 
@@ -101,10 +104,22 @@ public class OutlineZigzagEffect extends OutlineEffect {
 	 */
 	public List getValues() {
 		List values = super.getValues();
-		values.add(EffectUtil.floatValue("Wavelength", wavelength, 1, 100, "This setting controls the wavelength of the outline. "
-			+ "The smaller the value, the more segments will be used to draw the outline."));
-		values.add(EffectUtil.floatValue("Amplitude", amplitude, 0.5f, 50, "This setting controls the amplitude of the outline. "
-			+ "The bigger the value, the more the zigzags will vary."));
+		values.add(EffectUtil
+				.floatValue(
+						"Wavelength",
+						wavelength,
+						1,
+						100,
+						"This setting controls the wavelength of the outline. "
+								+ "The smaller the value, the more segments will be used to draw the outline."));
+		values.add(EffectUtil
+				.floatValue(
+						"Amplitude",
+						amplitude,
+						0.5f,
+						50,
+						"This setting controls the amplitude of the outline. "
+								+ "The bigger the value, the more the zigzags will vary."));
 		return values;
 	}
 
@@ -114,11 +129,11 @@ public class OutlineZigzagEffect extends OutlineEffect {
 	public void setValues(List values) {
 		super.setValues(values);
 		for (Iterator iter = values.iterator(); iter.hasNext();) {
-			Value value = (Value)iter.next();
+			Value value = (Value) iter.next();
 			if (value.getName().equals("Wavelength")) {
-				wavelength = ((Float)value.getObject()).floatValue();
+				wavelength = ((Float) value.getObject()).floatValue();
 			} else if (value.getName().equals("Amplitude")) {
-				amplitude = ((Float)value.getObject()).floatValue();
+				amplitude = ((Float) value.getObject()).floatValue();
 			}
 		}
 	}
@@ -133,12 +148,13 @@ public class OutlineZigzagEffect extends OutlineEffect {
 		/** The flattening factor applied to the path iterator */
 		private static final float FLATNESS = 1;
 
-		/** 
+		/**
 		 * @see java.awt.Stroke#createStrokedShape(java.awt.Shape)
 		 */
-		public Shape createStrokedShape (Shape shape) {
+		public Shape createStrokedShape(Shape shape) {
 			GeneralPath result = new GeneralPath();
-			PathIterator it = new FlatteningPathIterator(shape.getPathIterator(null), FLATNESS);
+			PathIterator it = new FlatteningPathIterator(
+					shape.getPathIterator(null), FLATNESS);
 			float points[] = new float[6];
 			float moveX = 0, moveY = 0;
 			float lastX = 0, lastY = 0;
@@ -166,16 +182,18 @@ public class OutlineZigzagEffect extends OutlineEffect {
 					thisY = points[1];
 					float dx = thisX - lastX;
 					float dy = thisY - lastY;
-					float distance = (float)Math.sqrt(dx * dx + dy * dy);
+					float distance = (float) Math.sqrt(dx * dx + dy * dy);
 					if (distance >= next) {
 						float r = 1.0f / distance;
 						while (distance >= next) {
 							float x = lastX + next * dx * r;
 							float y = lastY + next * dy * r;
 							if ((phase & 1) == 0)
-								result.lineTo(x + amplitude * dy * r, y - amplitude * dx * r);
+								result.lineTo(x + amplitude * dy * r, y
+										- amplitude * dx * r);
 							else
-								result.lineTo(x - amplitude * dy * r, y + amplitude * dx * r);
+								result.lineTo(x - amplitude * dy * r, y
+										+ amplitude * dx * r);
 							next += wavelength;
 							phase++;
 						}
@@ -183,12 +201,14 @@ public class OutlineZigzagEffect extends OutlineEffect {
 					next -= distance;
 					lastX = thisX;
 					lastY = thisY;
-					if (type == PathIterator.SEG_CLOSE) result.closePath();
+					if (type == PathIterator.SEG_CLOSE)
+						result.closePath();
 					break;
 				}
 				it.next();
 			}
-			return new BasicStroke(getWidth(), BasicStroke.CAP_SQUARE, getJoin()).createStrokedShape(result);
+			return new BasicStroke(getWidth(), BasicStroke.CAP_SQUARE,
+					getJoin()).createStrokedShape(result);
 		}
 	}
 }

@@ -1,32 +1,30 @@
 package org.geeksoc.guts2014;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
 public class Main {
 	
+	public static ArrayList<Job> jobQueue;
+	
 	public static void main(String[] args) throws SlickException {
-		Queue<Job> jobQueue = new LinkedList<Job>();
+		
+		jobQueue = new ArrayList<Job>();
 		JobFactory jobFactory = new JobFactory();
-		// Set the rate of jobs per second
-		jobFactory.setLambda(2.0);
-		// Add a few jobs to start with
-		jobFactory.addInitialJobs(10);
+		
 		// Will add random job at random time interval to jobQueue of type Job
 		jobFactory.startJobCreation();
-		// call this in update
-		jobQueue = jobFactory.getJobQueue();
+		// do not call this at update??
+		
 		// Will stop creating jobs, and empty the jobQueue
-		jobFactory.stopJobCreation();
+		jobFactory.startJobCreation();
 		
 		
 		
 		AppGameContainer game = new AppGameContainer(new Game("geeksoc"));
-		
+		game.setDisplayMode(1000, 600, false);
 		game.start();
 	}
 	

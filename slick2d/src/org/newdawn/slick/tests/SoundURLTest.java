@@ -34,14 +34,14 @@ public class SoundURLTest extends BasicGame {
 	private Sound engine;
 	/** The Volume of the playing music */
 	private int volume = 1;
-	
+
 	/**
 	 * Create a new test for sounds
 	 */
 	public SoundURLTest() {
 		super("Sound URL Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -49,31 +49,36 @@ public class SoundURLTest extends BasicGame {
 		sound = new Sound(ResourceLoader.getResource("testdata/restart.ogg"));
 		charlie = new Sound(ResourceLoader.getResource("testdata/cbrown01.wav"));
 		engine = new Sound(ResourceLoader.getResource("testdata/engine.wav"));
-		//music = musica = new Music("testdata/SMB-X.XM");
-		music = musica = new Music(ResourceLoader.getResource("testdata/restart.ogg"), false);
-		musicb = new Music(ResourceLoader.getResource("testdata/kirby.ogg"), false);
+		// music = musica = new Music("testdata/SMB-X.XM");
+		music = musica = new Music(
+				ResourceLoader.getResource("testdata/restart.ogg"), false);
+		musicb = new Music(ResourceLoader.getResource("testdata/kirby.ogg"),
+				false);
 		burp = new Sound(ResourceLoader.getResource("testdata/burp.aif"));
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.Graphics)
 	 */
 	public void render(GameContainer container, Graphics g) {
 		g.setColor(Color.white);
-		g.drawString("The OGG loop is now streaming from the file, woot.",100,60);
-		g.drawString("Press space for sound effect (OGG)",100,100);
-		g.drawString("Press P to pause/resume music (XM)",100,130);
-		g.drawString("Press E to pause/resume engine sound (WAV)",100,190);
-		g.drawString("Press enter for charlie (WAV)",100,160);
-		g.drawString("Press C to change music",100,210);
-		g.drawString("Press B to burp (AIF)",100,240);
+		g.drawString("The OGG loop is now streaming from the file, woot.", 100,
+				60);
+		g.drawString("Press space for sound effect (OGG)", 100, 100);
+		g.drawString("Press P to pause/resume music (XM)", 100, 130);
+		g.drawString("Press E to pause/resume engine sound (WAV)", 100, 190);
+		g.drawString("Press enter for charlie (WAV)", 100, 160);
+		g.drawString("Press C to change music", 100, 210);
+		g.drawString("Press B to burp (AIF)", 100, 240);
 		g.drawString("Press + or - to change volume of music", 100, 270);
 		g.setColor(Color.blue);
 		g.drawString("Music Volume Level: " + volume / 10.0f, 150, 300);
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer, int)
+	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
+	 *      int)
 	 */
 	public void update(GameContainer container, int delta) {
 	}
@@ -98,7 +103,7 @@ public class SoundURLTest extends BasicGame {
 			sound.playAt(1, 0, 0);
 		}
 		if (key == Input.KEY_RETURN) {
-			charlie.play(1.0f,1.0f);
+			charlie.play(1.0f, 1.0f);
 		}
 		if (key == Input.KEY_P) {
 			if (music.playing()) {
@@ -114,7 +119,7 @@ public class SoundURLTest extends BasicGame {
 			} else {
 				music = musica;
 			}
-			
+
 			music.loop();
 		}
 		if (key == Input.KEY_E) {
@@ -124,42 +129,44 @@ public class SoundURLTest extends BasicGame {
 				engine.loop();
 			}
 		}
-		
+
 		if (c == '+') {
 			volume += 1;
 			setVolume();
 		}
-		
+
 		if (c == '-') {
 			volume -= 1;
 			setVolume();
 		}
 
 	}
-	
+
 	/**
-	 *  Convenience routine to set volume of current music 
+	 * Convenience routine to set volume of current music
 	 */
 	private void setVolume() {
 		// Do bounds checking
-		if(volume > 10) {
+		if (volume > 10) {
 			volume = 10;
-		} else if(volume < 0) {
+		} else if (volume < 0) {
 			volume = 0;
 		}
-		
+
 		music.setVolume(volume / 10.0f);
 	}
-	
+
 	/**
 	 * Entry point to the sound test
 	 * 
-	 * @param argv The arguments provided to the test
+	 * @param argv
+	 *            The arguments provided to the test
 	 */
 	public static void main(String[] argv) {
 		try {
-			AppGameContainer container = new AppGameContainer(new SoundURLTest());
-			container.setDisplayMode(800,600,false);
+			AppGameContainer container = new AppGameContainer(
+					new SoundURLTest());
+			container.setDisplayMode(800, 600, false);
 			container.start();
 		} catch (SlickException e) {
 			e.printStackTrace();
