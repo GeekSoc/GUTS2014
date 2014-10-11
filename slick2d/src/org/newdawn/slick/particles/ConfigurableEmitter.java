@@ -135,7 +135,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 	protected float adjustx;
 	/** The amount to adjust on the y axis */
 	protected float adjusty;
-	
+
 	/**
 	 * Create a new emitter configurable externally
 	 * 
@@ -192,7 +192,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 			updateImage = true;
 		}
 	}
-	
+
 	/**
 	 * The name of the image to load
 	 * 
@@ -218,7 +218,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 	 *            The y coodinate of that this emitter should spawn at
 	 */
 	public void setPosition(float x, float y) {
-		setPosition(x,y,true);
+		setPosition(x, y, true);
 	}
 
 	/**
@@ -229,7 +229,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 	 * @param y
 	 *            The y coodinate of that this emitter should spawn at
 	 * @param moveParticles
-	 * 		      True if particles should be moved with the emitter
+	 *            True if particles should be moved with the emitter
 	 */
 	public void setPosition(float x, float y, boolean moveParticles) {
 		if (moveParticles) {
@@ -238,9 +238,9 @@ public class ConfigurableEmitter implements ParticleEmitter {
 			adjusty -= this.y - y;
 		}
 		this.x = x;
-		this.y = y;		
+		this.y = y;
 	}
-	
+
 	/**
 	 * Get the base x coordiante for spawning particles
 	 * 
@@ -286,7 +286,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		} else {
 			adjust = false;
 		}
-		
+
 		if (updateImage) {
 			updateImage = false;
 			try {
@@ -297,19 +297,18 @@ public class ConfigurableEmitter implements ParticleEmitter {
 			}
 		}
 
-		if ((wrapUp) || 
-		    ((length.isEnabled()) && (timeout < 0)) ||
-		    ((emitCount.isEnabled() && (leftToEmit <= 0)))) {
+		if ((wrapUp) || ((length.isEnabled()) && (timeout < 0))
+				|| ((emitCount.isEnabled() && (leftToEmit <= 0)))) {
 			if (particleCount == 0) {
 				completed = true;
 			}
 		}
 		particleCount = 0;
-		
+
 		if (wrapUp) {
 			return;
 		}
-		
+
 		if (length.isEnabled()) {
 			if (timeout < 0) {
 				return;
@@ -353,8 +352,8 @@ public class ConfigurableEmitter implements ParticleEmitter {
 				}
 
 				ColorRecord start = (ColorRecord) colors.get(0);
-				p.setColor(start.col.r, start.col.g, start.col.b, startAlpha
-						.getValue(0) / 255.0f);
+				p.setColor(start.col.r, start.col.g, start.col.b,
+						startAlpha.getValue(0) / 255.0f);
 				p.setUsePoint(usePoints);
 				p.setOriented(useOriented);
 
@@ -374,14 +373,14 @@ public class ConfigurableEmitter implements ParticleEmitter {
 	 */
 	public void updateParticle(Particle particle, int delta) {
 		particleCount++;
-		
+
 		// adjust the particles if required
 		particle.x += adjustx;
 		particle.y += adjusty;
 
-		particle.adjustVelocity(windFactor.getValue(0) * 0.00005f * delta, gravityFactor
-				.getValue(0) * 0.00005f * delta);
-		
+		particle.adjustVelocity(windFactor.getValue(0) * 0.00005f * delta,
+				gravityFactor.getValue(0) * 0.00005f * delta);
+
 		float offset = particle.getLife() / particle.getOriginalLife();
 		float inv = 1 - offset;
 		float colOffset = 0;
@@ -462,7 +461,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		if (wrapUp) {
 			return completed;
 		}
-		
+
 		return false;
 	}
 
@@ -480,7 +479,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 	 * Release all the particles held by this emitter
 	 */
 	public void reset() {
-	    completed = false; 
+		completed = false;
 		if (engine != null) {
 			engine.releaseAll(this);
 		}
@@ -498,10 +497,11 @@ public class ConfigurableEmitter implements ParticleEmitter {
 			}
 		}
 	}
-	
+
 	/**
-	 * Create a duplicate of this emitter.
-	 * The duplicate should be added to a ParticleSystem to be used.
+	 * Create a duplicate of this emitter. The duplicate should be added to a
+	 * ParticleSystem to be used.
+	 * 
 	 * @return a copy if no IOException occurred, null otherwise
 	 */
 	public ConfigurableEmitter duplicate() {
@@ -509,10 +509,12 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		try {
 			ByteArrayOutputStream bout = new ByteArrayOutputStream();
 			ParticleIO.saveEmitter(bout, this);
-			ByteArrayInputStream bin = new ByteArrayInputStream(bout.toByteArray());
+			ByteArrayInputStream bin = new ByteArrayInputStream(
+					bout.toByteArray());
 			theCopy = ParticleIO.loadEmitter(bin);
 		} catch (IOException e) {
-			Log.error("Slick: ConfigurableEmitter.duplicate(): caught exception " + e.toString());
+			Log.error("Slick: ConfigurableEmitter.duplicate(): caught exception "
+					+ e.toString());
 			return null;
 		}
 		return theCopy;
@@ -640,9 +642,12 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		/**
 		 * Create a new interpolated value
 		 * 
-		 * @param curve The set of points to interpolate between
-		 * @param min The minimum value in the dataset
-		 * @param max The maximum value possible in the dataset
+		 * @param curve
+		 *            The set of points to interpolate between
+		 * @param min
+		 *            The minimum value in the dataset
+		 * @param max
+		 *            The maximum value possible in the dataset
 		 */
 		public LinearInterpolator(ArrayList curve, int min, int max) {
 			this.curve = curve;
@@ -654,7 +659,8 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		/**
 		 * Set the collection of data points to interpolate between
 		 * 
-		 * @param curve The list of data points to interpolate between
+		 * @param curve
+		 *            The list of data points to interpolate between
 		 */
 		public void setCurve(ArrayList curve) {
 			this.curve = curve;
@@ -672,7 +678,8 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		/**
 		 * Get the value to use at a given time value
 		 * 
-		 * @param t The time value (expecting t in [0,1])
+		 * @param t
+		 *            The time value (expecting t in [0,1])
 		 * @return The value to use at the specified time
 		 */
 		public float getValue(float t) {
@@ -683,10 +690,8 @@ public class ConfigurableEmitter implements ParticleEmitter {
 
 				if (t >= p0.getX() && t <= p1.getX()) {
 					// found the segment
-					float st = (t - p0.getX())
-							/ (p1.getX() - p0.getX());
-					float r = p0.getY() + st
-							* (p1.getY() - p0.getY());
+					float st = (t - p0.getX()) / (p1.getX() - p0.getX());
+					float r = p0.getY() + st * (p1.getY() - p0.getY());
 					// System.out.println( "t: " + t + ", " + p0.x + ", " + p0.y
 					// + " : " + p1.x + ", " + p1.y + " => " + r );
 
@@ -710,7 +715,8 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		/**
 		 * Indicate if this interpoalte value should be used
 		 * 
-		 * @param active True if this value should be used
+		 * @param active
+		 *            True if this value should be used
 		 */
 		public void setActive(boolean active) {
 			this.active = active;
@@ -728,7 +734,8 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		/**
 		 * Set the maximum value possible in this data set
 		 * 
-		 * @param max The maximum value possible in this data set
+		 * @param max
+		 *            The maximum value possible in this data set
 		 */
 		public void setMax(int max) {
 			this.max = max;
@@ -746,7 +753,8 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		/**
 		 * Set the minimum value possible in this data set
 		 * 
-		 * @param min The minimum value possible in this data set
+		 * @param min
+		 *            The minimum value possible in this data set
 		 */
 		public void setMin(int min) {
 			this.min = min;
@@ -886,14 +894,15 @@ public class ConfigurableEmitter implements ParticleEmitter {
 	public boolean useAdditive() {
 		return useAdditive;
 	}
-	
+
 	public boolean isOriented() {
 		return this.useOriented;
 	}
-	
+
 	public boolean usePoints(ParticleSystem system) {
-		return (this.usePoints == Particle.INHERIT_POINTS) && (system.usePoints()) ||
-			   (this.usePoints == Particle.USE_POINTS); 
+		return (this.usePoints == Particle.INHERIT_POINTS)
+				&& (system.usePoints())
+				|| (this.usePoints == Particle.USE_POINTS);
 	}
 
 	public Image getImage() {

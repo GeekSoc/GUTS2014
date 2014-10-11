@@ -39,7 +39,7 @@ import java.util.List;
 public class MannTriangulator implements Triangulator {
 	/** The allowed error value */
 	private static final double EPSILON = 1e-5;
-	
+
 	/** The outer countour of the shape */
 	protected PointBag contour;
 	/** The holes defined in the polygon */
@@ -50,18 +50,18 @@ public class MannTriangulator implements Triangulator {
 	private Point nextFreePoint;
 	/** The list of triangles created (or rather points in triangles, 3xn) */
 	private List triangles = new ArrayList();
-	
+
 	/** Creates a new instance of Triangulator0 */
 	public MannTriangulator() {
 		contour = getPointBag();
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.geom.Triangulator#addPolyPoint(float, float)
 	 */
 	public void addPolyPoint(float x, float y) {
-    	addPoint(new Vector2f(x,y));
-    }
+		addPoint(new Vector2f(x, y));
+	}
 
 	/**
 	 * Reset the internal state of the triangulator
@@ -87,7 +87,8 @@ public class MannTriangulator implements Triangulator {
 	/**
 	 * Add a defined point to the current contour
 	 * 
-	 * @param pt The point to add
+	 * @param pt
+	 *            The point to add
 	 */
 	private void addPoint(Vector2f pt) {
 		if (holes == null) {
@@ -102,7 +103,8 @@ public class MannTriangulator implements Triangulator {
 	/**
 	 * Triangulate the points given
 	 * 
-	 * @param result The array to fill with the result or use to determine type
+	 * @param result
+	 *            The array to fill with the result or use to determine type
 	 * @return The resultng triangles
 	 */
 	private Vector2f[] triangulate(Vector2f[] result) {
@@ -187,7 +189,8 @@ public class MannTriangulator implements Triangulator {
 					Point prev = pContour.prev;
 					Point next = pContour.next;
 
-					if (next.next == prev || prev.isInfront(next) && next.isInfront(prev)) {
+					if (next.next == prev || prev.isInfront(next)
+							&& next.isInfront(prev)) {
 						if (!contour.doesIntersectSegment(prev.pt, next.pt)) {
 							result[idx++] = pContour.pt;
 							result[idx++] = next.pt;
@@ -197,7 +200,7 @@ public class MannTriangulator implements Triangulator {
 					}
 				}
 			} while ((pContour = pContour.next) != contour.first);
-			
+
 			// remove the point - we do it in every case to prevent endless loop
 			Point prev = pContour.prev;
 			Point next = pContour.next;
@@ -238,7 +241,8 @@ public class MannTriangulator implements Triangulator {
 	/**
 	 * Release a pooled bag
 	 * 
-	 * @param pb The bag to release
+	 * @param pb
+	 *            The bag to release
 	 * @return The next available bag
 	 */
 	private PointBag freePointBag(PointBag pb) {
@@ -252,7 +256,8 @@ public class MannTriangulator implements Triangulator {
 	/**
 	 * Create or reuse a point
 	 * 
-	 * @param pt The point data to set
+	 * @param pt
+	 *            The point data to set
 	 * @return The new point
 	 */
 	private Point getPoint(Vector2f pt) {
@@ -271,7 +276,8 @@ public class MannTriangulator implements Triangulator {
 	/**
 	 * Release a point into the pool
 	 * 
-	 * @param p The point to release
+	 * @param p
+	 *            The point to release
 	 */
 	private void freePoint(Point p) {
 		p.next = nextFreePoint;
@@ -281,7 +287,8 @@ public class MannTriangulator implements Triangulator {
 	/**
 	 * Release all points
 	 * 
-	 * @param head The head of the points bag
+	 * @param head
+	 *            The head of the points bag
 	 */
 	private void freePoints(Point head) {
 		head.prev.next = nextFreePoint;
@@ -313,7 +320,8 @@ public class MannTriangulator implements Triangulator {
 		/**
 		 * Create a new point
 		 * 
-		 * @param pt The points location
+		 * @param pt
+		 *            The points location
 		 */
 		public Point(Vector2f pt) {
 			this.pt = pt;
@@ -332,7 +340,8 @@ public class MannTriangulator implements Triangulator {
 		/**
 		 * Insert a point before this one (see LinkedList)
 		 * 
-		 * @param p The point to insert
+		 * @param p
+		 *            The point to insert
 		 */
 		public void insertBefore(Point p) {
 			prev.next = p;
@@ -344,7 +353,8 @@ public class MannTriangulator implements Triangulator {
 		/**
 		 * Insert a point after this one (see LinkedList)
 		 * 
-		 * @param p The point to insert
+		 * @param p
+		 *            The point to insert
 		 */
 		public void insertAfter(Point p) {
 			next.prev = p;
@@ -356,14 +366,16 @@ public class MannTriangulator implements Triangulator {
 		/**
 		 * Java 5 hypot method
 		 * 
-		 * @param x The x component
-		 * @param y The y component
+		 * @param x
+		 *            The x component
+		 * @param y
+		 *            The y component
 		 * @return The hypotenuse
 		 */
 		private double hypot(double x, double y) {
-			return Math.sqrt(x*x + y*y);
+			return Math.sqrt(x * x + y * y);
 		}
-		
+
 		/**
 		 * Compute the angle at this point
 		 */
@@ -408,7 +420,8 @@ public class MannTriangulator implements Triangulator {
 		/**
 		 * Get the angle of this point to another
 		 * 
-		 * @param p The other point
+		 * @param p
+		 *            The other point
 		 * @return The angle between this point and another
 		 */
 		public double getAngle(Point p) {
@@ -431,8 +444,10 @@ public class MannTriangulator implements Triangulator {
 		/**
 		 * Check if this point is infront of another
 		 * 
-		 * @param dx The other x
-		 * @param dy The other y
+		 * @param dx
+		 *            The other x
+		 * @param dy
+		 *            The other y
 		 * @return True if this point is infront (in the contour)
 		 */
 		public boolean isInfront(double dx, double dy) {
@@ -449,7 +464,8 @@ public class MannTriangulator implements Triangulator {
 		/**
 		 * Check if this point is infront of another
 		 * 
-		 * @param p The other point
+		 * @param p
+		 *            The other point
 		 * @return True if this point is infront (in the contour)
 		 */
 		public boolean isInfront(Point p) {
@@ -481,7 +497,8 @@ public class MannTriangulator implements Triangulator {
 		/**
 		 * Add a point to the bag
 		 * 
-		 * @param p The point to add
+		 * @param p
+		 *            The point to add
 		 */
 		public void add(Point p) {
 			if (first != null) {
@@ -508,11 +525,13 @@ public class MannTriangulator implements Triangulator {
 		}
 
 		/**
-		 * Check if the points in this bag form a path intersecting
-		 * with the specified path
+		 * Check if the points in this bag form a path intersecting with the
+		 * specified path
 		 * 
-		 * @param v1 The start point of the segment
-		 * @param v2 The end point of the segment
+		 * @param v1
+		 *            The start point of the segment
+		 * @param v2
+		 *            The end point of the segment
 		 * @return True if points in this contour intersect with the segment
 		 */
 		public boolean doesIntersectSegment(Vector2f v1, Vector2f v2) {
@@ -546,7 +565,7 @@ public class MannTriangulator implements Triangulator {
 		}
 
 		/**
-		 * Get the number of points in the bag 
+		 * Get the number of points in the bag
 		 * 
 		 * @return The number of points in the bag
 		 */
@@ -562,18 +581,19 @@ public class MannTriangulator implements Triangulator {
 			} while ((p = p.next) != first);
 			return count;
 		}
-		
+
 		/**
 		 * Check if the point provided was contained
 		 * 
-		 * @param point The point provided
+		 * @param point
+		 *            The point provided
 		 * @return True if it's in the bag
 		 */
 		public boolean contains(Vector2f point) {
 			if (first == null) {
 				return false;
 			}
-			
+
 			if (first.prev.pt.equals(point)) {
 				return true;
 			}

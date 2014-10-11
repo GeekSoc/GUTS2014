@@ -57,15 +57,16 @@ public class InkscapeLoader implements Loader {
 	}
 
 	/**
-	 * Add an <code>ElementProcessor</code> which will be passed
-	 * each element read as the Inkscape SVG document is processed.
+	 * Add an <code>ElementProcessor</code> which will be passed each element
+	 * read as the Inkscape SVG document is processed.
 	 * 
-	 * @param proc The processor to be added
+	 * @param proc
+	 *            The processor to be added
 	 */
 	public static void addElementProcessor(ElementProcessor proc) {
 		processors.add(proc);
 	}
-	
+
 	/**
 	 * Load a SVG document into a diagram
 	 * 
@@ -162,15 +163,17 @@ public class InkscapeLoader implements Loader {
 			Element root = doc.getDocumentElement();
 
 			String widthString = root.getAttribute("width");
-			while (Character.isLetter(widthString
-					.charAt(widthString.length() - 1))) {
-				widthString = widthString.substring(0, widthString.length() - 1);
+			while (Character
+					.isLetter(widthString.charAt(widthString.length() - 1))) {
+				widthString = widthString
+						.substring(0, widthString.length() - 1);
 			}
 
 			String heightString = root.getAttribute("height");
-			while (Character.isLetter(heightString
-					.charAt(heightString.length() - 1))) {
-				heightString = heightString.substring(0,heightString.length() - 1);
+			while (Character
+					.isLetter(heightString.charAt(heightString.length() - 1))) {
+				heightString = heightString.substring(0,
+						heightString.length() - 1);
 			}
 
 			float docWidth = Float.parseFloat(widthString);
@@ -180,8 +183,8 @@ public class InkscapeLoader implements Loader {
 			if (!offset) {
 				docHeight = 0;
 			}
-			loadChildren(root, Transform
-					.createTranslateTransform(0, -docHeight));
+			loadChildren(root,
+					Transform.createTranslateTransform(0, -docHeight));
 
 			return diagram;
 		} catch (Exception e) {

@@ -9,7 +9,8 @@ public interface StatusListener {
 	/**
 	 * Update the status message
 	 * 
-	 * @param msg The message to be displayed
+	 * @param msg
+	 *            The message to be displayed
 	 */
 	public void updateStatus(String msg);
 }

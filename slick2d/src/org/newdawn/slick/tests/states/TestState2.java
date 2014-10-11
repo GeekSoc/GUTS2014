@@ -29,7 +29,7 @@ public class TestState2 extends BasicGameState {
 	private float ang;
 	/** The game holding this state */
 	private StateBasedGame game;
-	
+
 	/**
 	 * @see org.newdawn.slick.state.BasicGameState#getID()
 	 */
@@ -38,42 +38,49 @@ public class TestState2 extends BasicGameState {
 	}
 
 	/**
-	 * @see org.newdawn.slick.state.BasicGameState#init(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame)
+	 * @see org.newdawn.slick.state.BasicGameState#init(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.state.StateBasedGame)
 	 */
-	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+	public void init(GameContainer container, StateBasedGame game)
+			throws SlickException {
 		this.game = game;
-		font = new AngelCodeFont("testdata/demo2.fnt","testdata/demo2_00.tga");
+		font = new AngelCodeFont("testdata/demo2.fnt", "testdata/demo2_00.tga");
 		image = new Image("testdata/logo.tga");
 	}
 
 	/**
-	 * @see org.newdawn.slick.state.BasicGameState#render(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.state.BasicGameState#render(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.Graphics)
 	 */
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
 		g.setFont(font);
 		g.setColor(Color.green);
 		g.drawString("This is State 2", 200, 50);
-		
-		g.rotate(400,300,ang);
-		g.drawImage(image,400-(image.getWidth()/2),300-(image.getHeight()/2));
+
+		g.rotate(400, 300, ang);
+		g.drawImage(image, 400 - (image.getWidth() / 2),
+				300 - (image.getHeight() / 2));
 	}
 
 	/**
-	 * @see org.newdawn.slick.state.BasicGameState#update(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, int)
+	 * @see org.newdawn.slick.state.BasicGameState#update(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.state.StateBasedGame, int)
 	 */
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 		ang += delta * 0.1f;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.state.BasicGameState#keyReleased(int, char)
 	 */
 	public void keyReleased(int key, char c) {
 		if (key == Input.KEY_1) {
-			game.enterState(TestState1.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+			game.enterState(TestState1.ID, new FadeOutTransition(Color.black),
+					new FadeInTransition(Color.black));
 		}
 		if (key == Input.KEY_3) {
-			game.enterState(TestState3.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+			game.enterState(TestState3.ID, new FadeOutTransition(Color.black),
+					new FadeInTransition(Color.black));
 		}
 	}
 }

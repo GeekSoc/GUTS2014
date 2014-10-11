@@ -19,26 +19,31 @@ public class Figure {
 	public static final int PATH = 4;
 	/** Polygon Type */
 	public static final int POLYGON = 5;
-	
+
 	/** The type of this figure */
 	private int type;
-	
+
 	/** The geometric shape of the figure */
 	private Shape shape;
 	/** The other bits of data assocaited with the SVG element */
 	private NonGeometricData data;
 	/** The transform that has already been applied to the shape */
 	private Transform transform;
-	
+
 	/**
 	 * Create a new figure
 	 *
-	 * @param type The type of the figure
-	 * @param shape The shape of the figure
-	 * @param data The other associated data
-	 * @param transform The transform that was applied to the shape
+	 * @param type
+	 *            The type of the figure
+	 * @param shape
+	 *            The shape of the figure
+	 * @param data
+	 *            The other associated data
+	 * @param transform
+	 *            The transform that was applied to the shape
 	 */
-	public Figure(int type, Shape shape, NonGeometricData data, Transform transform) {
+	public Figure(int type, Shape shape, NonGeometricData data,
+			Transform transform) {
 		this.shape = shape;
 		this.data = data;
 		this.type = type;
@@ -46,15 +51,15 @@ public class Figure {
 	}
 
 	/**
-	 * Get the transform that was applied to the shape given in the SVG 
-	 * to get it to it's currently state
+	 * Get the transform that was applied to the shape given in the SVG to get
+	 * it to it's currently state
 	 * 
 	 * @return The transform specified in the SVG
 	 */
 	public Transform getTransform() {
 		return transform;
 	}
-	
+
 	/**
 	 * Get the type of this figure
 	 * 
@@ -63,7 +68,7 @@ public class Figure {
 	public int getType() {
 		return type;
 	}
-	
+
 	/**
 	 * Get the shape of this figure
 	 * 
@@ -72,7 +77,7 @@ public class Figure {
 	public Shape getShape() {
 		return shape;
 	}
-	
+
 	/**
 	 * Get the data associated with this figure
 	 * 

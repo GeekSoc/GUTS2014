@@ -1,4 +1,3 @@
-
 package org.newdawn.slick.tools.hiero;
 
 import java.io.EOFException;
@@ -30,15 +29,20 @@ class Kerning {
 	private long kernOffset = -1;
 
 	/**
-	 * @param input The data for the TTF font.
-	 * @param size The font size to use to determine kerning pixel offsets.
-	 * @throws IOException If the font could not be read.
+	 * @param input
+	 *            The data for the TTF font.
+	 * @param size
+	 *            The font size to use to determine kerning pixel offsets.
+	 * @throws IOException
+	 *             If the font could not be read.
 	 */
-	public void load (InputStream input, int size) throws IOException {
+	public void load(InputStream input, int size) throws IOException {
 		this.size = size;
-		if (input == null) throw new IllegalArgumentException("input cannot be null.");
+		if (input == null)
+			throw new IllegalArgumentException("input cannot be null.");
 		readTableDirectory(input);
-		if (headOffset == -1) throw new IOException("HEAD table not found.");
+		if (headOffset == -1)
+			throw new IOException("HEAD table not found.");
 		if (kernOffset == -1) {
 			values = Collections.EMPTY_MAP;
 			return;
@@ -53,12 +57,14 @@ class Kerning {
 		}
 		input.close();
 
-		for (Iterator entryIter = values.entrySet().iterator(); entryIter.hasNext();) {
-			Entry entry = (Entry)entryIter.next();
+		for (Iterator entryIter = values.entrySet().iterator(); entryIter
+				.hasNext();) {
+			Entry entry = (Entry) entryIter.next();
 			// Scale the offset values using the font size.
-			List valueList = (List)entry.getValue();
-			for (ListIterator valueIter = valueList.listIterator(); valueIter.hasNext();) {
-				int value = ((Integer)valueIter.next()).intValue();
+			List valueList = (List) entry.getValue();
+			for (ListIterator valueIter = valueList.listIterator(); valueIter
+					.hasNext();) {
+				int value = ((Integer) valueIter.next()).intValue();
 				int glyphCode = value & 0xffff;
 				int offset = value >> 16;
 				offset = Math.round(offset * scale);
@@ -73,8 +79,9 @@ class Kerning {
 				// Replace ArrayList with int[].
 				int[] valueArray = new int[valueList.size()];
 				int i = 0;
-				for (Iterator valueIter = valueList.iterator(); valueIter.hasNext(); i++)
-					valueArray[i] = ((Integer)valueIter.next()).intValue();
+				for (Iterator valueIter = valueList.iterator(); valueIter
+						.hasNext(); i++)
+					valueArray[i] = ((Integer) valueIter.next()).intValue();
 				entry.setValue(valueArray);
 				kerningPairCount += valueArray.length;
 			}
@@ -82,14 +89,15 @@ class Kerning {
 	}
 
 	/**
-	 * Returns the encoded kerning value for the specified glyph. The glyph code for a Unicode codepoint can be retrieved with
+	 * Returns the encoded kerning value for the specified glyph. The glyph code
+	 * for a Unicode codepoint can be retrieved with
 	 * {@link GlyphVector#getGlyphCode(int)}.
 	 */
-	public int[] getValues (int firstGlyphCode) {
-		return (int[])values.get(new Integer(firstGlyphCode));
+	public int[] getValues(int firstGlyphCode) {
+		return (int[]) values.get(new Integer(firstGlyphCode));
 	}
 
-	public int getKerning (int[] values, int otherGlyphCode) {
+	public int getKerning(int[] values, int otherGlyphCode) {
 		int low = 0;
 		int high = values.length - 1;
 		while (low <= high) {
@@ -106,11 +114,11 @@ class Kerning {
 		return 0;
 	}
 
-	public int getCount () {
+	public int getCount() {
 		return kerningPairCount;
 	}
 
-	private void readTableDirectory (InputStream input) throws IOException {
+	private void readTableDirectory(InputStream input) throws IOException {
 		skip(input, 4);
 		int tableCount = readUnsignedShort(input);
 		skip(input, 6);
@@ -128,27 +136,32 @@ class Kerning {
 			String tag = new String(tagBytes, "ISO-8859-1");
 			if (tag.equals("head")) {
 				headOffset = offset;
-				if (kernOffset != -1) break;
+				if (kernOffset != -1)
+					break;
 			} else if (tag.equals("kern")) {
 				kernOffset = offset;
-				if (headOffset != -1) break;
+				if (headOffset != -1)
+					break;
 			}
 		}
 	}
 
-	private void readHEAD (InputStream input) throws IOException {
+	private void readHEAD(InputStream input) throws IOException {
 		seek(input, headOffset + 2 * 4 + 2 * 4 + 2);
 		int unitsPerEm = readUnsignedShort(input);
-		scale = (float)size / unitsPerEm;
+		scale = (float) size / unitsPerEm;
 	}
 
-	private void readKERN (InputStream input) throws IOException {
+	private void readKERN(InputStream input) throws IOException {
 		seek(input, kernOffset + 2);
 		for (int subTableCount = readUnsignedShort(input); subTableCount > 0; subTableCount--) {
 			skip(input, 2 * 2);
 			int tupleIndex = readUnsignedShort(input);
-			if (!((tupleIndex & 1) != 0) || (tupleIndex & 2) != 0 || (tupleIndex & 4) != 0) return;
-			if (tupleIndex >> 8 != 0) continue;
+			if (!((tupleIndex & 1) != 0) || (tupleIndex & 2) != 0
+					|| (tupleIndex & 4) != 0)
+				return;
+			if (tupleIndex >> 8 != 0)
+				continue;
 
 			int kerningCount = readUnsignedShort(input);
 			skip(input, 3 * 2);
@@ -158,7 +171,8 @@ class Kerning {
 				int offset = readShort(input);
 				int value = (offset << 16) | secondGlyphCode;
 
-				List firstGlyphValues = (List)values.get(new Integer(firstGlyphCode));
+				List firstGlyphValues = (List) values.get(new Integer(
+						firstGlyphCode));
 				if (firstGlyphValues == null) {
 					firstGlyphValues = new ArrayList(256);
 					values.put(new Integer(firstGlyphCode), firstGlyphValues);
@@ -168,26 +182,27 @@ class Kerning {
 		}
 	}
 
-	private int readUnsignedByte (InputStream input) throws IOException {
+	private int readUnsignedByte(InputStream input) throws IOException {
 		bytePosition++;
 		int b = input.read();
-		if (b == -1) throw new EOFException("Unexpected end of file.");
+		if (b == -1)
+			throw new EOFException("Unexpected end of file.");
 		return b;
 	}
 
-	private byte readByte (InputStream input) throws IOException {
-		return (byte)readUnsignedByte(input);
+	private byte readByte(InputStream input) throws IOException {
+		return (byte) readUnsignedByte(input);
 	}
 
-	private int readUnsignedShort (InputStream input) throws IOException {
+	private int readUnsignedShort(InputStream input) throws IOException {
 		return (readUnsignedByte(input) << 8) + readUnsignedByte(input);
 	}
 
-	private short readShort (InputStream input) throws IOException {
-		return (short)readUnsignedShort(input);
+	private short readShort(InputStream input) throws IOException {
+		return (short) readUnsignedShort(input);
 	}
 
-	private long readUnsignedLong (InputStream input) throws IOException {
+	private long readUnsignedLong(InputStream input) throws IOException {
 		long value = readUnsignedByte(input);
 		value = (value << 8) + readUnsignedByte(input);
 		value = (value << 8) + readUnsignedByte(input);
@@ -195,16 +210,17 @@ class Kerning {
 		return value;
 	}
 
-	private void skip (InputStream input, long skip) throws IOException {
+	private void skip(InputStream input, long skip) throws IOException {
 		while (skip > 0) {
 			long skipped = input.skip(skip);
-			if (skipped <= 0) break;
+			if (skipped <= 0)
+				break;
 			bytePosition += skipped;
 			skip -= skipped;
 		}
 	}
 
-	private void seek (InputStream input, long position) throws IOException {
+	private void seek(InputStream input, long position) throws IOException {
 		skip(input, position - bytePosition);
 	}
 }

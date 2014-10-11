@@ -35,7 +35,7 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 	private boolean showLinks = true;
 	/** The path if there is one current found between the two points */
 	private NavPath path;
-	
+
 	/** The x coordinate of the start of the search */
 	private float sx;
 	/** The y coordinate of the start of the search */
@@ -46,7 +46,7 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 	private float ey;
 	/** The tile based map we're searching across - loaded from a raw file */
 	private DataMap dataMap;
-	
+
 	/**
 	 * Create a new test
 	 */
@@ -57,7 +57,8 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 	/**
 	 * Initialise resources and the map data
 	 * 
-	 * @param container the container the game is running in 
+	 * @param container
+	 *            the container the game is running in
 	 */
 	public void init(GameContainer container) throws SlickException {
 		container.setShowFPS(false);
@@ -69,10 +70,10 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 		}
 		builder = new NavMeshBuilder();
 		navMesh = builder.build(dataMap);
-		
-		System.out.println("Navmesh shapes: "+navMesh.getSpaceCount());
+
+		System.out.println("Navmesh shapes: " + navMesh.getSpaceCount());
 	}
-	
+
 	/**
 	 * Update data map etc
 	 */
@@ -89,52 +90,59 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 	/**
 	 * Render the game - in this case render the map and diagnostic data
 	 * 
-	 * @param container The container we're running the game in
-	 * @param g The graphics context on which to render
+	 * @param container
+	 *            The container we're running the game in
+	 * @param g
+	 *            The graphics context on which to render
 	 */
 	public void render(GameContainer container, Graphics g)
 			throws SlickException {
-		g.translate(50,50);
-		for (int x=0;x<50;x++) {
-			for (int y=0;y<50;y++) {
+		g.translate(50, 50);
+		for (int x = 0; x < 50; x++) {
+			for (int y = 0; y < 50; y++) {
 				if (dataMap.blocked(this, x, y)) {
 					g.setColor(Color.gray);
-					g.fillRect((x*10)+1,(y*10)+1,8,8);
+					g.fillRect((x * 10) + 1, (y * 10) + 1, 8, 8);
 				}
 			}
 		}
-		
+
 		if (showSpaces) {
-			for (int i=0;i<navMesh.getSpaceCount();i++) {
+			for (int i = 0; i < navMesh.getSpaceCount(); i++) {
 				Space space = navMesh.getSpace(i);
 				if (builder.clear(dataMap, space)) {
-					g.setColor(new Color(1,1,0,0.5f));
-					g.fillRect(space.getX()*10, space.getY()*10, space.getWidth()*10, space.getHeight()*10);
+					g.setColor(new Color(1, 1, 0, 0.5f));
+					g.fillRect(space.getX() * 10, space.getY() * 10,
+							space.getWidth() * 10, space.getHeight() * 10);
 				}
 				g.setColor(Color.yellow);
-				g.drawRect(space.getX()*10, space.getY()*10, space.getWidth()*10, space.getHeight()*10);
+				g.drawRect(space.getX() * 10, space.getY() * 10,
+						space.getWidth() * 10, space.getHeight() * 10);
 
 				if (showLinks) {
 					int links = space.getLinkCount();
-					for (int j=0;j<links;j++) {
+					for (int j = 0; j < links; j++) {
 						Link link = space.getLink(j);
 						g.setColor(Color.red);
-						g.fillRect((link.getX()*10)-2, (link.getY()*10)-2,5,5);
+						g.fillRect((link.getX() * 10) - 2,
+								(link.getY() * 10) - 2, 5, 5);
 					}
 				}
 			}
 		}
-		
+
 		if (path != null) {
 			g.setColor(Color.white);
-			for (int i=0;i<path.length()-1;i++) {
-				g.drawLine(path.getX(i)*10, path.getY(i)*10, path.getX(i+1)*10, path.getY(i+1)*10);
+			for (int i = 0; i < path.length() - 1; i++) {
+				g.drawLine(path.getX(i) * 10, path.getY(i) * 10,
+						path.getX(i + 1) * 10, path.getY(i + 1) * 10);
 			}
 		}
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.newdawn.slick.util.pathfinding.PathFindingContext#getMover()
 	 */
 	public Mover getMover() {
@@ -143,7 +151,9 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.newdawn.slick.util.pathfinding.PathFindingContext#getSearchDistance()
+	 * 
+	 * @see
+	 * org.newdawn.slick.util.pathfinding.PathFindingContext#getSearchDistance()
 	 */
 	public int getSearchDistance() {
 		return 0;
@@ -151,6 +161,7 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.newdawn.slick.util.pathfinding.PathFindingContext#getSourceX()
 	 */
 	public int getSourceX() {
@@ -159,6 +170,7 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.newdawn.slick.util.pathfinding.PathFindingContext#getSourceY()
 	 */
 	public int getSourceY() {
@@ -167,12 +179,13 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.newdawn.slick.BasicGame#mousePressed(int, int, int)
 	 */
 	public void mousePressed(int button, int x, int y) {
 		float mx = (x - 50) / 10.0f;
 		float my = (y - 50) / 10.0f;
-		
+
 		if (button == 0) {
 			sx = mx;
 			sy = my;
@@ -181,7 +194,7 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 			ey = my;
 		}
 
-		path = navMesh.findPath(sx,sy,ex,ey,true);
+		path = navMesh.findPath(sx, sy, ex, ey, true);
 	}
 
 	/**
@@ -191,13 +204,15 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 	 */
 	private class DataMap implements TileBasedMap {
 		/** The map data */
-		private byte[] map = new byte[50*50];
-	
+		private byte[] map = new byte[50 * 50];
+
 		/**
 		 * Create a new map loading it from a file
 		 * 
-		 * @param ref The location to load the map from
-		 * @throws IOException Indicatese a failure to access map data
+		 * @param ref
+		 *            The location to load the map from
+		 * @throws IOException
+		 *             Indicatese a failure to access map data
 		 */
 		public DataMap(String ref) throws IOException {
 			ResourceLoader.getResourceAsStream(ref).read(map);
@@ -205,19 +220,25 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 
 		/*
 		 * (non-Javadoc)
-		 * @see org.newdawn.slick.util.pathfinding.TileBasedMap#blocked(org.newdawn.slick.util.pathfinding.PathFindingContext, int, int)
+		 * 
+		 * @see
+		 * org.newdawn.slick.util.pathfinding.TileBasedMap#blocked(org.newdawn
+		 * .slick.util.pathfinding.PathFindingContext, int, int)
 		 */
 		public boolean blocked(PathFindingContext context, int tx, int ty) {
 			if ((tx < 0) || (ty < 0) || (tx >= 50) || (ty >= 50)) {
 				return false;
 			}
-			
-			return map[tx+(ty*50)] != 0;
+
+			return map[tx + (ty * 50)] != 0;
 		}
-		
+
 		/*
 		 * (non-Javadoc)
-		 * @see org.newdawn.slick.util.pathfinding.TileBasedMap#getCost(org.newdawn.slick.util.pathfinding.PathFindingContext, int, int)
+		 * 
+		 * @see
+		 * org.newdawn.slick.util.pathfinding.TileBasedMap#getCost(org.newdawn
+		 * .slick.util.pathfinding.PathFindingContext, int, int)
 		 */
 		public float getCost(PathFindingContext context, int tx, int ty) {
 			return 1;
@@ -225,7 +246,9 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 
 		/*
 		 * (non-Javadoc)
-		 * @see org.newdawn.slick.util.pathfinding.TileBasedMap#getHeightInTiles()
+		 * 
+		 * @see
+		 * org.newdawn.slick.util.pathfinding.TileBasedMap#getHeightInTiles()
 		 */
 		public int getHeightInTiles() {
 			return 50;
@@ -233,7 +256,9 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 
 		/*
 		 * (non-Javadoc)
-		 * @see org.newdawn.slick.util.pathfinding.TileBasedMap#getWidthInTiles()
+		 * 
+		 * @see
+		 * org.newdawn.slick.util.pathfinding.TileBasedMap#getWidthInTiles()
 		 */
 		public int getWidthInTiles() {
 			return 50;
@@ -241,16 +266,20 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 
 		/*
 		 * (non-Javadoc)
-		 * @see org.newdawn.slick.util.pathfinding.TileBasedMap#pathFinderVisited(int, int)
+		 * 
+		 * @see
+		 * org.newdawn.slick.util.pathfinding.TileBasedMap#pathFinderVisited
+		 * (int, int)
 		 */
 		public void pathFinderVisited(int x, int y) {
 		}
 	}
-	
+
 	/**
 	 * Entry point to out application
 	 * 
-	 * @param argv The arguments passed to the application
+	 * @param argv
+	 *            The arguments passed to the application
 	 */
 	public static void main(String[] argv) {
 		Bootstrap.runAsApplication(new NavMeshTest(), 600, 600, false);

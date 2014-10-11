@@ -20,14 +20,14 @@ public class TransformTest extends BasicGame {
 	private boolean scaleUp;
 	/** True if we should be scaling down */
 	private boolean scaleDown;
-	
+
 	/**
 	 * Create a new test of graphics context rendering
 	 */
 	public TransformTest() {
 		super("Transform Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -36,27 +36,29 @@ public class TransformTest extends BasicGame {
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.Graphics)
 	 */
 	public void render(GameContainer contiainer, Graphics g) {
-		g.translate(320,240);
+		g.translate(320, 240);
 		g.scale(scale, scale);
 
 		g.setColor(Color.red);
-		for (int x=0;x<10;x++) {
-			for (int y=0;y<10;y++) {
-				g.fillRect(-500+(x*100), -500+(y*100), 80, 80);
+		for (int x = 0; x < 10; x++) {
+			for (int y = 0; y < 10; y++) {
+				g.fillRect(-500 + (x * 100), -500 + (y * 100), 80, 80);
 			}
 		}
-		
-		g.setColor(new Color(1,1,1,0.5f));
-		g.fillRect(-320,-240,640,480);
+
+		g.setColor(new Color(1, 1, 1, 0.5f));
+		g.fillRect(-320, -240, 640, 480);
 		g.setColor(Color.white);
-		g.drawRect(-320,-240,640,480);
+		g.drawRect(-320, -240, 640, 480);
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer, int)
+	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
+	 *      int)
 	 */
 	public void update(GameContainer container, int delta) {
 		if (scaleUp) {
@@ -93,16 +95,18 @@ public class TransformTest extends BasicGame {
 			scaleDown = false;
 		}
 	}
-	
+
 	/**
 	 * Entry point to our test
 	 * 
-	 * @param argv The arguments passed to the test
+	 * @param argv
+	 *            The arguments passed to the test
 	 */
 	public static void main(String[] argv) {
 		try {
-			AppGameContainer container = new AppGameContainer(new TransformTest());
-			container.setDisplayMode(640,480,false);
+			AppGameContainer container = new AppGameContainer(
+					new TransformTest());
+			container.setDisplayMode(640, 480, false);
 			container.start();
 		} catch (SlickException e) {
 			e.printStackTrace();

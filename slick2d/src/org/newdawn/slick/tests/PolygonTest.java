@@ -20,7 +20,7 @@ public class PolygonTest extends BasicGame {
 	private boolean in;
 	/** The y offset */
 	private float y;
-	
+
 	/**
 	 * Create the test
 	 */
@@ -39,28 +39,33 @@ public class PolygonTest extends BasicGame {
 		poly.addPoint(280, 250);
 		poly.addPoint(300, 200);
 		poly.addPoint(240, 150);
-		
+
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer, int)
+	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
+	 *      int)
 	 */
-	public void update(GameContainer container, int delta) throws SlickException {
-		in = poly.contains(container.getInput().getMouseX(), container.getInput().getMouseY());
-		
+	public void update(GameContainer container, int delta)
+			throws SlickException {
+		in = poly.contains(container.getInput().getMouseX(), container
+				.getInput().getMouseY());
+
 		poly.setCenterY(0);
 	}
 
 	/**
-	 * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.Graphics)
 	 */
-	public void render(GameContainer container, Graphics g) throws SlickException {
+	public void render(GameContainer container, Graphics g)
+			throws SlickException {
 		if (in) {
 			g.setColor(Color.red);
 			g.fill(poly);
 		}
 		g.setColor(Color.yellow);
-		g.fillOval(poly.getCenterX()-3, poly.getCenterY()-3, 6, 6);
+		g.fillOval(poly.getCenterX() - 3, poly.getCenterY() - 3, 6, 6);
 		g.setColor(Color.white);
 		g.draw(poly);
 	}
@@ -68,11 +73,13 @@ public class PolygonTest extends BasicGame {
 	/**
 	 * Entry point into our test
 	 * 
-	 * @param argv The arguments passed on the command line
+	 * @param argv
+	 *            The arguments passed on the command line
 	 */
 	public static void main(String[] argv) {
 		try {
-			AppGameContainer container = new AppGameContainer(new PolygonTest(), 640, 480, false);
+			AppGameContainer container = new AppGameContainer(
+					new PolygonTest(), 640, 480, false);
 			container.start();
 		} catch (Exception e) {
 			e.printStackTrace();

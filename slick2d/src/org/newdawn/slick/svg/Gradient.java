@@ -8,7 +8,8 @@ import org.newdawn.slick.ImageBuffer;
 import org.newdawn.slick.geom.Transform;
 
 /**
- * A gradient definition from an SVG file, includes the stops, name and transform.
+ * A gradient definition from an SVG file, includes the stops, name and
+ * transform.
  * 
  * @author kevin
  */
@@ -35,18 +36,20 @@ public class Gradient {
 	private Transform transform;
 	/** The name of the referenced gradient */
 	private String ref;
-	
+
 	/**
 	 * Create a new gradient definition
 	 * 
-	 * @param name The name of the gradient
-	 * @param radial True if the gradient is radial
+	 * @param name
+	 *            The name of the gradient
+	 * @param radial
+	 *            True if the gradient is radial
 	 */
 	public Gradient(String name, boolean radial) {
 		this.name = name;
 		this.radial = radial;
 	}
-	
+
 	/**
 	 * Check if the gradient is radial
 	 * 
@@ -55,16 +58,17 @@ public class Gradient {
 	public boolean isRadial() {
 		return radial;
 	}
-	
+
 	/**
 	 * Set the transform given for this definition
 	 * 
-	 * @param trans The transform given for this definition
+	 * @param trans
+	 *            The transform given for this definition
 	 */
 	public void setTransform(Transform trans) {
 		this.transform = trans;
 	}
-	
+
 	/**
 	 * Get the transform to apply during this gradient application
 	 * 
@@ -73,49 +77,52 @@ public class Gradient {
 	public Transform getTransform() {
 		return transform;
 	}
-	
+
 	/**
 	 * Reference another gradient, i.e. use it's colour stops
 	 * 
-	 * @param ref The name of the other gradient to reference
+	 * @param ref
+	 *            The name of the other gradient to reference
 	 */
 	public void reference(String ref) {
 		this.ref = ref;
 	}
-	
+
 	/**
 	 * Resolve the gradient reference
 	 * 
-	 * @param diagram The diagram to resolve against
+	 * @param diagram
+	 *            The diagram to resolve against
 	 */
 	public void resolve(Diagram diagram) {
 		if (ref == null) {
 			return;
 		}
-		
+
 		Gradient other = diagram.getGradient(ref);
-		
-		for (int i=0;i<other.steps.size();i++) {
+
+		for (int i = 0; i < other.steps.size(); i++) {
 			steps.add(other.steps.get(i));
 		}
 	}
-	
+
 	/**
 	 * Generate the image used for texturing the gradient across shapes
 	 */
 	public void genImage() {
 		if (image == null) {
-			ImageBuffer buffer = new ImageBuffer(128,16);
-			for (int i=0;i<128;i++) {
+			ImageBuffer buffer = new ImageBuffer(128, 16);
+			for (int i = 0; i < 128; i++) {
 				Color col = getColorAt(i / 128.0f);
-				for (int j=0;j<16;j++) {
-					buffer.setRGBA(i, j, col.getRedByte(), col.getGreenByte(), col.getBlueByte(), col.getAlphaByte());
+				for (int j = 0; j < 16; j++) {
+					buffer.setRGBA(i, j, col.getRedByte(), col.getGreenByte(),
+							col.getBlueByte(), col.getAlphaByte());
 				}
 			}
 			image = buffer.getImage();
 		}
 	}
-	
+
 	/**
 	 * Get the image generated for this gradient
 	 * 
@@ -123,23 +130,25 @@ public class Gradient {
 	 */
 	public Image getImage() {
 		genImage();
-		
+
 		return image;
 	}
 
 	/**
 	 * Set the radius given in the SVG
 	 * 
-	 * @param r The radius for radial gradients
+	 * @param r
+	 *            The radius for radial gradients
 	 */
 	public void setR(float r) {
 		this.r = r;
 	}
-	
+
 	/**
 	 * Set the first x value given for the gradient (cx in the case of radial)
 	 * 
-	 * @param x1 The first x value given for the gradient
+	 * @param x1
+	 *            The first x value given for the gradient
 	 */
 	public void setX1(float x1) {
 		this.x1 = x1;
@@ -148,7 +157,8 @@ public class Gradient {
 	/**
 	 * Set the second x value given for the gradient (fx in the case of radial)
 	 * 
-	 * @param x2 The second x value given for the gradient
+	 * @param x2
+	 *            The second x value given for the gradient
 	 */
 	public void setX2(float x2) {
 		this.x2 = x2;
@@ -157,7 +167,8 @@ public class Gradient {
 	/**
 	 * Set the first y value given for the gradient (cy in the case of radial)
 	 * 
-	 * @param y1 The first y value given for the gradient
+	 * @param y1
+	 *            The first y value given for the gradient
 	 */
 	public void setY1(float y1) {
 		this.y1 = y1;
@@ -166,7 +177,8 @@ public class Gradient {
 	/**
 	 * Set the second y value given for the gradient (fy in the case of radial)
 	 * 
-	 * @param y2 The second y value given for the gradient
+	 * @param y2
+	 *            The second y value given for the gradient
 	 */
 	public void setY2(float y2) {
 		this.y2 = y2;
@@ -180,7 +192,7 @@ public class Gradient {
 	public float getR() {
 		return r;
 	}
-	
+
 	/**
 	 * Get the first x value given for this gradient (cx in the case of radial)
 	 * 
@@ -216,21 +228,24 @@ public class Gradient {
 	public float getY2() {
 		return y2;
 	}
-	
+
 	/**
 	 * Add a colour step/stop to the gradient
 	 * 
-	 * @param location The location on the gradient the colour affects
-	 * @param c The color to apply
+	 * @param location
+	 *            The location on the gradient the colour affects
+	 * @param c
+	 *            The color to apply
 	 */
 	public void addStep(float location, Color c) {
 		steps.add(new Step(location, c));
 	}
-	
+
 	/**
 	 * Get the intepolated colour at the given location on the gradient
 	 * 
-	 * @param p The point of the gradient (0 >= n >= 1)
+	 * @param p
+	 *            The point of the gradient (0 >= n >= 1)
 	 * @return The interpolated colour at the given location
 	 */
 	public Color getColorAt(float p) {
@@ -238,24 +253,24 @@ public class Gradient {
 			return ((Step) steps.get(0)).col;
 		}
 		if (p > 1) {
-			return ((Step) steps.get(steps.size()-1)).col;
+			return ((Step) steps.get(steps.size() - 1)).col;
 		}
-		
-		for (int i=1;i<steps.size();i++) {
-			Step prev = ((Step) steps.get(i-1));
+
+		for (int i = 1; i < steps.size(); i++) {
+			Step prev = ((Step) steps.get(i - 1));
 			Step current = ((Step) steps.get(i));
-			
+
 			if (p <= current.location) {
 				float dis = current.location - prev.location;
 				p -= prev.location;
 				float v = p / dis;
-				
-				Color c = new Color(1,1,1,1);
+
+				Color c = new Color(1, 1, 1, 1);
 				c.a = (prev.col.a * (1 - v)) + (current.col.a * (v));
 				c.r = (prev.col.r * (1 - v)) + (current.col.r * (v));
 				c.g = (prev.col.g * (1 - v)) + (current.col.g * (v));
 				c.b = (prev.col.b * (1 - v)) + (current.col.b * (v));
-				
+
 				return c;
 			}
 		}
@@ -263,7 +278,7 @@ public class Gradient {
 		// shouldn't ever happen
 		return Color.black;
 	}
-	
+
 	/**
 	 * The description of a single step on the gradient
 	 * 
@@ -274,12 +289,14 @@ public class Gradient {
 		float location;
 		/** The colour applied */
 		Color col;
-		
+
 		/**
 		 * Create a new step
 		 * 
-		 * @param location The location on the gradient the colour affects
-		 * @param c The colour to apply
+		 * @param location
+		 *            The location on the gradient the colour affects
+		 * @param c
+		 *            The colour to apply
 		 */
 		public Step(float location, Color c) {
 			this.location = location;

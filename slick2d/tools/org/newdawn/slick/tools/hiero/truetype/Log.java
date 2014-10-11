@@ -6,60 +6,66 @@ package org.newdawn.slick.tools.hiero.truetype;
  * @author kevin
  */
 public class Log {
-	/** 
-	 * Log an error message 
+	/**
+	 * Log an error message
 	 * 
-	 * @param msg The message to log
+	 * @param msg
+	 *            The message to log
 	 */
 	public void error(String msg) {
-		//System.err.println(msg);
+		// System.err.println(msg);
 	}
 
-	/** 
-	 * Log an debug message 
+	/**
+	 * Log an debug message
 	 * 
-	 * @param msg The message to log
+	 * @param msg
+	 *            The message to log
 	 */
 	public void debug(String msg) {
-		//System.err.println(msg);
+		// System.err.println(msg);
 	}
 
-	/** 
-	 * Log an warn message 
+	/**
+	 * Log an warn message
 	 * 
-	 * @param msg The message to log
+	 * @param msg
+	 *            The message to log
 	 */
 	public void warn(String msg) {
-		//System.err.println(msg);
+		// System.err.println(msg);
 	}
 
-	/** 
-	 * Log an fatal message 
+	/**
+	 * Log an fatal message
 	 * 
-	 * @param msg The message to log
+	 * @param msg
+	 *            The message to log
 	 */
 	public void fatal(String msg) {
-		//System.err.println(msg);
+		// System.err.println(msg);
 	}
 
-	/** 
-	 * Log an info message 
+	/**
+	 * Log an info message
 	 * 
-	 * @param msg The message to log
+	 * @param msg
+	 *            The message to log
 	 */
 	public void info(String msg) {
-		//System.err.println(msg);
+		// System.err.println(msg);
 	}
 
-	/** 
-	 * Log an trace message 
+	/**
+	 * Log an trace message
 	 * 
-	 * @param msg The message to log
+	 * @param msg
+	 *            The message to log
 	 */
 	public void trace(String msg) {
-		//System.err.println(msg);
+		// System.err.println(msg);
 	}
-	
+
 	/**
 	 * Check if the debug reporting is enabled
 	 * 

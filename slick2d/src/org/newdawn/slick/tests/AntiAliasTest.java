@@ -29,34 +29,40 @@ public class AntiAliasTest extends BasicGame {
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer, int)
+	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
+	 *      int)
 	 */
-	public void update(GameContainer container, int delta) throws SlickException {
+	public void update(GameContainer container, int delta)
+			throws SlickException {
 	}
 
 	/**
-	 * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.Graphics)
 	 */
-	public void render(GameContainer container, Graphics g) throws SlickException {
+	public void render(GameContainer container, Graphics g)
+			throws SlickException {
 		g.setAntiAlias(true);
 		g.setColor(Color.red);
-		g.drawOval(100,100,100,100);
-		g.fillOval(300,100,100,100);
+		g.drawOval(100, 100, 100, 100);
+		g.fillOval(300, 100, 100, 100);
 		g.setAntiAlias(false);
 		g.setColor(Color.red);
-		g.drawOval(100,300,100,100);
-		g.fillOval(300,300,100,100);
+		g.drawOval(100, 300, 100, 100);
+		g.fillOval(300, 300, 100, 100);
 	}
 
 	/**
 	 * Entry point to our test
 	 * 
-	 * @param argv The arguments passed to the test
+	 * @param argv
+	 *            The arguments passed to the test
 	 */
 	public static void main(String[] argv) {
 		try {
-			AppGameContainer container = new AppGameContainer(new AntiAliasTest());
-			container.setDisplayMode(800,600,false);
+			AppGameContainer container = new AppGameContainer(
+					new AntiAliasTest());
+			container.setDisplayMode(800, 600, false);
 			container.start();
 		} catch (SlickException e) {
 			e.printStackTrace();

@@ -11,8 +11,8 @@ public class WorkPacket {
 	private HashMap<JobType, Integer> workDone;
 
 	/**
-	 * Creates a new WorkPacket, initialised with the amount of work done on each
-	 * job.
+	 * Creates a new WorkPacket, initialised with the amount of work done on
+	 * each job.
 	 * 
 	 * @param phoneWorkDone
 	 * @param textWorkDone
@@ -29,7 +29,7 @@ public class WorkPacket {
 	}
 
 	public WorkPacket() {
-		this(0,0,0,0);
+		this(0, 0, 0, 0);
 	}
 
 	public void combine(WorkPacket wp) {

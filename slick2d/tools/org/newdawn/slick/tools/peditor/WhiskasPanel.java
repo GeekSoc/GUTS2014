@@ -30,9 +30,14 @@ public class WhiskasPanel extends ControlPanel {
 	/**
 	 * Create a new panel for limiting controls
 	 * 
-	 * @param l The list to be notified when the name changes
-	 * @param colorPanel The panel controlling the colours that needs to be controlled based on the enablement here
-	 * @param emissionControls The panel controlling the emissions that needs to be controlled based on the enablement here
+	 * @param l
+	 *            The list to be notified when the name changes
+	 * @param colorPanel
+	 *            The panel controlling the colours that needs to be controlled
+	 *            based on the enablement here
+	 * @param emissionControls
+	 *            The panel controlling the emissions that needs to be
+	 *            controlled based on the enablement here
 	 */
 	public WhiskasPanel(EmitterList l, final ColorPanel colorPanel,
 			final EmissionControls emissionControls) {
@@ -73,8 +78,10 @@ public class WhiskasPanel extends ControlPanel {
 	/**
 	 * Add a control for enablement
 	 * 
-	 * @param text The label to be associated with the check box
-	 * @param listener The listener to be notified of updates to the new control
+	 * @param text
+	 *            The label to be associated with the check box
+	 * @param listener
+	 *            The listener to be notified of updates to the new control
 	 */
 	private void addEnableControl(String text, ItemListener listener) {
 		JCheckBox enableControl = new JCheckBox("Enable " + text);
@@ -90,7 +97,8 @@ public class WhiskasPanel extends ControlPanel {
 	/**
 	 * Notificaiton that one of the configuration option has changed state
 	 * 
-	 * @param e The event describing the change of state
+	 * @param e
+	 *            The event describing the change of state
 	 */
 	public void itemStateChangedHandler(ItemEvent e) {
 		String valueName = (String) controlToValueName.get(e.getSource());
@@ -108,7 +116,8 @@ public class WhiskasPanel extends ControlPanel {
 	/**
 	 * Links this whiskas panel to the given editor
 	 * 
-	 * @param editor The particle editor in use
+	 * @param editor
+	 *            The particle editor in use
 	 */
 	public void setEditor(GraphEditorWindow editor) {
 		this.editor = editor;
@@ -133,10 +142,13 @@ public class WhiskasPanel extends ControlPanel {
 	}
 
 	/**
-	 * Link this set of controls to a linear interpolater within the particle emitter
+	 * Link this set of controls to a linear interpolater within the particle
+	 * emitter
 	 * 
-	 * @param name The name of the article emitter being linked
-	 * @param interpol The interpolator being configured
+	 * @param name
+	 *            The name of the article emitter being linked
+	 * @param interpol
+	 *            The interpolator being configured
 	 */
 	private void linkToEmitter(String name, LinearInterpolator interpol) {
 		// put to value map

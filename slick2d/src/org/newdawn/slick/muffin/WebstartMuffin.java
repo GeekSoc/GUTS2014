@@ -17,15 +17,16 @@ import javax.jnlp.ServiceManager;
 import org.newdawn.slick.util.Log;
 
 /**
- * A muffin load/save implementation based on using Webstart Muffins (a bit like cookies only 
- * for webstart)
+ * A muffin load/save implementation based on using Webstart Muffins (a bit like
+ * cookies only for webstart)
  * 
  * @author kappaOne
  */
 public class WebstartMuffin implements Muffin {
 
 	/**
-	 * @see org.newdawn.slick.muffin.Muffin#saveFile(java.util.HashMap, java.lang.String)
+	 * @see org.newdawn.slick.muffin.Muffin#saveFile(java.util.HashMap,
+	 *      java.lang.String)
 	 */
 	public void saveFile(HashMap scoreMap, String fileName) throws IOException {
 
@@ -51,13 +52,13 @@ public class WebstartMuffin implements Muffin {
 		} catch (Exception e) {
 			Log.info("No exisiting Muffin Found - First Save");
 		}
-		
+
 		try {
 			ps.create(configURL, 1024); // 1024 bytes for our data
 
 			FileContents fc = ps.get(configURL);
-			DataOutputStream oos = new DataOutputStream(fc
-					.getOutputStream(false));
+			DataOutputStream oos = new DataOutputStream(
+					fc.getOutputStream(false));
 
 			// scroll through hashMap and write key and value to file
 			Set keys = scoreMap.keySet(); // get the keys

@@ -10,47 +10,46 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class RunningState extends BasicGameState {
-	
+
 	public static RunningState instance;
-	private int id;
 	private Workspace w;
 	private ArrayList<GMouseListener> mouseListeners;
-	
-	public RunningState(int idee) {
+
+	public RunningState() {
 		instance = this;
 		mouseListeners = new ArrayList<GMouseListener>();
-		id=idee;
-		w=new Workspace();
+
+		w = new Workspace();
 	}
 
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		
+
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		w.update(delta);
 	}
-	
+
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		w.render(container, game, g);
-		
+
 	}
 
 	public int getID() {
 		return 1;
 	}
-	
-	public void registerMouseListener(GMouseListener g){
+
+	public void registerMouseListener(GMouseListener g) {
 		mouseListeners.add(g);
 	}
-	
+
 	public void mouseClicked(int button, int x, int y, int clickCount) {
-		for(GMouseListener g : mouseListeners){
+		for (GMouseListener g : mouseListeners) {
 			g.onClick(x, y);
-			
+
 		}
 	}
 

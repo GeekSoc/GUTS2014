@@ -32,34 +32,50 @@ public class MinMaxPanel extends DefaultPanel {
 	private int offValue;
 	/** True if this panel support enabledment */
 	private boolean enablement;
-	
+
 	/**
 	 * Create a new panel for a range definition
 	 * 
-	 * @param name The name to display for this panel
-	 * @param min The minimum lower bound
-	 * @param max The maximum upper bound
-	 * @param defMin The default lower bound
-	 * @param defMax The default upper bound
-	 * @param toolTip The tooltip describing this function
+	 * @param name
+	 *            The name to display for this panel
+	 * @param min
+	 *            The minimum lower bound
+	 * @param max
+	 *            The maximum upper bound
+	 * @param defMin
+	 *            The default lower bound
+	 * @param defMax
+	 *            The default upper bound
+	 * @param toolTip
+	 *            The tooltip describing this function
 	 */
-	public MinMaxPanel(String name, int min, int max, int defMin, int defMax, String toolTip) {
+	public MinMaxPanel(String name, int min, int max, int defMin, int defMax,
+			String toolTip) {
 		this(name, min, max, defMin, defMax, false, 0, toolTip);
 	}
 
 	/**
 	 * Create a new panel for a range definition
 	 * 
-	 * @param name The name to display for this panel
-	 * @param min The minimum lower bound
-	 * @param max The maximum upper bound
-	 * @param defMin The default lower bound
-	 * @param defMax The default upper bound
-	 * @param enablement Indicates if this panel supports being enabled
-	 * @param offValue The value to report when disabled
-	 * @param toolTip The tooltip describing this function
+	 * @param name
+	 *            The name to display for this panel
+	 * @param min
+	 *            The minimum lower bound
+	 * @param max
+	 *            The maximum upper bound
+	 * @param defMin
+	 *            The default lower bound
+	 * @param defMax
+	 *            The default upper bound
+	 * @param enablement
+	 *            Indicates if this panel supports being enabled
+	 * @param offValue
+	 *            The value to report when disabled
+	 * @param toolTip
+	 *            The tooltip describing this function
 	 */
-	public MinMaxPanel(String name, int min, int max, int defMin, int defMax, boolean enablement, int offValue, String toolTip) {
+	public MinMaxPanel(String name, int min, int max, int defMin, int defMax,
+			boolean enablement, int offValue, String toolTip) {
 		setLayout(null);
 
 		this.setToolTipText(toolTip);
@@ -67,10 +83,10 @@ public class MinMaxPanel extends DefaultPanel {
 		this.enablement = enablement;
 		int offset = 0;
 		if (enablement) {
-			enabled.setBounds(10,20,200,20);
+			enabled.setBounds(10, 20, 200, 20);
 			add(enabled);
 			offset += 20;
-			
+
 			enabled.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent e) {
@@ -78,16 +94,16 @@ public class MinMaxPanel extends DefaultPanel {
 					maxSpinner.setEnabled(enabled.isSelected());
 					fireUpdated(null);
 				}
-				
+
 			});
 		}
-		
-		minSpinner = new JSpinner(new SpinnerNumberModel(defMin,min,max,1));
-		maxSpinner = new JSpinner(new SpinnerNumberModel(defMax,min,max,1));
-		
-		minSpinner.setBounds(50,20+offset,80,20);
-		maxSpinner.setBounds(190,20+offset,80,20);
-		
+
+		minSpinner = new JSpinner(new SpinnerNumberModel(defMin, min, max, 1));
+		maxSpinner = new JSpinner(new SpinnerNumberModel(defMax, min, max, 1));
+
+		minSpinner.setBounds(50, 20 + offset, 80, 20);
+		maxSpinner.setBounds(190, 20 + offset, 80, 20);
+
 		minSpinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				fireUpdated(e.getSource());
@@ -98,24 +114,24 @@ public class MinMaxPanel extends DefaultPanel {
 				fireUpdated(e.getSource());
 			}
 		});
-		
+
 		JLabel minLabel = new JLabel("Min");
-		minLabel.setBounds(10,20+offset,40,20);
+		minLabel.setBounds(10, 20 + offset, 40, 20);
 		add(minLabel);
 		JLabel maxLabel = new JLabel("Max");
-		maxLabel.setBounds(150,20+offset,40,20);
+		maxLabel.setBounds(150, 20 + offset, 40, 20);
 		add(maxLabel);
-		
+
 		add(minSpinner);
 		add(maxSpinner);
 		setBorder(BorderFactory.createTitledBorder(name));
-		
+
 		if (enablement) {
 			minSpinner.setEnabled(false);
 			maxSpinner.setEnabled(false);
 		}
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.tools.peditor.DefaultPanel#setEnabled(boolean)
 	 */
@@ -128,10 +144,10 @@ public class MinMaxPanel extends DefaultPanel {
 	/**
 	 * Force the state of this component
 	 * 
-	 * @param e True if we want this component to be enabled
+	 * @param e
+	 *            True if we want this component to be enabled
 	 */
-	public void setEnabledForced(boolean e)
-	{
+	public void setEnabledForced(boolean e) {
 		enabled.setEnabled(e);
 		minSpinner.setEnabled(e);
 		maxSpinner.setEnabled(e);
@@ -140,7 +156,8 @@ public class MinMaxPanel extends DefaultPanel {
 	/**
 	 * Set the minimum value
 	 * 
-	 * @param value The value to use as the lower bound
+	 * @param value
+	 *            The value to use as the lower bound
 	 */
 	public void setMin(int value) {
 		updateDisable = true;
@@ -151,23 +168,25 @@ public class MinMaxPanel extends DefaultPanel {
 	/**
 	 * Set the maximum value
 	 * 
-	 * @param value The value to use as the upper bound
+	 * @param value
+	 *            The value to use as the upper bound
 	 */
 	public void setMax(int value) {
 		updateDisable = true;
 		maxSpinner.setValue(new Integer(value));
 		updateDisable = false;
 	}
-	
+
 	/**
 	 * Add a listener to be notified of changes
 	 * 
-	 * @param listener The listener to be notified of changes
+	 * @param listener
+	 *            The listener to be notified of changes
 	 */
 	public void addListener(InputPanelListener listener) {
 		listeners.add(listener);
 	}
-	
+
 	/**
 	 * Get the offset on the y axis for layout
 	 * 
@@ -176,17 +195,18 @@ public class MinMaxPanel extends DefaultPanel {
 	public int getOffset() {
 		return enablement ? 65 : 45;
 	}
-	
+
 	/**
 	 * Notify listeners a change has occured on this panel
 	 * 
-	 * @param source The source of this event
+	 * @param source
+	 *            The source of this event
 	 */
 	void fireUpdated(Object source) {
 		if (updateDisable) {
 			return;
 		}
-		
+
 		if (source == maxSpinner) {
 			if (getMax() < getMin()) {
 				setMin(getMax());
@@ -197,12 +217,12 @@ public class MinMaxPanel extends DefaultPanel {
 				setMax(getMin());
 			}
 		}
-		
-		for (int i=0;i<listeners.size();i++) {
+
+		for (int i = 0; i < listeners.size(); i++) {
 			((InputPanelListener) listeners.get(i)).minMaxUpdated(this);
 		}
 	}
-	
+
 	/**
 	 * Check if this panel is enabled
 	 * 
@@ -211,11 +231,12 @@ public class MinMaxPanel extends DefaultPanel {
 	public boolean getEnabled() {
 		return !enablement || enabled.isSelected();
 	}
-	
+
 	/**
 	 * Indicate if this panel should be enabled
 	 * 
-	 * @param e True if this panel option should be enabled
+	 * @param e
+	 *            True if this panel option should be enabled
 	 */
 	public void setEnabledValue(boolean e) {
 		if (enablement) {
@@ -224,7 +245,7 @@ public class MinMaxPanel extends DefaultPanel {
 		minSpinner.setEnabled(enabled.isSelected() || !enablement);
 		maxSpinner.setEnabled(enabled.isSelected() || !enablement);
 	}
-	
+
 	/**
 	 * Get the defined upper bound
 	 * 
@@ -234,7 +255,7 @@ public class MinMaxPanel extends DefaultPanel {
 		if ((enablement) && (!enabled.isSelected())) {
 			return offValue;
 		}
-		
+
 		return ((Integer) maxSpinner.getValue()).intValue();
 	}
 
@@ -247,7 +268,7 @@ public class MinMaxPanel extends DefaultPanel {
 		if ((enablement) && (!enabled.isSelected())) {
 			return offValue;
 		}
-		
+
 		return ((Integer) minSpinner.getValue()).intValue();
 	}
 }

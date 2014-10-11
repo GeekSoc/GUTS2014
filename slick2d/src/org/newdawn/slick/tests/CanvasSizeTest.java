@@ -18,7 +18,7 @@ import org.newdawn.slick.util.Log;
  * @author kevin
  */
 public class CanvasSizeTest extends BasicGame {
-	
+
 	/**
 	 * Create test
 	 */
@@ -34,14 +34,16 @@ public class CanvasSizeTest extends BasicGame {
 	}
 
 	/**
-	 * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.Graphics)
 	 */
 	public void render(GameContainer container, Graphics g)
 			throws SlickException {
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer, int)
+	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
+	 *      int)
 	 */
 	public void update(GameContainer container, int delta)
 			throws SlickException {
@@ -50,15 +52,16 @@ public class CanvasSizeTest extends BasicGame {
 	/**
 	 * Entry point to the test
 	 * 
-	 * @param args The command line arguments passed in (none honoured)
+	 * @param args
+	 *            The command line arguments passed in (none honoured)
 	 */
 	public static void main(String[] args) {
 		try {
 			CanvasGameContainer container = new CanvasGameContainer(
 					new CanvasSizeTest());
-			container.setSize(640,480);
+			container.setSize(640, 480);
 			Frame frame = new Frame("Test");
-			frame.setLayout(new GridLayout(1,2));
+			frame.setLayout(new GridLayout(1, 2));
 			frame.add(container);
 			frame.pack();
 			frame.addWindowListener(new WindowAdapter() {
@@ -67,7 +70,7 @@ public class CanvasSizeTest extends BasicGame {
 				}
 			});
 			frame.setVisible(true);
-	
+
 			container.start();
 		} catch (Exception e) {
 			Log.error(e);

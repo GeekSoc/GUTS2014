@@ -13,8 +13,8 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.MaskUtil;
 
 /**
- * A transition that causes the previous state to rotate and scale down into
- * the new state.
+ * A transition that causes the previous state to rotate and scale down into the
+ * new state.
  * 
  * This is an enter transition
  * 
@@ -23,7 +23,7 @@ import org.newdawn.slick.util.MaskUtil;
 public class BlobbyTransition implements Transition {
 	/** The renderer to use for all GL operations */
 	protected static SGL GL = Renderer.get();
-	
+
 	/** The previous state */
 	private GameState prev;
 	/** True if the state has finished */
@@ -36,25 +36,27 @@ public class BlobbyTransition implements Transition {
 	private int timer = 1000;
 	/** The number of blobs to create */
 	private int blobCount = 10;
-	
+
 	/**
 	 * Create a new transition
 	 */
 	public BlobbyTransition() {
-		
+
 	}
 
 	/**
 	 * Create a new transition
 	 * 
-	 * @param background The background colour to draw under the previous state
+	 * @param background
+	 *            The background colour to draw under the previous state
 	 */
 	public BlobbyTransition(Color background) {
 		this.background = background;
 	}
-	
+
 	/**
-	 * @see org.newdawn.slick.state.transition.Transition#init(org.newdawn.slick.state.GameState, org.newdawn.slick.state.GameState)
+	 * @see org.newdawn.slick.state.transition.Transition#init(org.newdawn.slick.state.GameState,
+	 *      org.newdawn.slick.state.GameState)
 	 */
 	public void init(GameState firstState, GameState secondState) {
 		prev = secondState;
@@ -68,21 +70,24 @@ public class BlobbyTransition implements Transition {
 	}
 
 	/**
-	 * @see org.newdawn.slick.state.transition.Transition#postRender(org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.state.transition.Transition#postRender(org.newdawn.slick.state.StateBasedGame,
+	 *      org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
 	 */
-	public void postRender(StateBasedGame game, GameContainer container, Graphics g) throws SlickException {
+	public void postRender(StateBasedGame game, GameContainer container,
+			Graphics g) throws SlickException {
 		MaskUtil.resetMask();
 	}
 
 	/**
-	 * @see org.newdawn.slick.state.transition.Transition#preRender(org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.state.transition.Transition#preRender(org.newdawn.slick.state.StateBasedGame,
+	 *      org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
 	 */
 	public void preRender(StateBasedGame game, GameContainer container,
 			Graphics g) throws SlickException {
 		prev.render(container, game, g);
-		
+
 		MaskUtil.defineMask();
-		for (int i=0;i<blobs.size();i++) {
+		for (int i = 0; i < blobs.size(); i++) {
 			((Blob) blobs.get(i)).render(g);
 		}
 		MaskUtil.finishDefineMask();
@@ -91,33 +96,34 @@ public class BlobbyTransition implements Transition {
 		if (background != null) {
 			Color c = g.getColor();
 			g.setColor(background);
-			g.fillRect(0,0,container.getWidth(),container.getHeight());
+			g.fillRect(0, 0, container.getWidth(), container.getHeight());
 			g.setColor(c);
 		}
 	}
 
 	/**
-	 * @see org.newdawn.slick.state.transition.Transition#update(org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.GameContainer, int)
+	 * @see org.newdawn.slick.state.transition.Transition#update(org.newdawn.slick.state.StateBasedGame,
+	 *      org.newdawn.slick.GameContainer, int)
 	 */
 	public void update(StateBasedGame game, GameContainer container, int delta)
 			throws SlickException {
 		if (blobs.size() == 0) {
-			for (int i=0;i<blobCount;i++) {
+			for (int i = 0; i < blobCount; i++) {
 				blobs.add(new Blob(container));
 			}
 		}
-		
-		for (int i=0;i<blobs.size();i++) {
+
+		for (int i = 0; i < blobs.size(); i++) {
 			((Blob) blobs.get(i)).update(delta);
 		}
-		
+
 		timer -= delta;
 		if (timer < 0) {
 			finish = true;
 		}
 	}
 
-	/** 
+	/**
 	 * A blob to show the new state
 	 * 
 	 * @author kevin
@@ -131,34 +137,37 @@ public class BlobbyTransition implements Transition {
 		private float growSpeed;
 		/** The radius of this blob */
 		private float rad;
-		
+
 		/**
 		 * Create a new blob
 		 * 
-		 * @param container The container for dimensions
+		 * @param container
+		 *            The container for dimensions
 		 */
 		public Blob(GameContainer container) {
 			x = (float) (Math.random() * container.getWidth());
 			y = (float) (Math.random() * container.getWidth());
 			growSpeed = (float) (1f + (Math.random() * 1f));
 		}
-		
+
 		/**
-		 * Update the blob 
+		 * Update the blob
 		 * 
-		 * @param delta The change in time in milliseconds
+		 * @param delta
+		 *            The change in time in milliseconds
 		 */
 		public void update(int delta) {
 			rad += growSpeed * delta * 0.4f;
 		}
-		
+
 		/**
 		 * Render the blob - i.e. the mask
 		 * 
-		 * @param g The grphics context on which the mask should be drawn
+		 * @param g
+		 *            The grphics context on which the mask should be drawn
 		 */
 		public void render(Graphics g) {
-			g.fillOval(x-rad,y-rad,rad*2,rad*2);
+			g.fillOval(x - rad, y - rad, rad * 2, rad * 2);
 		}
 	}
 }

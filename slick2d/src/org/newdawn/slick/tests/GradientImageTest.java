@@ -35,48 +35,50 @@ public class GradientImageTest extends BasicGame {
 	private float ang;
 	/** True if we're rotating */
 	private boolean rotating = false;
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public GradientImageTest() {
 		super("Gradient Image Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
 		this.container = container;
-		
+
 		image1 = new Image("testdata/grass.png");
 		image2 = new Image("testdata/rocks.png");
-		
-		fill = new GradientFill(-64,0,new Color(1,1,1,1f),64,0,new Color(0,0,0,0));
-		shape = new Rectangle(336,236,128,128);
-	    poly = new Polygon();
-		poly.addPoint(320,220);
-		poly.addPoint(350,200);
-		poly.addPoint(450,200);
-		poly.addPoint(480,220);
-		poly.addPoint(420,400);
-		poly.addPoint(400,390);
+
+		fill = new GradientFill(-64, 0, new Color(1, 1, 1, 1f), 64, 0,
+				new Color(0, 0, 0, 0));
+		shape = new Rectangle(336, 236, 128, 128);
+		poly = new Polygon();
+		poly.addPoint(320, 220);
+		poly.addPoint(350, 200);
+		poly.addPoint(450, 200);
+		poly.addPoint(480, 220);
+		poly.addPoint(420, 400);
+		poly.addPoint(400, 390);
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.Graphics)
 	 */
 	public void render(GameContainer container, Graphics g) {
-		g.drawString("R - Toggle Rotationg",10,50);
+		g.drawString("R - Toggle Rotationg", 10, 50);
 		g.drawImage(image1, 100, 236);
 		g.drawImage(image2, 600, 236);
-		
+
 		g.translate(0, -150);
 		g.rotate(400, 300, ang);
 		g.texture(shape, image2);
 		g.texture(shape, image1, fill);
 		g.resetTransform();
-		
+
 		g.translate(0, 150);
 		g.rotate(400, 300, ang);
 		g.texture(poly, image2);
@@ -85,7 +87,8 @@ public class GradientImageTest extends BasicGame {
 	}
 
 	/**
-	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer, int)
+	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
+	 *      int)
 	 */
 	public void update(GameContainer container, int delta) {
 		if (rotating) {
@@ -96,12 +99,14 @@ public class GradientImageTest extends BasicGame {
 	/**
 	 * Entry point to our test
 	 * 
-	 * @param argv The arguments to pass into the test
+	 * @param argv
+	 *            The arguments to pass into the test
 	 */
 	public static void main(String[] argv) {
 		try {
-			AppGameContainer container = new AppGameContainer(new GradientImageTest());
-			container.setDisplayMode(800,600,false);
+			AppGameContainer container = new AppGameContainer(
+					new GradientImageTest());
+			container.setDisplayMode(800, 600, false);
 			container.start();
 		} catch (SlickException e) {
 			e.printStackTrace();

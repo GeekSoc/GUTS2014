@@ -50,9 +50,9 @@ public class ParticleIO {
 	public static ParticleSystem loadConfiguredSystem(String ref, Color mask)
 			throws IOException {
 		return loadConfiguredSystem(ResourceLoader.getResourceAsStream(ref),
-            null, null, mask);
+				null, null, mask);
 	}
-	
+
 	/**
 	 * Load a set of configured emitters into a single system
 	 * 
@@ -65,7 +65,7 @@ public class ParticleIO {
 	public static ParticleSystem loadConfiguredSystem(String ref)
 			throws IOException {
 		return loadConfiguredSystem(ResourceLoader.getResourceAsStream(ref),
-            null, null, null);
+				null, null, null);
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class ParticleIO {
 	 */
 	public static ParticleSystem loadConfiguredSystem(File ref)
 			throws IOException {
-      return loadConfiguredSystem(new FileInputStream(ref), null, null, null);
+		return loadConfiguredSystem(new FileInputStream(ref), null, null, null);
 	}
 
 	/**
@@ -87,16 +87,17 @@ public class ParticleIO {
 	 * 
 	 * @param ref
 	 *            The stream to read the XML from
-	 * @param mask The mask used to make the particle image transparent
+	 * @param mask
+	 *            The mask used to make the particle image transparent
 	 * @return A configured particle system
 	 * @throws IOException
 	 *             Indicates a failure to find, read or parse the XML file
 	 */
-	public static ParticleSystem loadConfiguredSystem(InputStream ref, Color mask)
-			throws IOException {
-      return loadConfiguredSystem(ref, null, null, mask);
+	public static ParticleSystem loadConfiguredSystem(InputStream ref,
+			Color mask) throws IOException {
+		return loadConfiguredSystem(ref, null, null, mask);
 	}
-	
+
 	/**
 	 * Load a set of configured emitters into a single system
 	 * 
@@ -108,7 +109,7 @@ public class ParticleIO {
 	 */
 	public static ParticleSystem loadConfiguredSystem(InputStream ref)
 			throws IOException {
-      return loadConfiguredSystem(ref, null, null, null);
+		return loadConfiguredSystem(ref, null, null, null);
 	}
 
 	/**
@@ -126,7 +127,7 @@ public class ParticleIO {
 	public static ParticleSystem loadConfiguredSystem(String ref,
 			ConfigurableEmitterFactory factory) throws IOException {
 		return loadConfiguredSystem(ResourceLoader.getResourceAsStream(ref),
-            factory, null, null);
+				factory, null, null);
 	}
 
 	/**
@@ -143,7 +144,8 @@ public class ParticleIO {
 	 */
 	public static ParticleSystem loadConfiguredSystem(File ref,
 			ConfigurableEmitterFactory factory) throws IOException {
-      return loadConfiguredSystem(new FileInputStream(ref), factory, null, null);
+		return loadConfiguredSystem(new FileInputStream(ref), factory, null,
+				null);
 	}
 
 	/**
@@ -160,25 +162,28 @@ public class ParticleIO {
 	 */
 	public static ParticleSystem loadConfiguredSystem(InputStream ref,
 			ConfigurableEmitterFactory factory) throws IOException {
-            return loadConfiguredSystem(ref, factory, null, null);
-         }
+		return loadConfiguredSystem(ref, factory, null, null);
+	}
 
-   /**
-    * Load a set of configured emitters into a single system
-    *
-    * @param ref
-    *            The stream to read the XML from
-    * @param factory
-    *            The factory used to create the emitter than will be poulated
-    *            with loaded data.
-    * @param system The particle system that will be loaded into
-    * @param mask The mask used to make the image background transparent
-    * @return A configured particle system
-    * @throws IOException
-    *             Indicates a failure to find, read or parse the XML file
-    */
-   public static ParticleSystem loadConfiguredSystem(InputStream ref,
-         ConfigurableEmitterFactory factory, ParticleSystem system, Color mask) throws IOException {
+	/**
+	 * Load a set of configured emitters into a single system
+	 *
+	 * @param ref
+	 *            The stream to read the XML from
+	 * @param factory
+	 *            The factory used to create the emitter than will be poulated
+	 *            with loaded data.
+	 * @param system
+	 *            The particle system that will be loaded into
+	 * @param mask
+	 *            The mask used to make the image background transparent
+	 * @return A configured particle system
+	 * @throws IOException
+	 *             Indicates a failure to find, read or parse the XML file
+	 */
+	public static ParticleSystem loadConfiguredSystem(InputStream ref,
+			ConfigurableEmitterFactory factory, ParticleSystem system,
+			Color mask) throws IOException {
 		if (factory == null) {
 			factory = new ConfigurableEmitterFactory() {
 				public ConfigurableEmitter createEmitter(String name) {
@@ -195,11 +200,11 @@ public class ParticleIO {
 			if (!element.getNodeName().equals("system")) {
 				throw new IOException("Not a particle system file");
 			}
-			
-         if (system == null) {
-         system = new ParticleSystem("org/newdawn/slick/data/particle.tga",
-					2000, mask);
-         }
+
+			if (system == null) {
+				system = new ParticleSystem(
+						"org/newdawn/slick/data/particle.tga", 2000, mask);
+			}
 			boolean additive = "true".equals(element.getAttribute("additive"));
 			if (additive) {
 				system.setBlendingMode(ParticleSystem.BLEND_ADDITIVE);
@@ -262,11 +267,10 @@ public class ParticleIO {
 			Document document = builder.newDocument();
 
 			Element root = document.createElement("system");
-			root
-					.setAttribute(
-							"additive",
-							""
-									+ (system.getBlendingMode() == ParticleSystem.BLEND_ADDITIVE));
+			root.setAttribute(
+					"additive",
+					""
+							+ (system.getBlendingMode() == ParticleSystem.BLEND_ADDITIVE));
 			root.setAttribute("points", "" + (system.usePoints()));
 
 			document.appendChild(root);
@@ -588,12 +592,8 @@ public class ParticleIO {
 		root.setAttribute("name", emitter.name);
 		root.setAttribute("imageName", emitter.imageName == null ? ""
 				: emitter.imageName);
-		root
-				.setAttribute("useOriented", emitter.useOriented ? "true"
-						: "false");
-		root
-				.setAttribute("useAdditive", emitter.useAdditive ? "true"
-						: "false");
+		root.setAttribute("useOriented", emitter.useOriented ? "true" : "false");
+		root.setAttribute("useAdditive", emitter.useAdditive ? "true" : "false");
 
 		if (emitter.usePoints == Particle.INHERIT_POINTS) {
 			root.setAttribute("renderType", "inherit");
@@ -620,15 +620,11 @@ public class ParticleIO {
 		root.appendChild(createRangeElement(document, "initialDistance",
 				emitter.initialDistance));
 		root.appendChild(createRangeElement(document, "speed", emitter.speed));
-		root
-				.appendChild(createRangeElement(document, "length",
-						emitter.length));
+		root.appendChild(createRangeElement(document, "length", emitter.length));
 		root.appendChild(createRangeElement(document, "emitCount",
 				emitter.emitCount));
 
-		root
-				.appendChild(createValueElement(document, "spread",
-						emitter.spread));
+		root.appendChild(createValueElement(document, "spread", emitter.spread));
 		root.appendChild(createValueElement(document, "angularOffset",
 				emitter.angularOffset));
 		root.appendChild(createValueElement(document, "growthFactor",
@@ -645,9 +641,7 @@ public class ParticleIO {
 		root.appendChild(createValueElement(document, "size", emitter.size));
 		root.appendChild(createValueElement(document, "velocity",
 				emitter.velocity));
-		root
-				.appendChild(createValueElement(document, "scaleY",
-						emitter.scaleY));
+		root.appendChild(createValueElement(document, "scaleY", emitter.scaleY));
 
 		Element color = document.createElement("color");
 		ArrayList list = emitter.colors;
@@ -709,17 +703,15 @@ public class ParticleIO {
 			element.setAttribute("value", "" + value.getValue(0));
 		} else if (value instanceof RandomValue) {
 			element.setAttribute("type", "random");
-			element
-					.setAttribute("value", ""
-							+ ((RandomValue) value).getValue());
+			element.setAttribute("value", "" + ((RandomValue) value).getValue());
 		} else if (value instanceof LinearInterpolator) {
 			element.setAttribute("type", "linear");
-			element.setAttribute("min", ""
-					+ ((LinearInterpolator) value).getMin());
-			element.setAttribute("max", ""
-					+ ((LinearInterpolator) value).getMax());
-			element.setAttribute("active", ""
-					+ ((LinearInterpolator) value).isActive());
+			element.setAttribute("min",
+					"" + ((LinearInterpolator) value).getMin());
+			element.setAttribute("max",
+					"" + ((LinearInterpolator) value).getMax());
+			element.setAttribute("active",
+					"" + ((LinearInterpolator) value).isActive());
 
 			ArrayList curve = ((LinearInterpolator) value).getCurve();
 			for (int i = 0; i < curve.size(); i++) {

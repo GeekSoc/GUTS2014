@@ -16,7 +16,7 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 /**
- * A simple test state to display a message describing the test 
+ * A simple test state to display a message describing the test
  *
  * @author kevin
  */
@@ -36,15 +36,18 @@ public class TestState1 extends BasicGameState {
 	}
 
 	/**
-	 * @see org.newdawn.slick.state.BasicGameState#init(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame)
+	 * @see org.newdawn.slick.state.BasicGameState#init(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.state.StateBasedGame)
 	 */
-	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+	public void init(GameContainer container, StateBasedGame game)
+			throws SlickException {
 		this.game = game;
-		font = new AngelCodeFont("testdata/demo2.fnt","testdata/demo2_00.tga");
+		font = new AngelCodeFont("testdata/demo2.fnt", "testdata/demo2_00.tga");
 	}
 
 	/**
-	 * @see org.newdawn.slick.state.BasicGameState#render(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.Graphics)
+	 * @see org.newdawn.slick.state.BasicGameState#render(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.Graphics)
 	 */
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
 		g.setFont(font);
@@ -56,7 +59,8 @@ public class TestState1 extends BasicGameState {
 	}
 
 	/**
-	 * @see org.newdawn.slick.state.BasicGameState#update(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, int)
+	 * @see org.newdawn.slick.state.BasicGameState#update(org.newdawn.slick.GameContainer,
+	 *      org.newdawn.slick.state.StateBasedGame, int)
 	 */
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 	}
@@ -65,12 +69,12 @@ public class TestState1 extends BasicGameState {
 	 * @see org.newdawn.slick.state.BasicGameState#keyReleased(int, char)
 	 */
 	public void keyReleased(int key, char c) {
-		
+
 		if (key == Input.KEY_2) {
 			GameState target = game.getState(TestState2.ID);
-			
+
 			final long start = System.currentTimeMillis();
-			CrossStateTransition t = new CrossStateTransition(target) {				
+			CrossStateTransition t = new CrossStateTransition(target) {
 				public boolean isComplete() {
 					return (System.currentTimeMillis() - start) > 2000;
 				}
@@ -78,11 +82,12 @@ public class TestState1 extends BasicGameState {
 				public void init(GameState firstState, GameState secondState) {
 				}
 			};
-			
+
 			game.enterState(TestState2.ID, t, new EmptyTransition());
 		}
 		if (key == Input.KEY_3) {
-			game.enterState(TestState3.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+			game.enterState(TestState3.ID, new FadeOutTransition(Color.black),
+					new FadeInTransition(Color.black));
 		}
 	}
 }
