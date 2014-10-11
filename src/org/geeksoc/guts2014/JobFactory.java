@@ -11,7 +11,7 @@ public class JobFactory {
 	private static double lambda = 2.0; // rate in the poisson process
 
 	private static Random random = new Random();
-	private static boolean isRunning;
+	public static boolean isRunning;
 	private static Timer timer = new Timer();
 
 	private Queue<Job> jobQueue = new LinkedList<Job>();

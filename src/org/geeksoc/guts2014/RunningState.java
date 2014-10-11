@@ -39,7 +39,7 @@ public class RunningState extends BasicGameState {
 	}
 
 	public int getID() {
-		return id;
+		return 1;
 	}
 
 	public void registerMouseListener(GMouseListener g) {

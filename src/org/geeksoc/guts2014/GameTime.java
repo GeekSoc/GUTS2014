@@ -47,7 +47,9 @@ public class GameTime {
 		if (speed == 0) {
 			jf.stopJobCreation();
 		} else {
+			if(!JobFactory.isRunning){
 			jf.startJobCreation();
+			}
 			jf.setLambda(i);
 		}
 

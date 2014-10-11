@@ -10,6 +10,16 @@ public class WorkPacket {
 	 * <JobType.Email, 75> means 75% of an email has been written.
 	 */
 	private HashMap<JobType, Integer> workDone;
+	
+	private static final HashMap<JobType, Integer> empty;
+    static
+    {
+        empty = new HashMap<JobType, Integer>();
+        empty.put(JobType.Email,0);
+        empty.put(JobType.Phone,0);
+        empty.put(JobType.SocialMedia,0);
+        empty.put(JobType.Text,0);
+    }
 
 	/**
 	 * Creates a new WorkPacket, initialised with the amount of work done on each
@@ -41,6 +51,18 @@ public class WorkPacket {
 		}
 
 		this.workDone = workDone;
+	}
+	
+	public WorkPacket(){
+		this(empty);
+	}
+	
+	public WorkPacket(int e, int p, int t, int s){
+		this(empty);
+		  workDone.put(JobType.Email,e);
+		  workDone.put(JobType.Phone,p);
+		  workDone.put(JobType.SocialMedia,s);
+		  workDone.put(JobType.Text,t);
 	}
 
 	public void combine(WorkPacket wp) {

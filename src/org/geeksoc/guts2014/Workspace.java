@@ -47,6 +47,7 @@ public class Workspace extends WorkerSpace {
 		timeControls.setcoords(container.getWidth() - 100, 40);
 		timeControls.render(g, container);
 		WorkLoadRenderer.render(g, wl, 5, container.getHeight() - 20);
+		
 	}
 
 	public String getTime() {
