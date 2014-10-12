@@ -194,6 +194,13 @@ public class Employee extends Circle {
 					return;
 				}
 			}
+			if(Workspace.instance.bin2.contains(this.getCenterX(), this.getCenterY())){
+				ArrayList<Employee> tmp = new ArrayList<Employee>();
+				tmp.add(this);
+				home.removeWorkers(tmp);
+				this.home = null;
+				return;
+			}
 			ArrayList<Employee> tmp = new ArrayList<Employee>();
 			tmp.add(this);
 			home.transferWorkers(Workspace.instance,tmp);
