@@ -78,9 +78,10 @@ public class Workspace extends WorkerSpace {
 
 		int gameSpeed = GameTime.getSpeed();
 		if (gameSpeed > 0) {
+			int stepPause = 1000 / gameSpeed;
 			deltaCounter += delta;
-			if (deltaCounter > 1000 / gameSpeed) {
-				deltaCounter = 0;
+			if (deltaCounter > stepPause) {
+				deltaCounter -= stepPause;
 				for (Employee e : this.employees) {
 					e.work();
 				}
