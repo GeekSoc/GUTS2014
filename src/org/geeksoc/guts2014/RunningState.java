@@ -48,6 +48,7 @@ public class RunningState extends BasicGameState {
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
+		g.setAntiAlias(true);
 		w.render(container, game, g);
 
 	}

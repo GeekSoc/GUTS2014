@@ -155,15 +155,26 @@ public class Employee extends Circle {
 	public void render(Graphics g) {
 		int max = 0;
 		JobType best = null;
+		JobType next = null;
 		for(JobType jt: JobType.values()){
 			if(skills.get(jt) >= max){
 				best = jt;
 				max= skills.get(jt);
 			}
 		}
+		max= 0;
+		for(JobType jt: JobType.values()){
+			if(!(jt==best)&&skills.get(jt) >= max){
+				next = jt;
+				max= skills.get(jt);
+			}
+		}
 		
 		g.setColor(best.color);
 		g.fill(this);
+		g.setColor(next.color);
+		g.setLineWidth(4);
+		g.draw(this);
 		
 	}
 
