@@ -57,6 +57,16 @@ public class Employee extends Circle {
 		}
 		System.out.println(skills.toString());
 	}
+	
+	public WorkPacket work() {
+		HashMap<JobType, Integer> workPriorities = new HashMap<JobType, Integer>();
+		
+		for (JobType jobType : JobType.values()) {
+			workPriorities.put(jobType, 0);
+		}
+		
+		return work(workPriorities);
+	}
 
 	/**
 	 * 
