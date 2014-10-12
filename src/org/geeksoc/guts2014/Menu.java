@@ -29,7 +29,6 @@ public class Menu extends BasicGameState {
 	private RoundedRectangle startButton;
 	private RoundedRectangle musicButton;
 	private RoundedRectangle FSButton;
-	private RoundedRectangle rButton;
 	private Color buttonColor;
 	private Color textColor;
 	private boolean clicked = false;
@@ -67,8 +66,7 @@ public class Menu extends BasicGameState {
 		
 		startButton = new RoundedRectangle(x1, 100, buttonWidth, buttonHeight, 20);
 		musicButton = new RoundedRectangle(x1, 200, buttonWidth, buttonHeight, 20);
-		rButton = new RoundedRectangle(x1,300,buttonWidth,buttonHeight, 20);
-		FSButton = new RoundedRectangle(x1, 400, buttonWidth, buttonHeight, 20);
+		FSButton = new RoundedRectangle(x1, 300, buttonWidth, buttonHeight, 20);
 		Sound_1= new Music("res/sound/background.ogg");
 		Sound_1.loop(1.0f, 1.0f);
 		buttonColor = new Color(240, 240, 240);
@@ -107,16 +105,11 @@ public class Menu extends BasicGameState {
 				}
 				
 			}
-			else if(mouseX < rButton.getMaxX()
-					&& mouseX > rButton.getMinX()
-					&& mouseY < rButton.getMaxY()
-					&& mouseY > rButton.getMinY()) {
-				toggleResolution();
-			}
 			else if (mouseX < FSButton.getMaxX()
 					&& mouseX > FSButton.getMinX()
 					&& mouseY < FSButton.getMaxY()
 					&& mouseY > FSButton.getMinY()) {
+				toggleResolution();
 				container.setFullscreen(!container.isFullscreen());
 				
 			}
@@ -150,7 +143,6 @@ public class Menu extends BasicGameState {
 		g.setColor(buttonColor);
 		g.fill(startButton);
 		g.fill(musicButton);
-		g.fill(rButton);
 		g.fill(FSButton);
 		
 		g.setColor(textColor);
@@ -160,8 +152,6 @@ public class Menu extends BasicGameState {
 				-metrics.stringWidth("Start")/2, startButton.getCenterY()-5);
 		g.drawString("Toggle Music", musicButton.getCenterX()
 				-metrics.stringWidth("Toogle Music")/2, musicButton.getCenterY()-5);
-		g.drawString("Adapt resolution", rButton.getCenterX()
-				-metrics.stringWidth("Addapt resolution")/2, rButton.getCenterY()-5);
 		g.drawString("Full Screen", FSButton.getCenterX()
 				-metrics.stringWidth("Full Screen")/2, FSButton.getCenterY()-5);
 		
