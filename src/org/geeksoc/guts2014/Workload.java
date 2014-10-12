@@ -63,7 +63,7 @@ public class Workload {
 			socials.poll();
 		}
 		
-		if(loop>5){
+		if(loop>100000){
 		if (emails.size()>50){
 			Main.rep -= 1;
 		}

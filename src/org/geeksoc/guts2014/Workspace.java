@@ -33,6 +33,8 @@ public class Workspace extends WorkerSpace {
 	private Rectangle rmRoomButton2;
 	private Image hireWorker;
 	private Rectangle hireWorker2;
+	private Image bin;
+	public Rectangle bin2;
 
 	public Workspace() throws SlickException {
 		instance = this;
@@ -52,7 +54,7 @@ public class Workspace extends WorkerSpace {
 		addRoomButton = new Image("res/img/hire.png");
 		rmRoomButton = new Image("res/img/unhire.png");
 		hireWorker = new Image("res/img/hire.png");
-
+		bin = new Image("res/img/bin.png");
 		// Add 5 workers to workspace
 		ArrayList<Employee> newEmployees = new ArrayList<Employee>();
 		for (int i = 0; i < 5; i++) {
@@ -129,6 +131,10 @@ public class Workspace extends WorkerSpace {
 		hireWorker.draw(container.getWidth() - 25, container.getHeight() - 25, 20,
 				20);
 		hireWorker2 = new Rectangle(container.getWidth() - 25,
+				container.getHeight() - 25, 20, 20);
+		bin.draw(container.getWidth() - 40, container.getHeight() - 25, 20,
+				20);
+		bin2 = new Rectangle(container.getWidth() - 40,
 				container.getHeight() - 25, 20, 20);
 
 	}
