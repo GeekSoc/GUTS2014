@@ -93,7 +93,8 @@ public class Employee extends Circle {
 			experience.put(jobType, experience.get(jobType) + jobDone);
 			
 			// Get paid!
-			Main.cash -= getWage();
+			// WHY MUST I DIVIDE BY 4? HAHAHAHA I DON'T KNOW. :@
+			Main.cash -= getWage()/4;
 		}
 		
 		for (JobType jobType : JobType.values()) {
