@@ -20,7 +20,7 @@ import org.newdawn.slick.geom.Circle;
 public class Employee extends Circle {
 	// The total maximum skill an employee should have, as the sum of their four
 	// skills.
-	private final int workRateDivisor = 6;
+	private final int workRateDivisor = 2;
 	private static int MAX_SKILL = 100;
 	// Maximum skill bonus that experience can give
 	private static int MAX_XP_BONUS = 10;
