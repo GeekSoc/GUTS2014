@@ -10,7 +10,7 @@ import org.geeksoc.guts2014.randomevents.RandomEventGenerator;
 
 public class JobFactory {
 
-	private static double lambda = 1.0 / 100.0; // rate in the poisson process
+	private static double lambda = 2.0; // rate in the poisson process
 
 	private static Random random = new Random();
 	public static boolean isRunning;
