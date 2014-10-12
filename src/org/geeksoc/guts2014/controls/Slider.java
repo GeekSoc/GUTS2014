@@ -14,7 +14,7 @@ public class Slider{
 	
 	public Slider(){
 
-		slider = new RoundedRectangle(x,y-5,5,10,10);
+		slider = new RoundedRectangle(x,y-5,5,15,10);
 	}
 	
 	public void update(Input input){

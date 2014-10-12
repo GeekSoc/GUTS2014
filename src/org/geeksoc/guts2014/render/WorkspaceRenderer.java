@@ -69,6 +69,8 @@ public class WorkspaceRenderer {
 		// Render Unused Workers
 
 		// renderControls
+		rr.render(g, container, w.getRooms(), w.getWorkerCountPerRoom());
+		
 		int i = 0;
 		for(Employee e:w.getWorkers()){
 			e.move(container.getWidth() - 15,container.getHeight()-40-(i*20));
@@ -77,7 +79,7 @@ public class WorkspaceRenderer {
 			i++;
 		}
 		// renderRooms
-		rr.render(g, container, w.getRooms(), w.getWorkerCountPerRoom());
+		
 	}
 
 }

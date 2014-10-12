@@ -66,6 +66,13 @@ public class Room extends WorkerSpace {
 			sslider.setValue(sslider.getValue() - 1);
 			tslider.setValue(tslider.getValue() - 1);
 		}
+		if (eslider.getValue() + pslider.getValue() + sslider.getValue()
+				+ tslider.getValue() < 100) {
+			eslider.setValue(eslider.getValue() + 1);
+			pslider.setValue(pslider.getValue() + 1);
+			sslider.setValue(sslider.getValue() + 1);
+			tslider.setValue(tslider.getValue() + 1);
+		}
 
 		priority.put(JobType.Email, eslider.getValue());
 		priority.put(JobType.SocialMedia, sslider.getValue());
