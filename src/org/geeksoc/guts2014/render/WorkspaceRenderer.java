@@ -61,7 +61,10 @@ public class WorkspaceRenderer {
 			flashtimer = 100;
 		}
 		if(flashtimer > 0){
-		g.drawString(flash, container.getWidth()/4-metrics.stringWidth( flash)/2, container.getHeight()-20);
+			g.setFont(Main.flashFont);
+			metrics = c.getFontMetrics(Main.fontFlash);
+		g.drawString(flash, container.getWidth()/2-metrics.stringWidth( flash)/2, container.getHeight()-20);
+		g.setFont(Main.font);
 		flashtimer--;
 		}
 		// Render Workload
