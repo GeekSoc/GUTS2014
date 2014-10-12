@@ -1,8 +1,10 @@
 package org.geeksoc.guts2014;
 
 import java.awt.Canvas;
+import java.awt.Dimension;
 import java.awt.FontFormatException;
 import java.awt.FontMetrics;
+import java.awt.Toolkit;
 import java.io.IOException;
 
 import org.lwjgl.input.Keyboard;
@@ -21,10 +23,6 @@ import org.newdawn.slick.Music;
 public class Menu extends BasicGameState {
 	
 	private GameContainer c;
-	
-	private static final int[] xResolutions = {1920,1366,1280,800};
-	private static final int[] yResolutions = {1080,768,720,600};
-	private int resI = 3;
 	
 	private static int buttonWidth = 300;
 	private static int buttonHeight = 50;
@@ -162,8 +160,8 @@ public class Menu extends BasicGameState {
 				-metrics.stringWidth("Start")/2, startButton.getCenterY()-5);
 		g.drawString("Toggle Music", musicButton.getCenterX()
 				-metrics.stringWidth("Toogle Music")/2, musicButton.getCenterY()-5);
-		g.drawString(xResolutions[resI]+"x"+yResolutions[resI], rButton.getCenterX()
-				-metrics.stringWidth(xResolutions[resI]+"x"+yResolutions[resI])/2, rButton.getCenterY()-5);
+		g.drawString("Addapt resolution", rButton.getCenterX()
+				-metrics.stringWidth("Addapt resolution")/2, rButton.getCenterY()-5);
 		g.drawString("Full Screen", FSButton.getCenterX()
 				-metrics.stringWidth("Full Screen")/2, FSButton.getCenterY()-5);
 		
@@ -172,12 +170,10 @@ public class Menu extends BasicGameState {
 	}
 	
 	public void toggleResolution() throws SlickException {
-		resI++;
-		if(resI>3) {
-			resI=0;
-		}
-		Main.game.setDisplayMode(xResolutions[resI], yResolutions[resI], false);
-		reiniti(c);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int) screenSize.getWidth();
+		int height = (int) screenSize.getHeight();
+		Main.game.setDisplayMode(width, height, false);
 	}
 
 	public void mouseClicked(int button, int x, int y, int clickCount) {
