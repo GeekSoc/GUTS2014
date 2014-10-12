@@ -18,6 +18,7 @@ public class Workspace extends WorkerSpace {
 
 	public static Workspace instance;
 	public static boolean sliderLock;
+	private final int ROOM_COST = 1000;
 	Workload wl;
 	WorkspaceRenderer wr;
 	JobFactory jf;
@@ -92,7 +93,7 @@ public class Workspace extends WorkerSpace {
 			int mouseY = cont.getInput().getMouseY();
 			if (addRoomButton2.contains(mouseX, mouseY) && rooms.size() < maxRooms) {
 				rooms.add(new Room(this));
-				Main.cash -= 100;
+				Main.cash -= ROOM_COST;
 			}
 			if (rmRoomButton2.contains(mouseX, mouseY) && rooms.size() > 1) {
 				Room roomO = rooms.get(1);
