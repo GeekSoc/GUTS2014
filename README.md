@@ -5,7 +5,7 @@ Geeksoc's attempt at the Kana Challenge.
 
 Excluding the unrare bug, this software will be
 
-excellent.
+excellent-ish.
 
 Kana inspired us to create interesting
 
@@ -16,12 +16,13 @@ only playable, but useful, too! A
 caffeine-fueled platform.
 
 
-With a team of five with
+With a team of five of
 
 incredible hunger, it is
 
-nearly a miracle that we avoided
+nearly a miracle that we dodged
 
-sleep, and (in)sanity.
+sleep, starvation and (in)sanity.
+
 
 :-)
