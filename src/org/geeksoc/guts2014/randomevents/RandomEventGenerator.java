@@ -9,6 +9,7 @@ import java.util.Queue;
 import java.util.Random;
 
 import org.geeksoc.guts2014.Job;
+import org.geeksoc.guts2014.JobType;
 import org.geeksoc.guts2014.Main;
 
 public class RandomEventGenerator {
@@ -36,10 +37,12 @@ public class RandomEventGenerator {
 		String reason = reasons.get(rand.nextInt(reasons.size()));
 		
 		System.out.println(method);
-		for(String j:jobTypes.split("")){
+		System.out.println(jobTypes);
+		for(char j:jobTypes.toCharArray()){
 			System.out.println(j);
-			for(int x = 0; x< rand.nextInt(30);x++){
-				//Job job = new Job(JobType.values()[Integer.parseInt(j)]);
+			for(int x = 10; x< rand.nextInt(20)+10;x++){
+				Job job = new Job(JobType.values()[Integer.parseInt(Character.toString(j))-1]);
+				jobQueue.add(job);
 			}
 		}
 		

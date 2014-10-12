@@ -33,7 +33,7 @@ public class Slider{
 				slider.setCenterX(x);
 			}
 			value= Math.round(slider.getCenterX()) -x;
-			System.out.println("Slider changed value: " + value);
+			//System.out.println("Slider changed value: " + value);
 		}
 		if(!input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
 			sliderdown =false;
