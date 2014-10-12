@@ -98,7 +98,7 @@ public class Employee extends Circle {
 		}
 		
 		for (JobType jobType : JobType.values()) {
-			Main.cash += workDone.get(jobType) * Main.rep / 100;
+			Main.cash += (workDone.get(jobType) * Main.rep / 100)/2;
 		}
 		
 		return new WorkPacket(workDone);
@@ -170,6 +170,7 @@ public class Employee extends Circle {
 			}
 		}
 		
+		g.setAntiAlias(true);
 		g.setColor(best.color);
 		g.fill(this);
 		g.setColor(next.color);
