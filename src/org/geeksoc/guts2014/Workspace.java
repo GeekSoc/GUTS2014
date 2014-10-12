@@ -66,7 +66,6 @@ public class Workspace extends WorkerSpace {
 
 			s.update(cont, delta);
 			jf.update();
-
 		}
 
 		GameTime.incrementTime(delta);
@@ -156,4 +155,13 @@ public class Workspace extends WorkerSpace {
 		}
 		return res;
 	}
+	
+	public float getTotalWages() {
+		float t = 0;
+		for (Room room: rooms) {
+			t+=room.getTotalWages();
+		}
+		return t+super.getTotalWages();
+	}
+
 }

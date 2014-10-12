@@ -42,6 +42,7 @@ public class RunningState extends BasicGameState {
 			container.setFullscreen(false);
 		}
 		
+		
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g)

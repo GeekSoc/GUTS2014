@@ -31,6 +31,14 @@ public class WorkerSpace {
 	public int getWorkerCount() {
 		return employees.size();
 	}
+	
+	public float getTotalWages() {
+		float t = 0;
+		for(Employee emp: employees) {
+			t+=emp.getWage();
+		}
+		return t;
+	}
 
 	public ArrayList<Employee> getWorkers() {
 		return employees;
