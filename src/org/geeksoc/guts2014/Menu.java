@@ -160,7 +160,7 @@ public class Menu extends BasicGameState {
 				-metrics.stringWidth("Start")/2, startButton.getCenterY()-5);
 		g.drawString("Toggle Music", musicButton.getCenterX()
 				-metrics.stringWidth("Toogle Music")/2, musicButton.getCenterY()-5);
-		g.drawString("Addapt resolution", rButton.getCenterX()
+		g.drawString("Adapt resolution", rButton.getCenterX()
 				-metrics.stringWidth("Addapt resolution")/2, rButton.getCenterY()-5);
 		g.drawString("Full Screen", FSButton.getCenterX()
 				-metrics.stringWidth("Full Screen")/2, FSButton.getCenterY()-5);
