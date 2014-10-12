@@ -38,8 +38,7 @@ public class JobFactory {
 		for (int i = 1; i <= max; i++) {
 			Job job = new Job();
 			jobQueue.add(job);
-			System.out
-					.println(String.format("Initial job %d: %s", i, job.toString()));
+			//System.out.println(String.format("Initial job %d: %s", i, job.toString()));
 		}
 	}
 

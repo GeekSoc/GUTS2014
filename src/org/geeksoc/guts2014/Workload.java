@@ -29,7 +29,7 @@ public class Workload {
 	}
 
 	public void update() {
-		System.out.println("Before: "+(jf.getJobQueue().size()+emails.size()+phones.size()+texts.size()+socials.size()));
+		//System.out.println("Before: "+(jf.getJobQueue().size()+emails.size()+phones.size()+texts.size()+socials.size()));
 		
 		while (!jf.getJobQueue().isEmpty()) {
 			Job j = jf.getJobQueue().poll();
@@ -48,31 +48,32 @@ public class Workload {
 				break;
 			}
 		}
-		System.out.println("After: "+(jf.getJobQueue().size()+emails.size()+phones.size()+texts.size()+socials.size()));
-		System.out.println(global.getWorkDone().toString());
+		//System.out.println("After: "+(jf.getJobQueue().size()+emails.size()+phones.size()+texts.size()+socials.size()));
+		//System.out.println(global.getWorkDone().toString());
 		
 		if (!emails.isEmpty()
 				&& emails.peek().workDone(global.getWorkDone(JobType.Email))) {
 			emails.poll();
-			System.out.println("Emails");
+			//System.out.println("Emails");
 		}
 		if (!phones.isEmpty()
 				&& phones.peek().workDone(global.getWorkDone(JobType.Phone))) {
 			phones.poll();
-			System.out.println("Phones");
+			//System.out.println("Phones");
 		}
 		if (!texts.isEmpty()
 				&& texts.peek().workDone(global.getWorkDone(JobType.Text))) {
 			texts.poll();
-			System.out.println("Texts");
+			//System.out.println("Texts");
 		}
 		if (!socials.isEmpty()
 				&& socials.peek().workDone(global.getWorkDone(JobType.SocialMedia))) {
 			socials.poll();
-			System.out.println("Socials");
+			//System.out.println("Socials");
 		}
 		
-		if(loop>100000){
+		if(loop>500){
+			System.out.println("Looped");
 		if (emails.size()>50){
 			Main.rep -= 1;
 		}
@@ -101,7 +102,7 @@ public class Workload {
 		
 		if (Main.rep<0)Main.rep = 0;
 		if (Main.rep>100) Main.rep=100;
-		
+		loop=0;
 		}
 		//System.out.println(global.getWorkDone().toString());
 		global = new WorkPacket();;
