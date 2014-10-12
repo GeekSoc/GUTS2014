@@ -167,7 +167,7 @@ public class Workspace extends WorkerSpace {
 		for (Room room: rooms) {
 			t+=room.getTotalWages();
 		}
-		return t+super.getTotalWages();
+		return (t+super.getTotalWages())*(4*60);
 	}
 
 }
