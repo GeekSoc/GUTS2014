@@ -24,6 +24,8 @@ public class Employee extends Circle {
 	private static int MAX_SKILL = 100;
 	// Maximum skill bonus that experience can give
 	private static int MAX_XP_BONUS = 10;
+	// Maximum number of workers per room
+	private static int MAX_NUM_WORKERS = 5;
 	// The HashMap for storing employee's skills.
 	private HashMap<JobType, Integer> skills;
 	// HashMap for storing the total amount of work done by employee on each job,
@@ -185,7 +187,7 @@ public class Employee extends Circle {
 		
 		if(moving&&!cont.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
 			for(Room sec:Workspace.instance.rooms){
-				if(sec.rectangle.contains(this.getCenterX(), this.getCenterY())){
+				if(sec.rectangle.contains(this.getCenterX(), this.getCenterY()) && sec.getWorkerCount()+1 <= MAX_NUM_WORKERS){
 					ArrayList<Employee> tmp = new ArrayList<Employee>();
 					tmp.add(this);
 					home.transferWorkers(sec,tmp);
@@ -194,12 +196,18 @@ public class Employee extends Circle {
 					return;
 				}
 			}
+			if(Workspace.instance.bin2.contains(this.getCenterX(), this.getCenterY())){
+				ArrayList<Employee> tmp = new ArrayList<Employee>();
+				tmp.add(this);
+				home.removeWorkers(tmp);
+				this.home = null;
+				return;
+			}
 			ArrayList<Employee> tmp = new ArrayList<Employee>();
 			tmp.add(this);
 			home.transferWorkers(Workspace.instance,tmp);
 			home = Workspace.instance;
 			moving = false;
-			
 			
 		}
 		

@@ -23,6 +23,7 @@ public class RunningState extends BasicGameState {
 		instance = this;
 		mouseListeners = new ArrayList<GMouseListener>();
 		//options = o;
+		Main.rep = 50;
 
 		
 	}
