@@ -170,6 +170,7 @@ public class Employee extends Circle {
 			}
 		}
 		
+		g.setAntiAlias(true);
 		g.setColor(best.color);
 		g.fill(this);
 		g.setColor(next.color);
