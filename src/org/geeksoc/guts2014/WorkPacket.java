@@ -30,8 +30,7 @@ public class WorkPacket {
 		 */
 		if (!(workDone.size() == JobType.values().length)) {
 			// Tell the user why some workDone has inexplicably been set to 0.
-			System.err
-					.println("An invalid HashMap has been passed to the constructor of WorkPacket.");
+			System.err.println("An invalid HashMap has been passed to the constructor of WorkPacket.");
 			for (JobType jobType : JobType.values()) {
 				if (workDone.get(jobType) == null) {
 					workDone.put(jobType, 0);

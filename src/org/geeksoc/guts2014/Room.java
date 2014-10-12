@@ -54,7 +54,7 @@ public class Room extends WorkerSpace {
 		tslider.update(cont.getInput());
 		this.update();
 		
-		System.out.println("People in room: " + employees.size());
+		//System.out.println("People in room: " + employees.size());
 	}
 
 	private void updatePriorities() {
