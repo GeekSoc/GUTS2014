@@ -8,7 +8,7 @@ import org.newdawn.slick.geom.RoundedRectangle;
 public class Slider{
 	
 	int x,y=0;
-	int value=0;
+	int value=25;
 	RoundedRectangle slider;
 	boolean sliderdown;
 	
