@@ -135,8 +135,8 @@ public class Workspace extends WorkerSpace {
 		addRoomButton2 = new Rectangle(20, 20, 20, 20);
 		rmRoomButton.draw(20, 40, 20, 20);
 		rmRoomButton2 = new Rectangle(20, 40, 20, 20);
-		menu.draw(container.getWidth()/2, container.getHeight()-20, 20, 20);
-		menu2 = new Rectangle(container.getWidth()/2, container.getHeight()-20, 20, 20);
+		menu.draw(container.getWidth()/2, container.getHeight()-25, 20, 20);
+		menu2 = new Rectangle(container.getWidth()/2, container.getHeight()-25, 20, 20);
 		hireWorker.draw(container.getWidth() - 25, container.getHeight() - 25, 20,
 				20);
 		hireWorker2 = new Rectangle(container.getWidth() - 25,
