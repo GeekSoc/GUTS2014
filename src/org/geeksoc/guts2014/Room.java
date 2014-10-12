@@ -45,7 +45,7 @@ public class Room extends WorkerSpace {
 				WorkPacket wp = calculateWorkDone();
 				ws.submitWork(wp);
 			}
-			deltaCounter = 0;
+			deltaCounter = deltaCounter-1000/speed;
 		}
 
 		eslider.update(cont.getInput());
