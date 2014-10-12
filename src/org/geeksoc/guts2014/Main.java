@@ -27,18 +27,6 @@ public class Main {
 	}
 	
 	public static void main(String[] args) throws SlickException {
-		//COMMENTED OUT DUE TO FEAR, PLEASE DO NOT UNCOMMENT OR DELETE. THANKS :-)
-		//jobQueue = new ArrayList<Job>();
-		//JobFactory jobFactory = new JobFactory();
-		
-		// Will add random job at random time interval to jobQueue of type Job
-		//jobFactory.startJobCreation();
-		// do not call this at update??
-		
-		// Will stop creating jobs, and empty the jobQueue
-		//jobFactory.startJobCreation();
-		
-		
 		Game g = new Game("geeksoc");
 		game = new AppGameContainer(g);
 		game.setDisplayMode(800, 600, false);
