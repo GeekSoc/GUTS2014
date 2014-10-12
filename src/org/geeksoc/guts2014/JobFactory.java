@@ -14,12 +14,9 @@ public class JobFactory {
 
 	private static Random random = new Random();
 	public static boolean isRunning;
-	private boolean addNew = false;
 	private static Timer timer = new Timer();
 
 	private Queue<Job> jobQueue = new LinkedList<Job>();
-	private double randomWait;
-	private long randomWait_ms;
 
 	public void update() {
 		int speed = GameTime.getSpeed();

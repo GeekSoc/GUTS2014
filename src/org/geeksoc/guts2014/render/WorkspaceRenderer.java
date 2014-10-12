@@ -1,7 +1,6 @@
 package org.geeksoc.guts2014.render;
 
 import java.awt.Canvas;
-import java.awt.Font;
 import java.awt.FontMetrics;
 
 import org.geeksoc.guts2014.Employee;
@@ -10,7 +9,6 @@ import org.geeksoc.guts2014.Workspace;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 

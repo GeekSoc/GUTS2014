@@ -1,13 +1,10 @@
 package org.geeksoc.guts2014;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Random;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -19,6 +16,7 @@ import org.newdawn.slick.geom.Circle;
  * @author Chris Bean (lastsplash)
  *
  */
+@SuppressWarnings("serial")
 public class Employee extends Circle {
 	// The total maximum skill an employee should have, as the sum of their four
 	// skills.

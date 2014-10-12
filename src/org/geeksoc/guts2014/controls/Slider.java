@@ -1,11 +1,9 @@
 package org.geeksoc.guts2014.controls;
 
 import org.geeksoc.guts2014.Workspace;
-import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.geom.RoundedRectangle;
-import org.newdawn.slick.state.StateBasedGame;
 
 public class Slider{
 	

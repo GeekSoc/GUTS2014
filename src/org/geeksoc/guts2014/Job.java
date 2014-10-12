@@ -28,9 +28,9 @@ public class Job {
 
 	public Job(JobType jobType) {
 		
-		jobDifficulty = randomNumber(0, 100);
-		this.jobType = jobType;
-		jobTypeName = jobType.name();
+		Job.jobDifficulty = randomNumber(0, 100);
+		Job.jobType = jobType;
+		Job.jobTypeName = jobType.name();
 		return;
 	}
 

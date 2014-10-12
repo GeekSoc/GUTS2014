@@ -6,8 +6,6 @@ import java.awt.FontMetrics;
 import java.io.IOException;
 
 import org.lwjgl.input.Keyboard;
-import org.newdawn.slick.Animation;
-import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -18,8 +16,6 @@ import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.Music;
-
-import org.newdawn.slick.font.effects.ShadowEffect;
 
 
 public class Menu extends BasicGameState {
@@ -41,13 +37,14 @@ public class Menu extends BasicGameState {
 	private boolean clicked = false;
 	private int mouseX = 0;
 	private int mouseY = 0;
-	private Options options;
-	private Animation phone;
+	// These aren't being used.
+	//private Options options;
+	//private Animation phone;
 	private Music Sound_1;
 	private Image mpic;
 	
-	public Menu(Options o) {
-		options = o;
+	public Menu(/*Options o*/) {
+		//options = o;
 	}
 
 	public void init(GameContainer container, StateBasedGame game)
@@ -70,8 +67,6 @@ public class Menu extends BasicGameState {
 	private void reiniti(GameContainer container) throws SlickException {
 		int x1 = (container.getWidth() / 4) - (buttonWidth / 2);
 		
-		//Fuck off wit hte annoying music for now :(
-				
 		startButton = new RoundedRectangle(x1, 100, buttonWidth, buttonHeight, 20);
 		musicButton = new RoundedRectangle(x1, 200, buttonWidth, buttonHeight, 20);
 		rButton = new RoundedRectangle(x1,300,buttonWidth,buttonHeight, 20);

@@ -3,14 +3,12 @@ package org.geeksoc.guts2014.randomevents;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 
 import org.geeksoc.guts2014.Job;
-import org.geeksoc.guts2014.JobType;
 import org.geeksoc.guts2014.Main;
 
 public class RandomEventGenerator {
@@ -41,7 +39,7 @@ public class RandomEventGenerator {
 		for(String j:jobTypes.split("")){
 			System.out.println(j);
 			for(int x = 0; x< rand.nextInt(30);x++){
-				Job job = new Job(JobType.values()[Integer.parseInt(j)]);
+				//Job job = new Job(JobType.values()[Integer.parseInt(j)]);
 			}
 		}
 		

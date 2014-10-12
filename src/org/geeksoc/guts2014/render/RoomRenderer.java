@@ -1,15 +1,12 @@
 package org.geeksoc.guts2014.render;
 
-import java.math.*;
 import java.util.ArrayList;
 
 import org.geeksoc.guts2014.Employee;
 import org.geeksoc.guts2014.Section;
-import org.geeksoc.guts2014.controls.Slider;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.RoundedRectangle;
 
 public class RoomRenderer {
