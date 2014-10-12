@@ -22,7 +22,7 @@ public class Workspace extends WorkerSpace {
 	WorkspaceRenderer wr;
 	JobFactory jf;
 	private TimeControls timeControls;
-	ArrayList<Section> rooms = new ArrayList<Section>();
+	ArrayList<Room> rooms = new ArrayList<Room>();
 	private int maxRooms = 16;
 	private int deltaCounter = 0;
 
@@ -45,7 +45,7 @@ public class Workspace extends WorkerSpace {
 
 		timeControls = new TimeControls();
 		for (int x = 0; x < 1; x++) {
-			rooms.add(new Section(this));
+			rooms.add(new Room(this));
 		}
 
 		addRoomButton = new Image("res/img/hire.png");
@@ -61,7 +61,7 @@ public class Workspace extends WorkerSpace {
 	}
 
 	public void update(GameContainer cont, StateBasedGame game, int delta) {
-		for (Section s : rooms) {
+		for (Room s : rooms) {
 
 			s.update(cont, delta);
 			jf.update();
@@ -91,11 +91,11 @@ public class Workspace extends WorkerSpace {
 			int mouseX = cont.getInput().getMouseX();
 			int mouseY = cont.getInput().getMouseY();
 			if (addRoomButton2.contains(mouseX, mouseY) && rooms.size() < maxRooms) {
-				rooms.add(new Section(this));
+				rooms.add(new Room(this));
 				Main.cash -= 100;
 			}
 			if (rmRoomButton2.contains(mouseX, mouseY) && rooms.size() > 1) {
-				Section roomO = rooms.get(1);
+				Room roomO = rooms.get(1);
 				roomO.transferWorkers(this, roomO.getWorkers());
 				rooms.remove(1);
 			}
@@ -141,14 +141,14 @@ public class Workspace extends WorkerSpace {
 		return wl;
 	}
 
-	public ArrayList<Section> getRooms() {
+	public ArrayList<Room> getRooms() {
 		return rooms;
 	}
 
 	public int[] getWorkerCountPerRoom() {
 		int[] res = new int[rooms.size()];
 		int x = 0;
-		for (Section room : rooms) {
+		for (Room room : rooms) {
 
 			res[x] = room.getWorkerCount();
 			x += 1;

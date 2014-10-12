@@ -3,7 +3,7 @@ package org.geeksoc.guts2014.render;
 import java.util.ArrayList;
 
 import org.geeksoc.guts2014.Employee;
-import org.geeksoc.guts2014.Section;
+import org.geeksoc.guts2014.Room;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -18,7 +18,7 @@ public class RoomRenderer {
 	private final int peepGap = 5;
 
 
-	public void render(Graphics g, GameContainer c,ArrayList<Section> s, int[] people) { // nrooms is the number of rooms and 'people'
+	public void render(Graphics g, GameContainer c,ArrayList<Room> s, int[] people) { // nrooms is the number of rooms and 'people'
 		                                           // is an array containing number in room
 		
 		g.setColor(new Color(240, 240, 240));
@@ -35,7 +35,7 @@ public class RoomRenderer {
 		float rHorSize= (c.getWidth()-100-(nRows+1)*hallwayWidth)/nRows;
 		float rVerSize= (c.getHeight()-100-(nRows+1)*hallwayWidth)/nRows;
 		int i=0;
-		for(Section sec:s) {
+		for(Room sec:s) {
 			cr=i/nRows+1;
 			cc=i%nRows;
 			x=((cc+1)*hallwayWidth) + (cc*(int)rHorSize-1)+50;

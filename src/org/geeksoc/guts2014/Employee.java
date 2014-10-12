@@ -20,7 +20,7 @@ import org.newdawn.slick.geom.Circle;
 public class Employee extends Circle {
 	// The total maximum skill an employee should have, as the sum of their four
 	// skills.
-	private final int workCo = 10;
+	private final int workRateDivisor = 6;
 	private static int MAX_SKILL = 100;
 	// Maximum skill bonus that experience can give
 	private static int MAX_XP_BONUS = 10;
@@ -85,7 +85,7 @@ public class Employee extends Circle {
 			 * skill in range 1 - 100, priority in range 0 - 100. Divide by 100 to
 			 * keep numbers at the right size.
 			 */
-			int jobDone = (skills.get(jobType) * priority) / (MAX_SKILL*workCo);
+			int jobDone = (skills.get(jobType) * priority) / (MAX_SKILL*workRateDivisor);
 			workDone.put(jobType, jobDone);
 			// Add to experience
 			experience.put(jobType, experience.get(jobType) + jobDone);
@@ -184,7 +184,7 @@ public class Employee extends Circle {
 		}
 		
 		if(moving&&!cont.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
-			for(Section sec:Workspace.instance.rooms){
+			for(Room sec:Workspace.instance.rooms){
 				if(sec.rectangle.contains(this.getCenterX(), this.getCenterY())){
 					ArrayList<Employee> tmp = new ArrayList<Employee>();
 					tmp.add(this);

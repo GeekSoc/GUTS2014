@@ -8,7 +8,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.RoundedRectangle;
 
-public class Section extends WorkerSpace {
+public class Room extends WorkerSpace {
 
 	private Workspace ws;
 	public HashMap<JobType, Integer> priority = new HashMap<JobType, Integer>();
@@ -17,7 +17,7 @@ public class Section extends WorkerSpace {
 	// To count up in milliseconds
 	private int deltaCounter;
 
-	public Section(Workspace ws) {
+	public Room(Workspace ws) {
 		this.ws = ws;
 		eslider = new Slider();
 		sslider = new Slider();
