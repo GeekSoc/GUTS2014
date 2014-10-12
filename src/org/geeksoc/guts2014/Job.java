@@ -10,9 +10,9 @@ public class Job {
 	private static Random random = new Random();
 
 	// Attributes
-	private static JobType jobType;
-	private static String jobTypeName;
-	private static int jobDifficulty;
+	private  JobType jobType;
+	private  String jobTypeName;
+	private  int jobDifficulty;
 
 	private int jobProgress;
 
@@ -28,9 +28,9 @@ public class Job {
 
 	public Job(JobType jobType) {
 		
-		Job.jobDifficulty = randomNumber(0, 100);
-		Job.jobType = jobType;
-		Job.jobTypeName = jobType.name();
+		jobDifficulty = randomNumber(0, 100);
+		this.jobType = jobType;
+		jobTypeName = jobType.name();
 		return;
 	}
 
@@ -57,6 +57,7 @@ public class Job {
 
 	public boolean workDone(int workDone) {
 		jobProgress += workDone;
+		if(jobProgress >= jobDifficulty)System.out.println("Done");
 		return jobProgress >= jobDifficulty;
 	}
 }

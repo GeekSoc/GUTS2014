@@ -44,8 +44,7 @@ public class WorkspaceRenderer {
 		if (Main.cash<0){
 			g.setColor(new Color(0xfa, 0x80, 0x72));
 		}
-		g.drawString(String.format("£" + "%.2f", Main.cash), container.getWidth()/2-metrics.stringWidth(String.format("£" + "%.2f", Main.cash))/2, 20);
-		
+		g.drawString(String.format("£" + "%.2f" + "   -£%.2f", Main.cash, w.getTotalWages()), container.getWidth()/2-metrics.stringWidth(String.format("£" + "%.2f", Main.cash))/2, 20);
 		g.setColor(Color.black);
 		
 		//Render Metrics

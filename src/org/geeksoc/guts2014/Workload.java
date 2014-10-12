@@ -29,6 +29,8 @@ public class Workload {
 	}
 
 	public void update() {
+		System.out.println("Before: "+(jf.getJobQueue().size()+emails.size()+phones.size()+texts.size()+socials.size()));
+		
 		while (!jf.getJobQueue().isEmpty()) {
 			Job j = jf.getJobQueue().poll();
 			switch (j.getJobType()) {
@@ -46,21 +48,28 @@ public class Workload {
 				break;
 			}
 		}
+		System.out.println("After: "+(jf.getJobQueue().size()+emails.size()+phones.size()+texts.size()+socials.size()));
+		System.out.println(global.getWorkDone().toString());
+		
 		if (!emails.isEmpty()
 				&& emails.peek().workDone(global.getWorkDone(JobType.Email))) {
 			emails.poll();
+			System.out.println("Emails");
 		}
 		if (!phones.isEmpty()
 				&& phones.peek().workDone(global.getWorkDone(JobType.Phone))) {
 			phones.poll();
+			System.out.println("Phones");
 		}
 		if (!texts.isEmpty()
 				&& texts.peek().workDone(global.getWorkDone(JobType.Text))) {
 			texts.poll();
+			System.out.println("Texts");
 		}
 		if (!socials.isEmpty()
 				&& socials.peek().workDone(global.getWorkDone(JobType.SocialMedia))) {
 			socials.poll();
+			System.out.println("Socials");
 		}
 		
 		if(loop>100000){
@@ -103,7 +112,7 @@ public class Workload {
 	public void submit(WorkPacket wp) {
 		global.combine(wp);
 		// Print number of jobs done in this iteration.
-		System.out.println("Global work done this iteration. Phone: "
+	/*	System.out.println("Global work done this iteration. Phone: "
 				+ wp.getWorkDone(JobType.Phone) + ". Text: "
 				+ wp.getWorkDone(JobType.Text) + ". Social Media: "
 				+ wp.getWorkDone(JobType.SocialMedia) + ". Email: "
@@ -111,6 +120,6 @@ public class Workload {
 		// Print number of jobs in queue.
 		System.out.println("Jobs remaining at the end of this iteration. Phone: "
 				+ phones.size() + ". Text: " + texts.size() + ". Social Media: "
-				+ socials.size() + ". Email: " + emails.size());
+				+ socials.size() + ". Email: " + emails.size()); */
 	}
 }

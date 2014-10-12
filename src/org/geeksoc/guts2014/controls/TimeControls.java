@@ -77,10 +77,10 @@ public class TimeControls implements GMouseListener {
 
 	@Override
 	public void onClick(int x, int y) {
-		System.out.println("Derp");
+		//System.out.println("Derp");
 		if (pause1.contains(x, y) || pause2.contains(x, y)) {
 			GameTime.setSpeed(0);
-			System.out.println("Derp");
+			//System.out.println("Derp");
 		} else if (play.contains(x, y)) {
 			GameTime.setSpeed(1);
 

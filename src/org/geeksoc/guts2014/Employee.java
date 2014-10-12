@@ -20,7 +20,7 @@ import org.newdawn.slick.geom.Circle;
 public class Employee extends Circle {
 	// The total maximum skill an employee should have, as the sum of their four
 	// skills.
-	private final int workRateDivisor = 6;
+	private final int workRateDivisor = 2;
 	private static int MAX_SKILL = 100;
 	// Maximum skill bonus that experience can give
 	private static int MAX_XP_BONUS = 10;
@@ -174,6 +174,8 @@ public class Employee extends Circle {
 	}
 
 	public void update(GameContainer cont) {
+		int workercount = 0;
+		
 		if(cont.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
 			if(this.contains(cont.getInput().getAbsoluteMouseX(),cont.getInput().getAbsoluteMouseY())){
 				moving = true;
@@ -185,9 +187,23 @@ public class Employee extends Circle {
 			this.setCenterY(cont.getInput().getAbsoluteMouseY());
 		}
 		
+		for (Employee emp:Workspace.instance.employees) {
+			if(emp.moving) {
+				workercount++;
+			}
+		}
+		
+		for (Room s2:Workspace.instance.rooms) {
+			for (Employee emp:s2.getWorkers()){
+				if(emp.moving) {
+					workercount++;
+				}
+			}
+		}
+		
 		if(moving&&!cont.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
 			for(Room sec:Workspace.instance.rooms){
-				if(sec.rectangle.contains(this.getCenterX(), this.getCenterY()) && sec.getWorkerCount()+1 <= MAX_NUM_WORKERS){
+				if(sec.rectangle.contains(this.getCenterX(), this.getCenterY()) && sec.getWorkerCount()+workercount <= MAX_NUM_WORKERS){
 					ArrayList<Employee> tmp = new ArrayList<Employee>();
 					tmp.add(this);
 					home.transferWorkers(sec,tmp);

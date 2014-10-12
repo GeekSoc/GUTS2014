@@ -16,12 +16,17 @@ public class Main {
 	public static float cash;
 	public static AppGameContainer game;
 	public static TrueTypeFont font;
+	public static TrueTypeFont flashFont;
 	public static Font fontBase;
 	public static int rep;
 	public static String flash;
+	public static Font fontFlash;
 	
 	public static void loadResources() throws FontFormatException, IOException  {
         Font fontRaw = Font.createFont(Font.TRUETYPE_FONT, new File("res/font/Varela.ttf"));
+        
+        fontFlash = fontRaw.deriveFont(Font.PLAIN, 16f);
+        flashFont = new TrueTypeFont(fontFlash,true);
         fontBase = fontRaw.deriveFont(Font.BOLD, 24f);
         font = new TrueTypeFont(fontBase, true);
 	}
