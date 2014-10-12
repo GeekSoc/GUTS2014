@@ -76,13 +76,13 @@ public class Workspace extends WorkerSpace {
 			deltaCounter += delta;
 			if (deltaCounter > 1000 / gameSpeed) {
 				deltaCounter = 0;
-				for (Employee e : this.workers) {
+				for (Employee e : this.employees) {
 					e.work();
 				}
 			}
 		}
 
-		for (Employee e : this.workers) {
+		for (Employee e : this.employees) {
 			e.update(cont);
 		}
 		

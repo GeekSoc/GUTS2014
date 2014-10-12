@@ -15,7 +15,7 @@ public class Room extends WorkerSpace {
 	private Slider eslider, sslider, pslider, tslider;
 	public RoundedRectangle rectangle;
 	// To count up in milliseconds
-	private int deltaCounter;
+	private int deltaCounter = 0;
 
 	public Room(Workspace ws) {
 		this.ws = ws;
@@ -26,7 +26,7 @@ public class Room extends WorkerSpace {
 	}
 
 	public void update(GameContainer cont,int delta) {
-		for(Employee e: this.workers){
+		for(Employee e: this.employees){
 			e.update(cont);
 		}
 
@@ -53,6 +53,8 @@ public class Room extends WorkerSpace {
 		pslider.update(cont.getInput());
 		tslider.update(cont.getInput());
 		this.update();
+		
+		System.out.println("People in room: " + employees.size());
 	}
 
 	private void updatePriorities() {
@@ -73,7 +75,7 @@ public class Room extends WorkerSpace {
 
 	private WorkPacket calculateWorkDone() {
 		WorkPacket sp = new WorkPacket();
-		for (Employee e : this.workers) {
+		for (Employee e : this.employees) {
 			WorkPacket wp = e.work(priority);
 			
 			// WorkPacket wp = new WorkPacket();

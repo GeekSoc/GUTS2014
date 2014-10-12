@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class WorkerSpace {
 
-	ArrayList<Employee> workers;
+	ArrayList<Employee> employees;
 	ArrayList<Employee> newWorkers;
 	ArrayList<Employee> oldWorkers;
 
 	public WorkerSpace() {
-		workers = new ArrayList<Employee>();
+		employees = new ArrayList<Employee>();
 		newWorkers = new ArrayList<Employee>();
 		oldWorkers = new ArrayList<Employee>();
 	}
@@ -29,16 +29,16 @@ public class WorkerSpace {
 	}
 
 	public int getWorkerCount() {
-		return workers.size();
+		return employees.size();
 	}
 
 	public ArrayList<Employee> getWorkers() {
-		return workers;
+		return employees;
 	}
 
 	public void update() {
-		workers.removeAll(oldWorkers);
-		workers.addAll(newWorkers);
+		employees.removeAll(oldWorkers);
+		employees.addAll(newWorkers);
 		oldWorkers.clear();
 		newWorkers.clear();
 	}
