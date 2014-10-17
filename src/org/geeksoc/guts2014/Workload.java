@@ -72,42 +72,46 @@ public class Workload {
 			//System.out.println("Socials");
 		}
 		
-		if(loop>500){
-			System.out.println("Looped");
-		if (emails.size()>50){
-			Main.rep -= 1;
+		if (!GameTime.isPaused()) {
+			if (loop > 500) {
+				System.out.println("Looped");
+				if (emails.size() > 50) {
+					Main.rep -= 1;
+				}
+				if (phones.size() > 50) {
+					Main.rep -= 1;
+				}
+				if (texts.size() > 50) {
+					Main.rep -= 1;
+				}
+				if (socials.size() > 50) {
+					Main.rep -= 1;
+				}
+
+				if (emails.isEmpty()) {
+					Main.rep += 1;
+				}
+				if (phones.isEmpty()) {
+					Main.rep += 1;
+				}
+				if (texts.isEmpty()) {
+					Main.rep += 1;
+				}
+				if (socials.isEmpty()) {
+					Main.rep += 1;
+				}
+
+				if (Main.rep < 0)
+					Main.rep = 0;
+				if (Main.rep > 100)
+					Main.rep = 100;
+				loop = 0;
+			}
+			// System.out.println(global.getWorkDone().toString());
+			global = new WorkPacket();
+
+			loop++;
 		}
-		if (phones.size()>50){
-			Main.rep -= 1;
-		}
-		if (texts.size()>50){
-			Main.rep -= 1;
-		}
-		if (socials.size()>50){
-			Main.rep -= 1;
-		}
-		
-		if (emails.isEmpty()){
-			Main.rep += 1;
-		}
-		if (phones.isEmpty()){
-			Main.rep += 1;
-		}
-		if (texts.isEmpty()){
-			Main.rep += 1;
-		}
-		if (socials.isEmpty()){
-			Main.rep += 1;
-		}
-		
-		if (Main.rep<0)Main.rep = 0;
-		if (Main.rep>100) Main.rep=100;
-		loop=0;
-		}
-		//System.out.println(global.getWorkDone().toString());
-		global = new WorkPacket();;
-		
-		loop++;
 	}
 
 	public void submit(WorkPacket wp) {

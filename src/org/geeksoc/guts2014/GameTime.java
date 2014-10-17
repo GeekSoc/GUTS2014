@@ -48,5 +48,9 @@ public final class GameTime {
 	public static int getSpeed() {
 		return speed;
 	}
+	
+	public static boolean isPaused() {
+		return speed == 0;
+	}
 
 }
